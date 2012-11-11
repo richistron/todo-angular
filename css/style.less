@@ -5,11 +5,45 @@
     Description:
         Purpose of the stylesheet follows.
 */
-@color: #4D926F;
-
-#header {
-  color: @color;
+/* vars */
+@base-url: "/img";
+@color: #000080;
+@bg: #FFF;
+@margin-top: 20px;
+@shadow-color: #888;
+/* pre defined */
+.box-shadow  {
+    -webkit-box-shadow: -6px 8px 8px @shadow-color;
+    -moz-box-shadow: -6px 8px 8px @shadow-color;
+    box-shadow: -6px 8px 8px @shadow-color;
 }
-h2 {
+.border-style{
+    border-bottom: 1px solid @shadow-color;
+}
+.border-radius{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+/* main estructure */
+body {
   color: @color;
+  background: url('@{base-url}/bg-main.jpg');
+}
+div#container{
+    background: @bg;
+    .box-shadow;
+    .border-radius;
+}
+div.container_12 div.grid_12 {    
+    margin-top: @margin-top;
+    .border-style;
+    padding-bottom: @margin-top;
+}
+#footer {
+    border: none;
+}
+a.logo {
+text-decoration: none;
+color: black;
 }
