@@ -11,39 +11,84 @@
 @bg: #FFF;
 @margin-top: 20px;
 @shadow-color: #888;
-/* pre defined */
-.box-shadow  {
-    -webkit-box-shadow: -6px 8px 8px @shadow-color;
-    -moz-box-shadow: -6px 8px 8px @shadow-color;
-    box-shadow: -6px 8px 8px @shadow-color;
-}
-.border-style{
-    border-bottom: 1px solid @shadow-color;
-}
-.border-radius{
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-}
+@color-light:#F6F5F4;
+@color-dark: #1E1E1E;
+
 /* main estructure */
+/*
+  /////////////////////////////////////////////////////////////////////////////  
+*/
 body {
-  color: @color;
+  color: @color-dark;
   background: url('@{base-url}/bg-main.jpg');
+  font-size: 14px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
+.text-shadow(@color-dark){
+    text-shadow: 2px 2px 5px @color-dark;
+}
+.text-links(@color-link,@color-hover){
+    color: @color-link;
+    span,h1,h2,h3,h4,strong{
+        color: @color-link;
+    }
+    a{
+        color: @color-link;
+        text-decoration: none;
+    }
+    a:hover{
+        color: @color-hover;        
+        .text-shadow(@color-link);
+    }    
+}
+.border-light{
+    border: 1px solid @color-light;
+}
+#header{
+    background: url('@{base-url}/bg-hd.png') 21px 4px no-repeat;
+    .logo{            
+        .text-links(@color-light,@color-dark);    
+        h1{
+            font-size: 36px;
+            margin-left: 120px;
+            margin-bottom: -10px;
+        }
+        p{
+            margin-left: 120px;
+        }    
+    }
 }
 div#container{
-    background: @bg;
-    .box-shadow;
-    .border-radius;
+    background: @color-dark;
+    .text-links(@color-light,@color-light);
+    .border-light;
 }
-div.container_12 div.grid_12 {    
-    margin-top: @margin-top;
-    .border-style;
-    padding-bottom: @margin-top;
+.fancy-shadow(@shadow){
+    -moz-box-shadow: inset 0px 0px 20px @shadow;
+    -webkit-box-shadow: inset 0px 0px 20px @shadow;
+    box-shadow: inset 0px 0px 20px @shadow;
 }
-#footer {
-    border: none;
+div#main{
+    background: @color-light;
+    .text-links(@color-dark,@color-dark);    
+    padding: 25px 0;    
 }
-a.logo {
-text-decoration: none;
-color: black;
+.ad{
+    background: @color-light;
+    color: @color-dark;    
+    margin: 10px 5px;
+    font-size: 35px;
+    text-align: center;
+}
+.ad234x60{
+    .ad;
+    height: 60px;
+    width: 234px;
+}
+div#footer{
+    background: url('@{base-url}/bg-hd.png')  850px 7px no-repeat;
+    font-size: 12px;
+    font-weight: bolder;
+    text-align: center;
+    padding: 20px 0;
 }
