@@ -18,6 +18,10 @@
                     &nbsp;
                     <span>Richistron.com <small> | Otro dude más en el interwebs</small></span>
                 </a>
+                <ul class="nav pull-left">
+                    <li class="active"><a href="#hg">HackerGarage</a></li>                        
+                    <li class=""><a href="#blog">Blog</a></li>
+                </ul>                
                 <ul class="nav pull-right">
                     <li class="active goTop"><a class="goTop" href="#">Go top</a></li>                        
                 </ul>                
@@ -25,19 +29,19 @@
         </div>
         <!-- body -->        
         <div class="container main">            
-            <div class="span12 row-fluid">
-                <div class="row-fluid rrs_R">
+            <div class="row-fluid">
+                <div id="hg" class="rrs_R row-fluid">
                     <dl>
                         <dt>Hacker garage</dt>
                         <dd><a href="http://hackergarage.mx/index.php/blog/rss.html">hackergarage.mx</a></dd>
                     </dl>
                 </div>
-                <div class="row-fluid rrs_R">
+                <div id="blog" class="rrs_R row-fluid">
                     <dl>
                         <dt>El blog del richistron</dt>
                         <dd><a href="http://blog.richistron.com/feeds/posts/default">richistron.com</a></dd>
                     </dl>
-                </div>                                
+                </div>             
             </div>
         </div>
         <!-- footer -->
@@ -58,7 +62,7 @@
         <script src="js/front.js"></script>
         <script src="js/bootstrap.js"></script>            
         <script>            
-            $(document).ready(function(){
+            $(document).ready(function(){              
                 $('.rrs_R').richistron();                
             });
         </script>

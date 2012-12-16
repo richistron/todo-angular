@@ -36,7 +36,9 @@
     };
     
     $.fn.richistron.loadRss = function(element){
-        $(element).attr('id',$.fn.richistron.token());        
+        if($(element).attr('id') == ''){
+            $(element).attr('id',$.fn.richistron.token());        
+        }        
         id = $(element).attr('id');        
         title = $('#'+id+' dl dt').text();
         url = $('#'+id+' dl dd a').attr('href');
@@ -73,7 +75,7 @@
         });
         html += '<ul class="nav nav-list span4 pull-right">'+links+'</ul>'+
         '<div class="tab-content span7">'+tabs+'</div>';
-        html = '<div class="span11 row">'+html+'</div>';
+        html = '<div class="row-fluid">'+html+'</div>';
         return html;
     };
     
@@ -94,6 +96,10 @@
         });
         $('a.goBot').click(function(){
             $(document).scrollTop($(document).height());
+        });
+        $('ul.nav.pull-left li').click(function(e){
+            $('ul.nav.pull-left li').removeClass('active');
+            $(this).addClass('active');
         });
     };
 
