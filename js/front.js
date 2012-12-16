@@ -58,13 +58,12 @@
     
     $.fn.richistron.parse = function(element,entries){
         ani = 1000
-        parent = $(element).parent();
+        parent = $(element).parent();        
         $(parent).animation($.fn.richistron.template(entries));
     };
     
     $.fn.richistron.template = function(entries){
         html = '',links = '',tabs = '';        
-        console.log(entries);
         html = '<h2 class="brand">'+entries[0].feedTitle+'</h2>';
         $.each(entries,function(index,item){            
             (index == 0)? active = 'active' : active = ' ';
@@ -73,19 +72,28 @@
             tabs += '<div id="'+id+'" class="tab-pane '+active+'">'+item.content+'</div>';
         });
         html += '<ul class="nav nav-list span4 pull-right">'+links+'</ul>'+
-            '<div class="tab-content span7">'+tabs+'</div>';
+        '<div class="tab-content span7">'+tabs+'</div>';
         html = '<div class="span11 row">'+html+'</div>';
         return html;
     };
     
     $.fn.animation = function(html){        
         $(this).delay(2000).fadeOut(400, function() {
-            $(this).html(html);
-            $(this).fadeIn(400);            
-            $('li.tablink a').click(function (e) {
-                e.preventDefault();
-                $(this).tab('show');
-            });
+            $(this).html(html).setListeners();
+            $(this).fadeIn(400);                        
+        });
+    };
+    
+    $.fn.setListeners = function(){
+        $('li.tablink a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+        $('a.goTop').click(function(){
+            $(document).scrollTop(0);
+        });
+        $('a.goBot').click(function(){
+            $(document).scrollTop($(document).height());
         });
     };
 

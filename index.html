@@ -14,27 +14,17 @@
         <!-- main nav -->
         <div class="navbar navbar-fixed-top">            
             <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand logo" href="#">
-                        &nbsp;
-                        <span>Richistron.com</span>
-                    </a>
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>                        
-                    </ul>                
-                </div>                    
+                <a class="brand logo" href="#" title="richistron.com">
+                    &nbsp;
+                    <span>Richistron.com <small> | Otro dude más en el interwebs</small></span>
+                </a>
+                <ul class="nav pull-right">
+                    <li class="active goTop"><a class="goTop" href="#">Go top</a></li>                        
+                </ul>                
             </div>            
         </div>
         <!-- body -->        
-        <div class="container main">
-            <div class="span12 row-fluid">
-                <h2>
-                    Richistron.com 
-                    <small>
-                        Otro sitio aburrido e irrelevante.
-                    </small>                        
-                </h2>
-            </div>
+        <div class="container main">            
             <div class="span12 row-fluid">
                 <div class="row-fluid rrs_R">
                     <dl>
@@ -48,14 +38,29 @@
                         <dd><a href="http://blog.richistron.com/feeds/posts/default">richistron.com</a></dd>
                     </dl>
                 </div>                                
-            </div>                 
-            <!-- javascript -->
-            <script src="js/jquery.js"></script>
-            <script src="js/feeds.js"></script>
-            <script src="js/front.js"></script>
-            <script src="js/bootstrap.js"></script>            
-            <script>
-                $('.rrs_R').richistron();    
-            </script>
+            </div>
+        </div>
+        <!-- footer -->
+        <div class="navbar navbar-fixed-bottom">            
+            <div class="navbar-inner">                
+                <a class="brand logo copyright" href="#" title="richistron.com">
+                    &nbsp;
+                    <span>Richistron.com <small> | Legal, privacidad y derechos </small></span>
+                </a>
+                <ul class="nav pull-right">
+                    <li class="active goBot"><a class="goBot" href="#goBot">Go Bot</a></li>                        
+                </ul>
+            </div>            
+        </div>
+        <!-- javascript -->
+        <script src="js/jquery.js"></script>
+        <script src="js/feeds.js"></script>
+        <script src="js/front.js"></script>
+        <script src="js/bootstrap.js"></script>            
+        <script>            
+            $(document).ready(function(){
+                $('.rrs_R').richistron();                
+            });
+        </script>
     </body>
 </html>
