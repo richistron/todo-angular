@@ -65,13 +65,14 @@
     };
     
     $.fn.richistron.template = function(entries){
-        html = '',links = '',tabs = '';        
-        html = '<h2 class="brand">'+entries[0].feedTitle+'</h2>';
+        html = '',links = '',tabs = '';     
+        console.log(entries[0]);
+        html = '<h2 class="brand span7 lead goBlank"><a class="btn btn-large disabled" href="'+entries[0].feedLink+'">'+entries[0].feedTitle+'<a/></h2>';
         $.each(entries,function(index,item){            
             (index == 0)? active = 'active' : active = ' ';
             id = $.fn.richistron.token();
             links += '<li class="'+active+' tablink"><a href="#'+id+'">'+item.title+'</a></li>';
-            tabs += '<div id="'+id+'" class="tab-pane '+active+'">'+item.content+'</div>';
+            tabs += '<div id="'+id+'" class="tab-pane goBlank '+active+'">'+item.content+' <a class="source btn btn-info pull-right" href="'+item.link+'">Ver Original</a></div>';
         });
         html += '<ul class="nav nav-list span4 pull-right">'+links+'</ul>'+
         '<div class="tab-content span7">'+tabs+'</div>';
@@ -100,6 +101,10 @@
         $('ul.nav.pull-left li').click(function(e){
             $('ul.nav.pull-left li').removeClass('active');
             $(this).addClass('active');
+        });
+        $('.rrs_R:last').addClass('rrs_R_last');
+        $('.goBlank a').click(function(){
+            $(this).attr('target','_blank');
         });
     };
 

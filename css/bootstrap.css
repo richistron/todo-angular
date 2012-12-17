@@ -6038,26 +6038,3 @@ to {
 .affix {
     position: fixed;
 }
-
-.brand.logo {
-    margin: 0 10px;
-    background: url(../img/logo.png) no-repeat;
-}
-
-.logo span{
-    /*display: none;*/
-    margin-left: 20px;
-    font-size: 75%;
-}
-.container.main {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding-bottom: 25px;
-    background: #fff;
-    -webkit-box-shadow: 0px -1px 20px #fff;
-    -moz-box-shadow:    0px -1px 20px #fff;
-    box-shadow:         0px -1px 20px #fff;
-}
-.trash{
-    display: none;
-}
