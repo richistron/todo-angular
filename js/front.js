@@ -66,7 +66,6 @@
     
     $.fn.richistron.template = function(entries){
         html = '',links = '',tabs = '';     
-        console.log(entries[0]);
         html = '<h2 class="brand span7 lead goBlank"><a class="btn btn-large disabled" href="'+entries[0].feedLink+'">'+entries[0].feedTitle+'<a/></h2>';
         $.each(entries,function(index,item){            
             (index == 0)? active = 'active' : active = ' ';
@@ -105,6 +104,11 @@
         $('.rrs_R:last').addClass('rrs_R_last');
         $('.goBlank a').click(function(){
             $(this).attr('target','_blank');
+        });
+        $('#mainNav li a').click(function(e){
+            e.preventDefault();            
+            window.location.hash = $(this).attr('href');
+            $(document).scrollTop($(document).scrollTop() - 10);
         });
     };
 
