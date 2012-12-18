@@ -64,7 +64,9 @@
             <div class="navbar-inner">                
                 <a class="brand logo copyright" href="#" title="richistron.com">
                     &nbsp;
-                    <span>Richistron.com <small> | Legal, privacidad y derechos </small></span>
+                    <span>Richistron.com | Beta
+<!--                        <small> | Legal, privacidad y derechos </small>-->
+                    </span>
                 </a>
                 <ul class="nav pull-right">
                     <li class="active goBot"><a class="goBot" href="#goBot">Go Bot</a></li>                        
@@ -74,8 +76,8 @@
         <!-- javascript -->
         <script src="js/jquery.js"></script>
         <script src="js/feeds.js"></script>
-        <script src="js/front.js"></script>
-        <script src="js/bootstrap.js"></script>            
+        <script src="js/bootstrap.js"></script>
+        <script src="js/front.js"></script>                    
         <script>            
             $(document).ready(function(){              
                 $('.rrs_R').richistron();                
