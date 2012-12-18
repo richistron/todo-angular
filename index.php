@@ -8,8 +8,8 @@
         <meta name="description" content="El blog del richistron">
         <meta name="keywords" content="richistron">
         <meta name="author" content="Ricardo Rivas">
-        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-        <link href="css/customized.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/customized.min.css" rel="stylesheet" media="screen">
     </head>
     <body>
         <!-- main nav -->
@@ -75,9 +75,9 @@
         </div>
         <!-- javascript -->
         <script src="js/jquery.js"></script>
-        <script src="js/feeds.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/front.js"></script>                    
+        <script src="js/feeds.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/front.min.js"></script>                    
         <script>            
             $(document).ready(function(){              
                 $('.rrs_R').richistron();                
