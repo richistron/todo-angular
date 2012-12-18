@@ -1,7 +1,6 @@
-richistron.com Frontend (v0.1)
+richistron.com Frontend (beta)
 ===============================
 
 ### Development tools
-* 960 grid
-* Lesscss
+* Bootstrap
 * jQuery
