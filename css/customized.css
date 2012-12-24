@@ -5,53 +5,41 @@
     Description:
         Purpose of the stylesheet follows.
 */
-.brand.logo {
-    margin: 0 10px;
-    background: url(../img/logo.png) no-repeat;
-}
-
-.logo span{
-    /*display: none;*/
-    margin-left: 20px;
-    font-size: 75%;
-}
-.container.main {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding-bottom: 25px;
+.container-fluid{
     background: #fff;
-    -webkit-box-shadow: 0px -1px 20px #fff;
-    -moz-box-shadow:    0px -1px 20px #fff;
-    box-shadow:         0px -1px 20px #fff;
 }
-.main div:first-child{
-    margin-top: 10px;
+.seccionTitle h1 a:hover{
+    text-decoration: none;
 }
-.trash{
-    display: none;
-}
-.rrs_R {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    -webkit-box-shadow: 0px 5px 5px #E5E5E5;
-    -moz-box-shadow:    0px 5px 5px #E5E5E5;
-    box-shadow:         0px 5px 5px #E5E5E5;
-}
-.rrs_R_last {
-    /*margin-bottom: 0px;*/
-    padding-bottom: 0px;    
-    -webkit-box-shadow: none;
-    -moz-box-shadow:    none;
-    box-shadow:         none;
-}
-.nav.nav-list.span4.pull-right {
-    background: #E5E5E5;
-}
-h2.brand.span7.lead {
-    font-weight: bolder;
-    font-size: 30px;
-}
-h2.brand.span7.lead a{
-    /*color: red;*/
+/* Desktop */
+@media (min-width: 979px) {     
+    .container-fluid {
+        width: 960px;
+        margin: auto;
+        padding: 0;
+    }
 }
 
+/* mobile */
+@media (max-width: 970px) { 
+    .container-fluid {        
+        margin: 0;
+        padding: 0;
+        color: red;
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+    /**/
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+    /**/
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+    /**/
+}

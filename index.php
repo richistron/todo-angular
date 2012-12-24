@@ -8,80 +8,81 @@
         <meta name="description" content="El blog del richistron">
         <meta name="keywords" content="richistron">
         <meta name="author" content="Ricardo Rivas">
-        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/favicon.ico" />
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <link href="css/customized.css" rel="stylesheet" media="screen">
     </head>
-    <body>
-        <!-- main nav -->
-        <div class="navbar navbar-fixed-top">            
-            <div class="navbar-inner">
-                <a class="brand logo" href="#" title="richistron.com">
-                    &nbsp;
-                    <span>Richistron.com <small> | Otro dude más en el interwebs</small></span>
-                </a>
-                <ul class="nav pull-left" id="mainNav">                                            
-                    <li class="active"><a href="#blog">Blog</a></li>
-                    <li class=""><a href="#hg">HackerGarage</a></li>
-                    <li class=""><a href="#bbhx">@bbhx</a></li>
-                    <li class=""><a href="#gabo">Gabo</a></li>
-                </ul>                
-                <ul class="nav pull-right">
-                    <li class="active goTop"><a class="goTop" href="#">Go top</a></li>                        
-                </ul>                
-            </div>            
-        </div>
-        <!-- body -->        
-        <div class="container main">            
-            <div class="row-fluid">                
-                <div id="blog" class="rrs_R row-fluid">
-                    <dl>
-                        <dt>El blog del richistron</dt>
-                        <dd><a href="http://blog.richistron.com/feeds/posts/default">richistron.com</a></dd>
-                    </dl>
+    <body>        
+        <div class="container-fluid">
+            <!-- header -->
+            <div id="header">
+                header
+            </div><!-- header -->
+            <!-- secciones -->
+            <div class="accordion" id="secciones">
+                <div class="accordion-group">
+                    <div class="accordion-heading seccionTitle">
+                        <button class="btn btn-large btn-block" type="button" data-toggle="collapse" data-parent="#secciones" href="#blogs">
+                            <h2>
+                                Blogs
+                            </h2>                         
+                            <small>
+                                bloggeros recomendados en temas diversos
+                            </small>
+                        </button>
+                    </div>
+                    <div id="blogs" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            Contenido de blogs
+                        </div>
+                    </div>
                 </div>
-                <div id="hg" class="rrs_R row-fluid">
-                    <dl>
-                        <dt>Hacker garage</dt>
-                        <dd><a href="http://hackergarage.mx/index.php/blog/rss.html">hackergarage.mx</a></dd>
-                    </dl>
-                </div>                
-                <div id="gabo" class="rrs_R row-fluid">
-                    <dl>
-                        <dt>Gabriel Saldaña</dt>
-                        <dd><a href="http://feeds.feedburner.com/nethazard?format=xml">Gabriel</a></dd>
-                    </dl>
+                <div class="accordion-group">
+                    <div class="accordion-heading">                    
+                        <button class="btn btn-large btn-block" type="button" data-toggle="collapse" data-parent="#secciones" href="#comunidades">
+                            <h2>
+                                Comunidades
+                            </h2>                         
+                            <small>
+                                Comunidades de apasionadeos a la tecnologia
+                            </small>
+                        </button>
+                    </div>
+                    <div id="comunidades" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            Contenido comunidades
+                        </div>
+                    </div>
                 </div>
-                <div id="bbhx" class="rrs_R row-fluid">
-                    <dl>
-                        <dt>Bacilio Briceño</dt>
-                        <dd><a href="http://briceno.mx/feed/">BBHX</a></dd>
-                    </dl>
-                </div>                
-            </div>
-        </div>
-        <!-- footer -->
-        <div class="navbar navbar-fixed-bottom">            
-            <div class="navbar-inner">                
-                <a class="brand logo copyright" href="#" title="richistron.com">
-                    &nbsp;
-                    <span>Richistron.com | Beta
-<!--                        <small> | Legal, privacidad y derechos </small>-->
-                    </span>
-                </a>
-                <ul class="nav pull-right">
-                    <li class="active goBot"><a class="goBot" href="#goBot">Go Bot</a></li>                        
-                </ul>
-            </div>            
-        </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">                    
+                        <button class="btn btn-large btn-block" type="button" data-toggle="collapse" data-parent="#secciones" href="#noticias">
+                            <h2>
+                                Noticias
+                            </h2>                         
+                            <small>
+                                Sigue a los mejores sitios de tecnologia
+                            </small>
+                        </button>
+                    </div>
+                    <div id="noticias" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            Noticias
+                        </div>
+                    </div>
+                </div>
+            </div><!-- secciones -->
+        </div>        
         <!-- javascript -->
         <script src="js/jquery.js"></script>
         <script src="js/feeds.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/front.js"></script>                    
         <script>            
-            $(document).ready(function(){              
-                $('.rrs_R').richistron();                
+            $(document).ready(function(){
             });
-        </script>
+        </script><!-- javascript -->
     </body>
 </html>
