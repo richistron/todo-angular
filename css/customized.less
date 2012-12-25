@@ -1,0 +1,154 @@
+/* 
+    Document   : customized
+    Created on : Dec 24, 2012, 8:33:03 PM
+    Author     : richistron
+    Description:
+        less css stylesheet
+*/
+
+/* Vars */
+
+
+/* pre-set */
+.fix-width-container(@width-size: 960px){
+    width: @width-size;
+    margin: auto;
+    padding: 0;
+}
+
+.fix-width-mobile{    
+    margin: 0;
+    padding: 0;    
+}
+
+.resetMargin{
+    margin: 0px;
+    padding: 0px;
+}
+.container-fluid{
+    background: #fff;
+}
+#header{
+    .hero-unit{
+        background: none;
+        position: absolute;
+        top: 0;
+    }
+    .thumbnail{
+        margin: 0;        
+    }
+}
+.resetMargin{
+    margin: 0;
+    padding: 0;
+}
+#main .row-fluid{
+    .resetMargin;    
+    #secciones,#rightCol{
+        .resetMargin;    
+        padding: 4px 0px 4px 4px;
+    }    
+}
+#footer .span9{
+    .resetMargin;
+    padding: 4px;
+    p {
+    text-align: center;
+}
+}
+/* 
+    MEDIA QUERYS 
+*/
+
+/* Large desktop */
+@media (min-width: 1200px) {    
+    .container-fluid{
+        .fix-width-container;
+    } 
+}
+
+@media (min-width: 979px) and (max-width: 1024px) {
+    .container-fluid{
+        .fix-width-container;
+    } 
+}
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+    .container-fluid{
+        .fix-width-container;
+    } 
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    .container-fluid{
+        .fix-width-mobile;               
+    }
+    body{
+        padding: 0;
+    }     
+    #secciones{
+        .resetMargin;
+    }
+    #content{
+        .span9{
+            .accordion-group{
+                .accordion-heading{
+                    padding: 10px;
+                }
+            }
+        }
+    }
+    #footer{
+        .resetMargin;
+        padding: 0;
+        margin: 0;
+        p{
+            margin: 0em 0.5em;
+        }
+    }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    #header{
+        .resetMargin;        
+        .hero-unit{
+            .resetMargin;
+            h1{
+                margin: 4px;
+                padding: 10px;
+                font-size: 45px;                
+            }
+            p{
+                margin: -23px 10px 0 13px;
+                padding: 0px;
+                font-size: 20px; 
+            }
+        }                    
+    }
+    #footer .span9{        
+        p {
+            text-align: left;
+        }
+    }
+}
+/* Phone min */
+@media (max-width: 320px) {
+    #header{        
+        .resetMargin;
+        .hero-unit{
+            .resetMargin;
+            h1{
+                margin: 4px;
+                padding: 10px;
+                font-size: 30px;                
+            }
+            p{
+                margin: -23px 10px 0 13px;
+                padding: 0px;
+                font-size: 16px; 
+            }
+        }                    
+    }    
+}
