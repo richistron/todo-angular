@@ -56,137 +56,153 @@
                             </a>
                         </div>
                         <div id="blogs" class="accordion-body collapse">
-                            <div class="accordion-inner">Chocolate caramels sugar plum ice cream gummi bears gummi bears sesame snaps lemon drops. Cake wafer jelly-o tart chupa chups applicake marzipan apple pie. Dessert dragée ice cream sweet roll chupa chups wypas bear claw.
-                                Gummies oat cake cheesecake toffee tootsie roll icing macaroon bear claw dessert. Jujubes wypas candy pudding caramels cheesecake cheesecake. Wafer cheesecake chupa chups caramels carrot cake jelly beans.
-                                Wafer gummi bears toffee fruitcake jelly danish. Cheesecake topping chupa chups sesame snaps sweet toffee. Chocolate cake tootsie roll cotton candy cotton candy bonbon. Candy cupcake oat cake.
-                                Gingerbread candy canes tootsie roll fruitcake carrot cake oat cake sugar plum. Fruitcake halvah jujubes apple pie gingerbread toffee cheesecake. Biscuit ice cream wypas cotton candy icing ice cream chocolate cake gummies.
-                                Sweet candy croissant sugar plum dessert lemon drops topping. Chocolate jelly brownie tootsie roll powder sweet roll carrot cake faworki. Jelly beans brownie faworki.</div>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordionBtnA" data-toggle="collapse" data-parent="#secciones" href="#comunidades">
-                                <dl class="dl-horizontal">
-                                    <dt>Comunidades</dt>
-                                    <dd class="muted">Encuentra grupos y enterate de las las platicas</dd>
-                                </dl>                                
-                            </a>                            
-                        </div>
-                        <div id="comunidades" class="accordion-body collapse">
                             <div class="accordion-inner">
-                                Chocolate caramels sugar plum ice cream gummi bears gummi bears sesame snaps lemon drops. Cake wafer jelly-o tart chupa chups applicake marzipan apple pie. Dessert dragée ice cream sweet roll chupa chups wypas bear claw.
-                                Gummies oat cake cheesecake toffee tootsie roll icing macaroon bear claw dessert. Jujubes wypas candy pudding caramels cheesecake cheesecake. Wafer cheesecake chupa chups caramels carrot cake jelly beans.
-                                Wafer gummi bears toffee fruitcake jelly danish. Cheesecake topping chupa chups sesame snaps sweet toffee. Chocolate cake tootsie roll cotton candy cotton candy bonbon. Candy cupcake oat cake.
-                                Gingerbread candy canes tootsie roll fruitcake carrot cake oat cake sugar plum. Fruitcake halvah jujubes apple pie gingerbread toffee cheesecake. Biscuit ice cream wypas cotton candy icing ice cream chocolate cake gummies.
-                                Sweet candy croissant sugar plum dessert lemon drops topping. Chocolate jelly brownie tootsie roll powder sweet roll carrot cake faworki. Jelly beans brownie faworki.
+                                <div class="row-fluid">
+                                    <div class="row-fluid">
+                                        <div class="span6">                                            
+                                            <div class="row-fluid" id="richistron"></div>                                            
+                                        </div>
+                                        <div class="span6">                                            
+                                            <div class="row-fluid" id="gabo"></div>                                            
+                                        </div>
+                                    </div> 
+
+                                    <div class="row-fluid">
+                                        <div class="span6">                                            
+                                            <div class="row-fluid" id="bbhx"></div>                                            
+                                        </div>
+                                        <div class="span6">                                            
+                                            <div class="row-fluid" id="renich"></div>                                            
+                                        </div>
+                                    </div> 
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordionBtnA" data-toggle="collapse" data-parent="#secciones" href="#comunidades">
+                                    <dl class="dl-horizontal">
+                                        <dt>Comunidades</dt>
+                                        <dd class="muted">Encuentra grupos y enterate de las las platicas</dd>
+                                    </dl>                                
+                                </a>                            
+                            </div>
+                            <div id="comunidades" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    Chocolate caramels sugar plum ice cream gummi bears gummi bears sesame snaps lemon drops. Cake wafer jelly-o tart chupa chups applicake marzipan apple pie. Dessert dragée ice cream sweet roll chupa chups wypas bear claw.
+                                    Gummies oat cake cheesecake toffee tootsie roll icing macaroon bear claw dessert. Jujubes wypas candy pudding caramels cheesecake cheesecake. Wafer cheesecake chupa chups caramels carrot cake jelly beans.
+                                    Wafer gummi bears toffee fruitcake jelly danish. Cheesecake topping chupa chups sesame snaps sweet toffee. Chocolate cake tootsie roll cotton candy cotton candy bonbon. Candy cupcake oat cake.
+                                    Gingerbread candy canes tootsie roll fruitcake carrot cake oat cake sugar plum. Fruitcake halvah jujubes apple pie gingerbread toffee cheesecake. Biscuit ice cream wypas cotton candy icing ice cream chocolate cake gummies.
+                                    Sweet candy croissant sugar plum dessert lemon drops topping. Chocolate jelly brownie tootsie roll powder sweet roll carrot cake faworki. Jelly beans brownie faworki.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">                    
+                                <a class="accordionBtnA" data-toggle="collapse" data-parent="#secciones" href="#noticias">
+                                    <dl class="dl-horizontal">
+                                        <dt>Noticias</dt>
+                                        <dd class="muted">RSS de las noticias mas ñoñas y así.</dd>
+                                    </dl>                                
+                                </a>
+                            </div>
+                            <div id="noticias" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    Chocolate caramels sugar plum ice cream gummi bears gummi bears sesame snaps lemon drops. Cake wafer jelly-o tart chupa chups applicake marzipan apple pie. Dessert dragée ice cream sweet roll chupa chups wypas bear claw.
+                                    Gummies oat cake cheesecake toffee tootsie roll icing macaroon bear claw dessert. Jujubes wypas candy pudding caramels cheesecake cheesecake. Wafer cheesecake chupa chups caramels carrot cake jelly beans.
+                                    Wafer gummi bears toffee fruitcake jelly danish. Cheesecake topping chupa chups sesame snaps sweet toffee. Chocolate cake tootsie roll cotton candy cotton candy bonbon. Candy cupcake oat cake.
+                                    Gingerbread candy canes tootsie roll fruitcake carrot cake oat cake sugar plum. Fruitcake halvah jujubes apple pie gingerbread toffee cheesecake. Biscuit ice cream wypas cotton candy icing ice cream chocolate cake gummies.
+                                    Sweet candy croissant sugar plum dessert lemon drops topping. Chocolate jelly brownie tootsie roll powder sweet roll carrot cake faworki. Jelly beans brownie faworki.
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">                    
-                            <a class="accordionBtnA" data-toggle="collapse" data-parent="#secciones" href="#noticias">
-                                <dl class="dl-horizontal">
-                                    <dt>Noticias</dt>
-                                    <dd class="muted">RSS de las noticias mas ñoñas y así.</dd>
-                                </dl>                                
+                </div>
+                <div id="footer" class="row-fluid">
+                    <div class="span9">
+                        <p class="muted credit">
+                            Powered by 
+                            <a href="http://twitter.com/richistron">
+                                @richistron
                             </a>
-                        </div>
-                        <div id="noticias" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                Chocolate caramels sugar plum ice cream gummi bears gummi bears sesame snaps lemon drops. Cake wafer jelly-o tart chupa chups applicake marzipan apple pie. Dessert dragée ice cream sweet roll chupa chups wypas bear claw.
-                                Gummies oat cake cheesecake toffee tootsie roll icing macaroon bear claw dessert. Jujubes wypas candy pudding caramels cheesecake cheesecake. Wafer cheesecake chupa chups caramels carrot cake jelly beans.
-                                Wafer gummi bears toffee fruitcake jelly danish. Cheesecake topping chupa chups sesame snaps sweet toffee. Chocolate cake tootsie roll cotton candy cotton candy bonbon. Candy cupcake oat cake.
-                                Gingerbread candy canes tootsie roll fruitcake carrot cake oat cake sugar plum. Fruitcake halvah jujubes apple pie gingerbread toffee cheesecake. Biscuit ice cream wypas cotton candy icing ice cream chocolate cake gummies.
-                                Sweet candy croissant sugar plum dessert lemon drops topping. Chocolate jelly brownie tootsie roll powder sweet roll carrot cake faworki. Jelly beans brownie faworki.
-                            </div>
-                        </div>
+                            . Free Open Source Software, get the code on 
+                            <a href="https://github.com/richistron/richistron-frontend">
+                                GitHub
+                            </a>
+                            .
+                        </p>
                     </div>
+                </div>            
+            </div>        
+            <div class="navbar navbar-inverse navbar-fixed-bottom visible-phone">
+                <div class="navbar-inner">                
+                    <div class="pull-right">
+                        <a class="btn btn-navbar"  href="#modalMenu" role="button" data-toggle="modal">
+                            <span class="icon-align-justify icon-white">
+                                &nbsp;
+                            </span>                        
+                        </a>
+                    </div>                                        
                 </div>
             </div>
-            <div id="footer" class="row-fluid">
-                <div class="span9">
-                    <p class="muted credit">
-                        Powered by 
-                        <a href="http://twitter.com/richistron">
-                            @richistron
-                        </a>
-                        . Free Open Source Software, get the code on 
-                        <a href="https://github.com/richistron/richistron-frontend">
-                            GitHub
-                        </a>
-                        .
-                    </p>
+            <div id="modalMenu" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="menuTitle" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 id="menuTitle"> <span class="icon-align-justify">&nbsp;</span> <span>Menu</span></h4>
                 </div>
-            </div>            
-        </div>        
-        <div class="navbar navbar-inverse navbar-fixed-bottom visible-phone">
-            <div class="navbar-inner">                
-                <div class="pull-right">
-                    <a class="btn btn-navbar"  href="#modalMenu" role="button" data-toggle="modal">
-                        <span class="icon-align-justify icon-white">
-                            &nbsp;
-                        </span>                        
-                    </a>
-                </div>                                        
+                <div class="modal-body">
+                    <ul class="nav nav-list">
+                        <li>
+                            <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#blogs">
+                                Blogs
+                            </a>
+                        </li>
+                        <li>
+                            <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#comunidades">
+                                Comunidades
+                            </a>
+                        </li>
+                        <li>
+                            <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#noticias">
+                                Noticias
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn btn-large btn-block disabled" data-dismiss="modal" aria-hidden="true">
+                                Close <span class="icon-remove">&nbsp;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                <button class="btn btn-primary">Save changes</button>
+                            </div>-->
             </div>
-        </div>
-        <div id="modalMenu" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="menuTitle" aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 id="menuTitle"> <span class="icon-align-justify">&nbsp;</span> <span>Menu</span></h4>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-list">
-                    <li>
-                        <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#blogs">
-                            Blogs
-                        </a>
-                    </li>
-                    <li>
-                        <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#comunidades">
-                            Comunidades
-                        </a>
-                    </li>
-                    <li>
-                        <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#noticias">
-                            Noticias
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn btn-large btn-block disabled" data-dismiss="modal" aria-hidden="true">
-                            Close <span class="icon-remove">&nbsp;</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!--            <div class="modal-footer">
-                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                            <button class="btn btn-primary">Save changes</button>
-                        </div>-->
-        </div>
-        <script src="js/jquery.js"></script>
-        <script src="js/feeds.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/less-1.3.1.min"></script>
-        <script src="js/front.js"></script>                    
-        <script>
-            $(document).ready(function(){
-                
-                $('#secciones a.accordionBtnA').click(function(){                    
-                    dest = $(this).attr('href');
-                    $('html, body').delay(200).animate({
-                        scrollTop: ($(this).offset().top)
-                    }, 2000);                    
+            <script src="js/jquery.js"></script>
+            <script src="js/feeds.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/less-1.3.1.min"></script>
+            <script src="js/front.js"></script>                    
+            <script>
+                $(document).ready(function(){                    
+                    $('#richistron').feeds(feedPreset({
+                        feedUrl: 'http://blog.richistron.com/feeds/posts/default',
+                        logo: 'img/logo120.png',
+                        Max: 5
+                    }));
+                    $('#gabo').feeds(feedPreset({
+                        feedUrl: 'http://feeds.feedburner.com/nethazard?format=xml',
+                        logo: 'http://www.gravatar.com/avatar/0fd37c4e5227d428aff0f48acd2273d4?s=120',
+                        Max: 5
+                    }));
+                    $('#bbhx').feeds(feedPreset({
+                        feedUrl: 'http://briceno.mx/feed/',
+                        logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
+                        Max: 5
+                    }));
                 });
-                
-                $('.modalBtn').click(function(){
-                    $('#modalMenu').modal('hide');                    
-                    dest = $(this).attr('href');
-                    $('html, body').delay(200).animate({
-                        scrollTop: ($(dest).offset().top)
-                    }, 2000);
-                });
-            });
-        </script>
+            </script>
     </body>
 </html>
