@@ -15,8 +15,20 @@
         <link href="css/customized.less" rel="stylesheet/less" type="text/css" media="screen" />
     </head>
     <body>        
-        <div class="container-fluid" id="main">
-            <div id="header" class="row-fluid">
+        <div class="navbar navbar-inverse navbar-fixed-top visible-phone">
+            <div class="navbar-inner">                
+                <div class="pull-right">
+                    <a class="btn btn-navbar"  href="#modalMenu" role="button" data-toggle="modal">
+                        <span class="icon-align-justify icon-white">
+                            &nbsp;
+                        </span>                        
+                    </a>
+                </div>                                        
+            </div>
+        </div>        
+        <div class="row-fluid visible-phone">&nbsp;</div>
+        <div class="container-fluid" id="main">            
+            <div id="header" class="row-fluid">                
                 <div class="thumbnail">
                     <img data-src="holder.js/960x230" src="img/cats/960x230.jpg" alt="banner">
                 </div>
@@ -24,7 +36,7 @@
                     <h1>Richistron.com</h1>
                     <p>Otro dude más en el interwebs</p>                    
                 </div>
-            </div>
+            </div>            
             <div class="row-fluid" id="content">
                 <div class="span3 pull-right hidden-phone" id="rightCol">
                     <div data-spy="affix" data-offset-top="0">
@@ -44,13 +56,11 @@
                             </a>
                         </div>
                         <div id="blogs" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                Wypas croissant cake jelly sweet roll sugar plum halvah tootsie roll cupcake. Pie icing cookie tootsie roll sugar plum donut ice cream liquorice. Cupcake sweet roll croissant ice cream chocolate bar. Brownie halvah oat cake soufflé tart gummies carrot cake apple pie. Chocolate applicake oat cake tiramisu gummies applicake. Wafer chocolate topping. Croissant icing cotton candy carrot cake cupcake liquorice. Lemon drops pudding soufflé fruitcake. Candy danish danish oat cake marshmallow lollipop sweet. Marshmallow croissant jelly-o candy canes wypas cheesecake. Marzipan tiramisu chocolate halvah lollipop halvah bonbon. Danish tiramisu candy sugar plum wypas. Bear claw danish gummi bears candy canes cookie chocolate cake topping.
-                                Bear claw macaroon gummies cotton candy macaroon pie bonbon. Powder jelly-o chupa chups tootsie roll carrot cake bear claw bonbon powder. Wafer danish marshmallow tootsie roll lollipop bear claw jelly. Ice cream halvah pie. Sweet brownie sweet roll chocolate cake oat cake pastry. Tart soufflé dessert sweet roll chupa chups sweet roll sweet roll. Gingerbread lollipop bear claw dragée. Icing biscuit bonbon. Jelly beans candy sugar plum cupcake applicake halvah. Gingerbread muffin sesame snaps. Sweet sweet roll cheesecake. Jelly danish apple pie cupcake pastry lemon drops caramels.
-                                Powder candy canes brownie wafer. Pudding biscuit oat cake. Jujubes cookie oat cake bonbon gummies. Sugar plum sweet roll marshmallow. Halvah jujubes sweet tootsie roll. Jujubes macaroon soufflé cotton candy. Chocolate tiramisu tiramisu sweet roll brownie bonbon macaroon. Wafer marzipan pie chocolate cake carrot cake oat cake. Brownie cotton candy oat cake apple pie jelly beans lollipop lemon drops danish wafer. Applicake chocolate chocolate cake chocolate bar. Powder tiramisu jujubes wypas. Croissant ice cream chocolate lemon drops. Cheesecake chocolate cookie cheesecake brownie lemon drops pie croissant wafer. Cupcake bear claw cupcake chocolate.
-                                Chupa chups lollipop apple pie donut cupcake faworki icing. Fruitcake dessert toffee bear claw jelly-o caramels wafer dessert sweet roll. Candy canes chocolate applicake gingerbread gummies marzipan dragée cookie. Sweet sweet roll lemon drops. Topping pie jelly-o brownie toffee. Fruitcake gummi bears cake topping halvah gummies topping jujubes caramels. Cheesecake candy pastry faworki cookie liquorice dessert. Icing muffin biscuit marzipan apple pie jelly beans marzipan jelly tootsie roll. Cheesecake applicake cotton candy. Bonbon chupa chups tootsie roll jelly-o powder lollipop. Brownie icing lollipop. Faworki dragée jelly beans faworki.
-                                Cupcake donut carrot cake pie macaroon. Caramels chocolate cake chocolate cake chocolate cake muffin. Marzipan pastry biscuit. Carrot cake lemon drops bear claw wafer topping lollipop gummies muffin. Icing bonbon gingerbread wafer marshmallow cotton candy muffin oat cake. Faworki cupcake faworki fruitcake. Tiramisu carrot cake pastry bear claw candy canes croissant chocolate bar. Macaroon liquorice macaroon gummies candy pudding. Jelly beans icing sweet sesame snaps dessert danish cake chocolate applicake. Chocolate bar cupcake biscuit chupa chups carrot cake apple pie chocolate cake. Pudding croissant chupa chups applicake dragée. Powder jujubes wafer danish jelly soufflé. Sweet roll brownie halvah croissant powder cookie. Pudding brownie cheesecake sugar plum bonbon sweet lollipop carrot cake.
-                            </div>
+                            <div class="accordion-inner">Chocolate caramels sugar plum ice cream gummi bears gummi bears sesame snaps lemon drops. Cake wafer jelly-o tart chupa chups applicake marzipan apple pie. Dessert dragée ice cream sweet roll chupa chups wypas bear claw.
+                                Gummies oat cake cheesecake toffee tootsie roll icing macaroon bear claw dessert. Jujubes wypas candy pudding caramels cheesecake cheesecake. Wafer cheesecake chupa chups caramels carrot cake jelly beans.
+                                Wafer gummi bears toffee fruitcake jelly danish. Cheesecake topping chupa chups sesame snaps sweet toffee. Chocolate cake tootsie roll cotton candy cotton candy bonbon. Candy cupcake oat cake.
+                                Gingerbread candy canes tootsie roll fruitcake carrot cake oat cake sugar plum. Fruitcake halvah jujubes apple pie gingerbread toffee cheesecake. Biscuit ice cream wypas cotton candy icing ice cream chocolate cake gummies.
+                                Sweet candy croissant sugar plum dessert lemon drops topping. Chocolate jelly brownie tootsie roll powder sweet roll carrot cake faworki. Jelly beans brownie faworki.</div>
                         </div>
                     </div>
                     <div class="accordion-group">
@@ -64,11 +74,11 @@
                         </div>
                         <div id="comunidades" class="accordion-body collapse">
                             <div class="accordion-inner">
-                                Wypas croissant cake jelly sweet roll sugar plum halvah tootsie roll cupcake. Pie icing cookie tootsie roll sugar plum donut ice cream liquorice. Cupcake sweet roll croissant ice cream chocolate bar. Brownie halvah oat cake soufflé tart gummies carrot cake apple pie. Chocolate applicake oat cake tiramisu gummies applicake. Wafer chocolate topping. Croissant icing cotton candy carrot cake cupcake liquorice. Lemon drops pudding soufflé fruitcake. Candy danish danish oat cake marshmallow lollipop sweet. Marshmallow croissant jelly-o candy canes wypas cheesecake. Marzipan tiramisu chocolate halvah lollipop halvah bonbon. Danish tiramisu candy sugar plum wypas. Bear claw danish gummi bears candy canes cookie chocolate cake topping.
-                                Bear claw macaroon gummies cotton candy macaroon pie bonbon. Powder jelly-o chupa chups tootsie roll carrot cake bear claw bonbon powder. Wafer danish marshmallow tootsie roll lollipop bear claw jelly. Ice cream halvah pie. Sweet brownie sweet roll chocolate cake oat cake pastry. Tart soufflé dessert sweet roll chupa chups sweet roll sweet roll. Gingerbread lollipop bear claw dragée. Icing biscuit bonbon. Jelly beans candy sugar plum cupcake applicake halvah. Gingerbread muffin sesame snaps. Sweet sweet roll cheesecake. Jelly danish apple pie cupcake pastry lemon drops caramels.
-                                Powder candy canes brownie wafer. Pudding biscuit oat cake. Jujubes cookie oat cake bonbon gummies. Sugar plum sweet roll marshmallow. Halvah jujubes sweet tootsie roll. Jujubes macaroon soufflé cotton candy. Chocolate tiramisu tiramisu sweet roll brownie bonbon macaroon. Wafer marzipan pie chocolate cake carrot cake oat cake. Brownie cotton candy oat cake apple pie jelly beans lollipop lemon drops danish wafer. Applicake chocolate chocolate cake chocolate bar. Powder tiramisu jujubes wypas. Croissant ice cream chocolate lemon drops. Cheesecake chocolate cookie cheesecake brownie lemon drops pie croissant wafer. Cupcake bear claw cupcake chocolate.
-                                Chupa chups lollipop apple pie donut cupcake faworki icing. Fruitcake dessert toffee bear claw jelly-o caramels wafer dessert sweet roll. Candy canes chocolate applicake gingerbread gummies marzipan dragée cookie. Sweet sweet roll lemon drops. Topping pie jelly-o brownie toffee. Fruitcake gummi bears cake topping halvah gummies topping jujubes caramels. Cheesecake candy pastry faworki cookie liquorice dessert. Icing muffin biscuit marzipan apple pie jelly beans marzipan jelly tootsie roll. Cheesecake applicake cotton candy. Bonbon chupa chups tootsie roll jelly-o powder lollipop. Brownie icing lollipop. Faworki dragée jelly beans faworki.
-                                Cupcake donut carrot cake pie macaroon. Caramels chocolate cake chocolate cake chocolate cake muffin. Marzipan pastry biscuit. Carrot cake lemon drops bear claw wafer topping lollipop gummies muffin. Icing bonbon gingerbread wafer marshmallow cotton candy muffin oat cake. Faworki cupcake faworki fruitcake. Tiramisu carrot cake pastry bear claw candy canes croissant chocolate bar. Macaroon liquorice macaroon gummies candy pudding. Jelly beans icing sweet sesame snaps dessert danish cake chocolate applicake. Chocolate bar cupcake biscuit chupa chups carrot cake apple pie chocolate cake. Pudding croissant chupa chups applicake dragée. Powder jujubes wafer danish jelly soufflé. Sweet roll brownie halvah croissant powder cookie. Pudding brownie cheesecake sugar plum bonbon sweet lollipop carrot cake.
+                                Chocolate caramels sugar plum ice cream gummi bears gummi bears sesame snaps lemon drops. Cake wafer jelly-o tart chupa chups applicake marzipan apple pie. Dessert dragée ice cream sweet roll chupa chups wypas bear claw.
+                                Gummies oat cake cheesecake toffee tootsie roll icing macaroon bear claw dessert. Jujubes wypas candy pudding caramels cheesecake cheesecake. Wafer cheesecake chupa chups caramels carrot cake jelly beans.
+                                Wafer gummi bears toffee fruitcake jelly danish. Cheesecake topping chupa chups sesame snaps sweet toffee. Chocolate cake tootsie roll cotton candy cotton candy bonbon. Candy cupcake oat cake.
+                                Gingerbread candy canes tootsie roll fruitcake carrot cake oat cake sugar plum. Fruitcake halvah jujubes apple pie gingerbread toffee cheesecake. Biscuit ice cream wypas cotton candy icing ice cream chocolate cake gummies.
+                                Sweet candy croissant sugar plum dessert lemon drops topping. Chocolate jelly brownie tootsie roll powder sweet roll carrot cake faworki. Jelly beans brownie faworki.
                             </div>
                         </div>
                     </div>
@@ -83,11 +93,11 @@
                         </div>
                         <div id="noticias" class="accordion-body collapse">
                             <div class="accordion-inner">
-                                Wypas croissant cake jelly sweet roll sugar plum halvah tootsie roll cupcake. Pie icing cookie tootsie roll sugar plum donut ice cream liquorice. Cupcake sweet roll croissant ice cream chocolate bar. Brownie halvah oat cake soufflé tart gummies carrot cake apple pie. Chocolate applicake oat cake tiramisu gummies applicake. Wafer chocolate topping. Croissant icing cotton candy carrot cake cupcake liquorice. Lemon drops pudding soufflé fruitcake. Candy danish danish oat cake marshmallow lollipop sweet. Marshmallow croissant jelly-o candy canes wypas cheesecake. Marzipan tiramisu chocolate halvah lollipop halvah bonbon. Danish tiramisu candy sugar plum wypas. Bear claw danish gummi bears candy canes cookie chocolate cake topping.
-                                Bear claw macaroon gummies cotton candy macaroon pie bonbon. Powder jelly-o chupa chups tootsie roll carrot cake bear claw bonbon powder. Wafer danish marshmallow tootsie roll lollipop bear claw jelly. Ice cream halvah pie. Sweet brownie sweet roll chocolate cake oat cake pastry. Tart soufflé dessert sweet roll chupa chups sweet roll sweet roll. Gingerbread lollipop bear claw dragée. Icing biscuit bonbon. Jelly beans candy sugar plum cupcake applicake halvah. Gingerbread muffin sesame snaps. Sweet sweet roll cheesecake. Jelly danish apple pie cupcake pastry lemon drops caramels.
-                                Powder candy canes brownie wafer. Pudding biscuit oat cake. Jujubes cookie oat cake bonbon gummies. Sugar plum sweet roll marshmallow. Halvah jujubes sweet tootsie roll. Jujubes macaroon soufflé cotton candy. Chocolate tiramisu tiramisu sweet roll brownie bonbon macaroon. Wafer marzipan pie chocolate cake carrot cake oat cake. Brownie cotton candy oat cake apple pie jelly beans lollipop lemon drops danish wafer. Applicake chocolate chocolate cake chocolate bar. Powder tiramisu jujubes wypas. Croissant ice cream chocolate lemon drops. Cheesecake chocolate cookie cheesecake brownie lemon drops pie croissant wafer. Cupcake bear claw cupcake chocolate.
-                                Chupa chups lollipop apple pie donut cupcake faworki icing. Fruitcake dessert toffee bear claw jelly-o caramels wafer dessert sweet roll. Candy canes chocolate applicake gingerbread gummies marzipan dragée cookie. Sweet sweet roll lemon drops. Topping pie jelly-o brownie toffee. Fruitcake gummi bears cake topping halvah gummies topping jujubes caramels. Cheesecake candy pastry faworki cookie liquorice dessert. Icing muffin biscuit marzipan apple pie jelly beans marzipan jelly tootsie roll. Cheesecake applicake cotton candy. Bonbon chupa chups tootsie roll jelly-o powder lollipop. Brownie icing lollipop. Faworki dragée jelly beans faworki.
-                                Cupcake donut carrot cake pie macaroon. Caramels chocolate cake chocolate cake chocolate cake muffin. Marzipan pastry biscuit. Carrot cake lemon drops bear claw wafer topping lollipop gummies muffin. Icing bonbon gingerbread wafer marshmallow cotton candy muffin oat cake. Faworki cupcake faworki fruitcake. Tiramisu carrot cake pastry bear claw candy canes croissant chocolate bar. Macaroon liquorice macaroon gummies candy pudding. Jelly beans icing sweet sesame snaps dessert danish cake chocolate applicake. Chocolate bar cupcake biscuit chupa chups carrot cake apple pie chocolate cake. Pudding croissant chupa chups applicake dragée. Powder jujubes wafer danish jelly soufflé. Sweet roll brownie halvah croissant powder cookie. Pudding brownie cheesecake sugar plum bonbon sweet lollipop carrot cake.
+                                Chocolate caramels sugar plum ice cream gummi bears gummi bears sesame snaps lemon drops. Cake wafer jelly-o tart chupa chups applicake marzipan apple pie. Dessert dragée ice cream sweet roll chupa chups wypas bear claw.
+                                Gummies oat cake cheesecake toffee tootsie roll icing macaroon bear claw dessert. Jujubes wypas candy pudding caramels cheesecake cheesecake. Wafer cheesecake chupa chups caramels carrot cake jelly beans.
+                                Wafer gummi bears toffee fruitcake jelly danish. Cheesecake topping chupa chups sesame snaps sweet toffee. Chocolate cake tootsie roll cotton candy cotton candy bonbon. Candy cupcake oat cake.
+                                Gingerbread candy canes tootsie roll fruitcake carrot cake oat cake sugar plum. Fruitcake halvah jujubes apple pie gingerbread toffee cheesecake. Biscuit ice cream wypas cotton candy icing ice cream chocolate cake gummies.
+                                Sweet candy croissant sugar plum dessert lemon drops topping. Chocolate jelly brownie tootsie roll powder sweet roll carrot cake faworki. Jelly beans brownie faworki.
                             </div>
                         </div>
                     </div>
@@ -107,8 +117,53 @@
                         .
                     </p>
                 </div>
-            </div>
+            </div>            
         </div>        
+        <div class="navbar navbar-inverse navbar-fixed-bottom visible-phone">
+            <div class="navbar-inner">                
+                <div class="pull-right">
+                    <a class="btn btn-navbar"  href="#modalMenu" role="button" data-toggle="modal">
+                        <span class="icon-align-justify icon-white">
+                            &nbsp;
+                        </span>                        
+                    </a>
+                </div>                                        
+            </div>
+        </div>
+        <div id="modalMenu" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="menuTitle" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id="menuTitle"> <span class="icon-align-justify">&nbsp;</span> <span>Menu</span></h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-list">
+                    <li>
+                        <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#blogs">
+                            Blogs
+                        </a>
+                    </li>
+                    <li>
+                        <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#comunidades">
+                            Comunidades
+                        </a>
+                    </li>
+                    <li>
+                        <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#noticias">
+                            Noticias
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-large btn-block disabled" data-dismiss="modal" aria-hidden="true">
+                            Close <span class="icon-remove">&nbsp;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--            <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                            <button class="btn btn-primary">Save changes</button>
+                        </div>-->
+        </div>
         <script src="js/jquery.js"></script>
         <script src="js/feeds.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -116,11 +171,20 @@
         <script src="js/front.js"></script>                    
         <script>
             $(document).ready(function(){
-                $('#secciones a.accordionBtnA').click(function(){
+                
+                $('#secciones a.accordionBtnA').click(function(){                    
                     dest = $(this).attr('href');
                     $('html, body').delay(200).animate({
                         scrollTop: ($(this).offset().top)
-                     }, 2000);                    
+                    }, 2000);                    
+                });
+                
+                $('.modalBtn').click(function(){
+                    $('#modalMenu').modal('hide');                    
+                    dest = $(this).attr('href');
+                    $('html, body').delay(200).animate({
+                        scrollTop: ($(dest).offset().top)
+                    }, 2000);
                 });
             });
         </script>
