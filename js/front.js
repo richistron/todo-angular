@@ -40,7 +40,7 @@ var richistron = {
             onComplete: function(entries){                            
                 id = $(this).attr('id');
                 html = '';
-                $.each(entries,function(index,item){                                                    
+                $.each(entries,function(index,item){
                     html += '<div class="thumbnail">'+
                     '<img src="'+options.logo+'" data-src="holder.js/120x120" class="pull-left" alt="">'+
                     '<h3>'+item.title+'</h3>'+
@@ -49,35 +49,31 @@ var richistron = {
                 });
                 html += '<div class="pagination">'+
                 '<ul>';
-                $.each(entries,function(index,item){
-                    (index==0)? active ='active': active = '';
+                $.each(entries,function(index,item){                    
                     i = index + 1;
-                    html += '<li class="'+active+'"><a href="#'+id+'">'+i+'</a></li>';
+                    html += '<li><a href="#'+id+'">'+i+'</a></li>';
                 });
                 html += '</ul>'+
                 '</div>';
                 $(this).html(html);
-                $('#' + id + ' .pagination a').click(function(e){                                
-                    e.preventDefault();
-                    if(!$(this).parent().hasClass('active')){                                                        
-                        selector = $(this).attr('href') + ' .pagination li'; 
-                        next = parseInt($(this).text()) - 1;
-                        $(selector).removeClass('active');
-                        $(this).parent().addClass('active');
-                        elements = $(this).attr('href') + ' .thumbnail';
-                        elements = $(elements);
-                        $.each(elements,function(index,item){
-                            if($(item).css('display') == 'block'){
-                                $(item).css('display','none');
-                            }
-                            if(next == index){
-                                $(item).css('display','block');
-                            }
-                        });
-                    }                                
-                });
+                /* hide elements and display first */
+                $('#'+id+' div.thumbnail').hide();
+                $('#'+id+' div.thumbnail:eq(0)').show();
+                $('#'+id+' .pagination ul li:eq(0)').addClass('active');
+                /* carrusel listeners */                
+                $('#' + id + ' .pagination a').click(richistron.paginationFeed);
             }
         };
+    },
+    paginationFeed: function(e){                    
+        e.preventDefault();
+        idParen = $(this).attr('href');
+        $(idParen + ' .pagination li').removeClass('active');
+        $(this).parent().addClass('active'); 
+        $(idParen + ' div.thumbnail').hide();
+        $(idParen + ' div.thumbnail:eq(' + (parseInt($(this).text()) - 1) + ')').show();        
+        $(idParen + ' .pagination li a').bind('click',richistron.paginationFeed);
+        $(this).unbind('click',richistron.paginationFeed);
     },
     setListeners: function(){
         /*
