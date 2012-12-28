@@ -6,16 +6,20 @@ var richistron = {
         this.setListeners();
     },    
     /* set feeds to load dynamically */
-    setFeeds: function(){
-        $.each(this.rssItems,function(index,item){
-            var fedConf = richistron.feedPreset({
-                feedUrl: item.feedUrl,
-                logo: item.logo,
-                Max: item.Max
-            });            
-            //$('#' + index).feeds(fedConf);  
+    setFeeds: function(tab){
+        var tab = tab;
+        $.each(this.rssItems,function(index,section){
+            if(tab == ('#' + index)){
+                $.each(section,function(indexB,item){
+                    var fedConf = richistron.feedPreset({
+                        feedUrl: item.feedUrl,
+                        logo: item.logo,
+                        Max: item.Max
+                    });                        
+                    $('#' + indexB).feeds(fedConf);                      
+                });
+            }
         });
-        //$('#richistron').feeds(this.feedPreset());               
     },
     /* load preset function */
     feedPreset: function(options){                        
@@ -23,15 +27,16 @@ var richistron = {
             feeds: {
                 feed: options.feedUrl
             },
+            loadingTemplate: '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>',
             max: options.Max,
             preprocess: function ( feed ) {
-            /**/
+                
             },
             entryTemplate: function(entry) {
                 return '';
             },
             onComplete: function(entries){                            
-                id = $(this).attr('id');
+                var id = $(this).attr('id');
                 html = '';
                 $.each(entries,function(index,item){
                     html += '<div class="thumbnail">'+
@@ -48,31 +53,46 @@ var richistron = {
                 });
                 html += '</ul>'+
                 '</div>';
-                $(this).html(html);
-                /* hide elements and display first */
-                $('#'+id+' div.thumbnail').hide();
-                $('#'+id+' div.thumbnail:eq(0)').show();
-                $('#'+id+' .pagination ul li:eq(0)').addClass('active');
-                /* carrusel listeners */                
-                $('#' + id + ' .pagination a').click(richistron.paginationFeed);
+                var html = html;
+                $(this).fadeOut('fast',function(){
+                    $(this).html(html).fadeIn('fast');
+                    /* hide elements and display first */
+                    $('#'+id+' div.thumbnail').hide();
+                    $('#'+id+' div.thumbnail:eq(0)').show();
+                    $('#'+id+' .pagination ul li:eq(0)').addClass('active');
+                    /* carrusel listeners */                
+                    $('#' + id + ' .pagination a').click(richistron.paginationFeed);
+                });                
             }
         };
     },
     rssItems: {
-        'richistron': {
-            feedUrl: 'http://blog.richistron.com/feeds/posts/default',
-            logo: 'img/logo120.png',
-            Max: 5
-        },
-        'gabo': {
-            feedUrl: 'http://feeds.feedburner.com/nethazard?format=xml',
-            logo: 'http://www.gravatar.com/avatar/0fd37c4e5227d428aff0f48acd2273d4?s=120',
-            Max: 5
-        },
-        'bbhx': {
-            feedUrl: 'http://briceno.mx/feed/',
-            logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
-            Max: 5
+        'blogs' : {
+            'richistron': {
+                feedUrl: 'http://blog.richistron.com/feeds/posts/default',
+                logo: 'img/logo120.png',
+                Max: 5
+            },
+            'gabo': {
+                feedUrl: 'http://feeds.feedburner.com/nethazard?format=xml',
+                logo: 'http://www.gravatar.com/avatar/0fd37c4e5227d428aff0f48acd2273d4?s=120',
+                Max: 5
+            },
+            'bbhx': {
+                feedUrl: 'http://briceno.mx/feed/',
+                logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
+                Max: 5
+            },            
+            'bbhx': {
+                feedUrl: 'http://briceno.mx/feed/',
+                logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
+                Max: 5
+            },
+            'levhita': {
+                feedUrl: 'http://blog.levhita.net/feed/',
+                logo: 'http://levhita.net/images/levhita_logo.png',
+                Max: 5
+            }
         }
     },
     paginationFeed: function(e){                    
@@ -84,27 +104,31 @@ var richistron = {
         $(idParen + ' div.thumbnail:eq(' + (parseInt($(this).text()) - 1) + ')').show();        
         $(idParen + ' .pagination li a').bind('click',richistron.paginationFeed);
         $(this).unbind('click',richistron.paginationFeed);
-    },
+    },    
     setListeners: function(){
-        /*
-         * Position
-         */
-        $('#secciones a.accordionBtnA').click(function(){                    
-            dest = $(this).attr('href');
-            $('html, body').delay(200).animate({
-                scrollTop: ($(this).offset().top)
-            }, 2000);                    
-        });
-        /*
-         * Modal
-         */     
-        $('.modalBtn').click(function(){
-            $('#modalMenu').modal('hide');                    
-            dest = $(this).attr('href');
-            $('html, body').delay(200).animate({
-                scrollTop: ($(dest).offset().top)
-            }, 2000);
-        });
+        $('#secciones a.accordionBtnA').click(this.mainNav);
+        $('a.modalBtn').click(this.modalNav);
+        /* runs once */        
+        $('#secciones a.accordionBtnA').click(richistron.loadContent);
+    },
+    loadContent: function(){
+        tabID = $(this).attr('href');
+        richistron.setFeeds(tabID);
+        $(this).unbind('click',richistron.loadContent);
+    },
+    mainNav: function(e){
+        e.preventDefault();        
+        $($(this).data('parent') + ' .collapse.in').collapse('hide');                
+        $($(this).attr('href')).collapse('show');
+        $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top
+        }, 600);
+    },
+    modalNav: function(e){
+        $($(this).data('parent') + ' .collapse.in').collapse('hide'); 
+        $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top
+        }, 600);
     }
 };
     

@@ -70,7 +70,7 @@
                                             <div class="row-fluid" id="bbhx"></div>                                            
                                         </div>
                                         <div class="span6">                                            
-                                            <div class="row-fluid" id="renich"></div>                                            
+                                            <div class="row-fluid" id="levhita"></div>                                            
                                         </div>
                                     </div> 
 
@@ -152,17 +152,17 @@
                 <div class="modal-body">
                     <ul class="nav nav-list">
                         <li>
-                            <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#blogs">
+                            <a class="modalBtn btn btn-large btn-block disabled" data-dismiss="modal" aria-hidden="true" data-parent="#secciones" href="#blogs">
                                 Blogs
                             </a>
                         </li>
                         <li>
-                            <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#comunidades">
+                            <a class="modalBtn btn btn-large btn-block disabled" data-dismiss="modal" aria-hidden="true" data-parent="#secciones" href="#comunidades">
                                 Comunidades
                             </a>
                         </li>
                         <li>
-                            <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#noticias">
+                            <a class="modalBtn btn btn-large btn-block disabled" data-dismiss="modal" aria-hidden="true" data-parent="#secciones" href="#noticias">
                                 Noticias
                             </a>
                         </li>                        
