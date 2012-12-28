@@ -73,7 +73,6 @@
                 html += '</ul>'+
                 '</div>';
                 var html = html;
-                console.log(entries);
                 $(this).fadeOut('fast',function(){
                     $(this).html($.tmpl( itemTemplate(options), entries )).append(html).fadeIn('fast');
                     /* hide elements and display first */
