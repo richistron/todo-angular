@@ -3,16 +3,14 @@
     <head>
         <title>richistron.com | Otro dude más en el interwebs</title>
         <meta charset="utf-8" />
-        <meta http-equiv="cache-control" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-        <meta name="description" content="El blog del richistron" />
-        <meta name="keywords" content="richistron" />
-        <meta name="author" content="Ricardo Rivas" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="img/favicon.ico" />      
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
-        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen" />
-        <link href="css/customized.less" rel="stylesheet/less" type="text/css" media="screen" />
+        <meta name="description" content="El blog del richistron"/>
+        <meta name="keywords" content="richistron"/>
+        <meta name="author" content="Ricardo Rivas"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="shortcut icon" href="img/favicon.ico"/>      
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"/>
+        <link href="css/customized.less" rel="stylesheet/less" type="text/css" media="screen"/>
     </head>
     <body>        
         <div class="navbar navbar-inverse navbar-fixed-top visible-phone">
@@ -167,42 +165,20 @@
                             <a class="modalBtn btn btn-large btn-block" data-toggle="collapse" data-parent="#secciones" href="#noticias">
                                 Noticias
                             </a>
-                        </li>
-                        <li>
-                            <a class="btn btn-large btn-block disabled" data-dismiss="modal" aria-hidden="true">
-                                Close <span class="icon-remove">&nbsp;</span>
-                            </a>
-                        </li>
+                        </li>                        
                     </ul>
+                    <div class="modal-footer">
+                      <a class="btn btn-large btn-block disabled" data-dismiss="modal" aria-hidden="true">
+                        Close <span class="icon-remove">&nbsp;</span>
+                      </a>
+                    </div>
                 </div>
-                <!--            <div class="modal-footer">
-                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                <button class="btn btn-primary">Save changes</button>
-                            </div>-->
+              </div>                            
             </div>
             <script src="js/jquery.js"></script>
             <script src="js/feeds.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <script src="js/less-1.3.1.min"></script>
-            <script src="js/front.js"></script>                    
-            <script>
-                $(document).ready(function(){                    
-                    $('#richistron').feeds(feedPreset({
-                        feedUrl: 'http://blog.richistron.com/feeds/posts/default',
-                        logo: 'img/logo120.png',
-                        Max: 5
-                    }));
-                    $('#gabo').feeds(feedPreset({
-                        feedUrl: 'http://feeds.feedburner.com/nethazard?format=xml',
-                        logo: 'http://www.gravatar.com/avatar/0fd37c4e5227d428aff0f48acd2273d4?s=120',
-                        Max: 5
-                    }));
-                    $('#bbhx').feeds(feedPreset({
-                        feedUrl: 'http://briceno.mx/feed/',
-                        logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
-                        Max: 5
-                    }));
-                });
-            </script>
+            <script src="js/front.js"></script>
     </body>
 </html>
