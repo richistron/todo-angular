@@ -2,27 +2,20 @@
 
 var richistron = {
     init: function(){
-        this.loadFeeds();
+        this.setFeeds();
         this.setListeners();
-    },
-
-    /* loadFeeds */
-    loadFeeds: function(){
-        $('#richistron').feeds(this.feedPreset({
-            feedUrl: 'http://blog.richistron.com/feeds/posts/default',
-            logo: 'img/logo120.png',
-            Max: 5
-        }));
-        $('#gabo').feeds(this.feedPreset({
-            feedUrl: 'http://feeds.feedburner.com/nethazard?format=xml',
-            logo: 'http://www.gravatar.com/avatar/0fd37c4e5227d428aff0f48acd2273d4?s=120',
-            Max: 5
-        }));
-        $('#bbhx').feeds(this.feedPreset({
-            feedUrl: 'http://briceno.mx/feed/',
-            logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
-            Max: 5
-        }));
+    },    
+    /* set feeds to load dynamically */
+    setFeeds: function(){
+        $.each(this.rssItems,function(index,item){
+            var fedConf = richistron.feedPreset({
+                feedUrl: item.feedUrl,
+                logo: item.logo,
+                Max: item.Max
+            });            
+            //$('#' + index).feeds(fedConf);  
+        });
+        //$('#richistron').feeds(this.feedPreset());               
     },
     /* load preset function */
     feedPreset: function(options){                        
@@ -64,6 +57,23 @@ var richistron = {
                 $('#' + id + ' .pagination a').click(richistron.paginationFeed);
             }
         };
+    },
+    rssItems: {
+        'richistron': {
+            feedUrl: 'http://blog.richistron.com/feeds/posts/default',
+            logo: 'img/logo120.png',
+            Max: 5
+        },
+        'gabo': {
+            feedUrl: 'http://feeds.feedburner.com/nethazard?format=xml',
+            logo: 'http://www.gravatar.com/avatar/0fd37c4e5227d428aff0f48acd2273d4?s=120',
+            Max: 5
+        },
+        'bbhx': {
+            feedUrl: 'http://briceno.mx/feed/',
+            logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
+            Max: 5
+        }
     },
     paginationFeed: function(e){                    
         e.preventDefault();
