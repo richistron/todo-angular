@@ -37,12 +37,19 @@ var richistron = {
             },
             onComplete: function(entries){                            
                 var id = $(this).attr('id');
+                var elementParsedata = function(element){
+                    //console.log(JSON.stringify(element));
+                    return '<div class="itemData hidden">'+
+                    
+                    '</div>';
+                };
                 html = '';
-                $.each(entries,function(index,item){
-                    html += '<div class="thumbnail">'+
-                    '<img src="'+options.logo+'" data-src="holder.js/120x120" class="pull-left" alt="">'+
+                $.each(entries,function(index,item){                                        
+                    html += '<div class="thumbnail thumbnail-feed">'+
+                    '<img src="'+options.logo+'" data-src="holder.js/120x120" class="pull-left" alt="'+item.author+'">'+
                     '<h3>'+item.title+'</h3>'+
                     '<p>'+item.contentSnippet+'</p>'+
+                    elementParsedata(item) + 
                     '</div>';
                 });
                 html += '<div class="pagination">'+
@@ -75,22 +82,22 @@ var richistron = {
             },
             'gabo': {
                 feedUrl: 'http://feeds.feedburner.com/nethazard?format=xml',
-                logo: 'http://www.gravatar.com/avatar/0fd37c4e5227d428aff0f48acd2273d4?s=120',
+                logo: 'img/cats/120x120.jpg',
                 Max: 5
             },
             'bbhx': {
                 feedUrl: 'http://briceno.mx/feed/',
-                logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
+                logo: 'img/cats/120x120.jpg',
                 Max: 5
             },            
             'bbhx': {
                 feedUrl: 'http://briceno.mx/feed/',
-                logo: 'http://briceno.mx/wp-content/uploads/phpmx_box_125x125.png',
+                logo: 'img/cats/120x120.jpg',
                 Max: 5
             },
             'levhita': {
                 feedUrl: 'http://blog.levhita.net/feed/',
-                logo: 'http://levhita.net/images/levhita_logo.png',
+                logo: 'img/cats/120x120.jpg',
                 Max: 5
             }
         }
@@ -126,6 +133,7 @@ var richistron = {
     },
     modalNav: function(e){
         $($(this).data('parent') + ' .collapse.in').collapse('hide'); 
+        $($(this).attr('href')).collapse('show');
         $('html, body').animate({
             scrollTop: $($(this).attr('href')).offset().top
         }, 600);
