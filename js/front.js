@@ -1,17 +1,14 @@
-/* functions */
+/* JQuery plugins */
 
-var richistron = {
-    init: function(){
-        this.setFeeds();
-        this.setListeners();
-    },    
-    /* set feeds to load dynamically */
-    setFeeds: function(tab){
+// Fancy Rss plugin
+(function($){
+    $.loadRss = function(tab){
+        /* set feeds to load dynamically */
         var tab = tab;
-        $.each(this.rssItems,function(index,section){
+        $.each(rssItems,function(index,section){
             if(tab == ('#' + index)){
                 $.each(section,function(indexB,item){
-                    var fedConf = richistron.feedPreset({
+                    var fedConf = feedPreset({
                         feedUrl: item.feedUrl,
                         logo: item.logo,
                         Max: item.Max
@@ -20,60 +17,8 @@ var richistron = {
                 });
             }
         });
-    },
-    /* load preset function */
-    feedPreset: function(options){                        
-        return {
-            feeds: {
-                feed: options.feedUrl
-            },
-            loadingTemplate: '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>',
-            max: options.Max,
-            preprocess: function ( feed ) {
-                
-            },
-            entryTemplate: function(entry) {
-                return '';
-            },
-            onComplete: function(entries){                            
-                var id = $(this).attr('id');
-                var elementParsedata = function(element){
-                    //console.log(JSON.stringify(element));
-                    return '<div class="itemData hidden">'+
-                    
-                    '</div>';
-                };
-                html = '';
-                $.each(entries,function(index,item){                                        
-                    html += '<div class="thumbnail thumbnail-feed">'+
-                    '<img src="'+options.logo+'" data-src="holder.js/120x120" class="pull-left" alt="'+item.author+'">'+
-                    '<h3>'+item.title+'</h3>'+
-                    '<p>'+item.contentSnippet+'</p>'+
-                    elementParsedata(item) + 
-                    '</div>';
-                });
-                html += '<div class="pagination">'+
-                '<ul>';
-                $.each(entries,function(index,item){                    
-                    i = index + 1;
-                    html += '<li><a href="#'+id+'">'+i+'</a></li>';
-                });
-                html += '</ul>'+
-                '</div>';
-                var html = html;
-                $(this).fadeOut('fast',function(){
-                    $(this).html(html).fadeIn('fast');
-                    /* hide elements and display first */
-                    $('#'+id+' div.thumbnail').hide();
-                    $('#'+id+' div.thumbnail:eq(0)').show();
-                    $('#'+id+' .pagination ul li:eq(0)').addClass('active');
-                    /* carrusel listeners */                
-                    $('#' + id + ' .pagination a').click(richistron.paginationFeed);
-                });                
-            }
-        };
-    },
-    rssItems: {
+    };
+    var rssItems = {
         'blogs' : {
             'richistron': {
                 feedUrl: 'http://blog.richistron.com/feeds/posts/default',
@@ -101,17 +46,71 @@ var richistron = {
                 Max: 5
             }
         }
-    },
-    paginationFeed: function(e){                    
+    };
+    /* load preset function */
+    var feedPreset = function(options){                        
+        return {
+            feeds: {
+                feed: options.feedUrl
+            },
+            loadingTemplate: '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>',
+            max: options.Max,
+            preprocess: function ( feed ) {
+                
+            },
+            entryTemplate: function(entry) {
+                return '';
+            },
+            onComplete: function(entries){                            
+                var id = $(this).attr('id');                
+                html = '';
+                html += '<div class="pagination">'+
+                '<ul>';
+                $.each(entries,function(index,item){                    
+                    i = index + 1;
+                    html += '<li><a href="#'+id+'">'+i+'</a></li>';
+                });
+                html += '</ul>'+
+                '</div>';
+                var html = html;
+                console.log(entries);
+                $(this).fadeOut('fast',function(){
+                    $(this).html($.tmpl( itemTemplate(options), entries )).append(html).fadeIn('fast');
+                    /* hide elements and display first */
+                    $('#'+id+' div.thumbnail').hide();
+                    $('#'+id+' div.thumbnail:eq(0)').show();
+                    $('#'+id+' .pagination ul li:eq(0)').addClass('active');
+                    /* carrusel listeners */                
+                    $('#' + id + ' .pagination a').click(paginationFeed);
+                });                
+            }
+        };
+    };   
+    var paginationFeed = function(e){                    
         e.preventDefault();
         idParen = $(this).attr('href');
         $(idParen + ' .pagination li').removeClass('active');
         $(this).parent().addClass('active'); 
         $(idParen + ' div.thumbnail').hide();
         $(idParen + ' div.thumbnail:eq(' + (parseInt($(this).text()) - 1) + ')').show();        
-        $(idParen + ' .pagination li a').bind('click',richistron.paginationFeed);
-        $(this).unbind('click',richistron.paginationFeed);
-    },    
+        $(idParen + ' .pagination li a').bind('click',paginationFeed);
+        $(this).unbind('click',paginationFeed);
+    };
+    var itemTemplate = function(options){
+        return '<div class="thumbnail thumbnail-feed">'+
+                    '<img src="' + options.logo + '" data-src="holder.js/120x120" class="pull-left" alt="${author}"/>'+
+                    '<h3>${title}</h3>'+
+                    '<p>${contentSnippet}</p>'+ 
+                '</div>';
+    };
+})(jQuery);
+
+/* functions */
+
+var richistron = {
+    init: function(){
+        this.setListeners();
+    },        
     setListeners: function(){
         $('#secciones a.accordionBtnA').click(this.mainNav);
         $('a.modalBtn').click(this.modalNav);
@@ -120,7 +119,7 @@ var richistron = {
     },
     loadContent: function(){
         tabID = $(this).attr('href');
-        richistron.setFeeds(tabID);
+        $.loadRss(tabID);
         $(this).unbind('click',richistron.loadContent);
     },
     mainNav: function(e){
