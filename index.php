@@ -175,11 +175,7 @@
                 </div>
               </div>                            
             </div>
-            <script src="js/jquery.js"></script>            
-            <script src="js/feeds.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/less-1.3.1.min"></script>
-            <script src="js/tmpl.js"></script>
+            <script src="js/libs.js"></script>                       
             <script src="js/fancyRss.js"></script>
             <script src="js/front.js"></script>
     </body>
