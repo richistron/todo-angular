@@ -1,105 +1,85 @@
-/* JQuery plugins */
-
-// Fancy Rss plugin
-(function($){
-    $.loadRss = function(tab){
-        /* set feeds to load dynamically */
-        var tab = tab;
-        $.each(rssItems,function(index,section){
-            if(tab == ('#' + index)){
-                $.each(section,function(indexB,item){
-                    var fedConf = feedPreset({
-                        feedUrl: item.feedUrl,
-                        logo: item.logo,
-                        Max: item.Max
-                    });                        
-                    $('#' + indexB).feeds(fedConf);                      
-                });
-            }
-        });
+(function() {
+  jQuery(function($) {
+    var linkBehavior, presetFeed, widgetTmpl;
+    $.loadRss = function(elementID) {
+      var elements;
+      elements = $("" + elementID + " div.rssItem");
+      return $.each(elements, function(index, element) {
+        var elementPreset, logo, url;
+        elementID = $(element).attr('id');
+        elementID = "#" + elementID;
+        url = $(elementID).data('feedurl');
+        logo = $(elementID).data('feedlogo');
+        elementPreset = presetFeed(url, 3, logo);
+        return $(elementID).feeds(elementPreset);
+      });
     };
-    var rssItems = {
-        'blogs' : {
-            'richistron': {
-                feedUrl: 'http://blog.richistron.com/feeds/posts/default',
-                logo: 'img/logo120.png',
-                Max: 5
-            },
-            'gabo': {
-                feedUrl: 'http://feeds.feedburner.com/nethazard?format=xml',
-                logo: 'img/cats/120x120.jpg',
-                Max: 5
-            },
-            'bbhx': {
-                feedUrl: 'http://briceno.mx/feed/',
-                logo: 'img/cats/120x120.jpg',
-                Max: 5
-            },            
-            'bbhx': {
-                feedUrl: 'http://briceno.mx/feed/',
-                logo: 'img/cats/120x120.jpg',
-                Max: 5
-            },
-            'levhita': {
-                feedUrl: 'http://blog.levhita.net/feed/',
-                logo: 'img/cats/120x120.jpg',
-                Max: 5
-            }
+    presetFeed = function(url, max, logo) {
+      var confObj;
+      confObj = {
+        feeds: {
+          feed: url
+        },
+        max: max,
+        loadingTemplate: '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>',
+        preprocess: function(feed) {},
+        entryTemplate: function(entry) {},
+        onComplete: function(entries) {
+          return $(this).fadeOut('fast', function() {
+            return $(this).html(widgetTmpl(entries, logo, this)).carruselPagination().fadeIn(2000);
+          });
         }
+      };
+      return confObj;
     };
-    /* load preset function */
-    var feedPreset = function(options){                        
-        return {
-            feeds: {
-                feed: options.feedUrl
-            },
-            loadingTemplate: '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>',
-            max: options.Max,
-            preprocess: function ( feed ) {
-                
-            },
-            entryTemplate: function(entry) {
-                return '';
-            },
-            onComplete: function(entries){                            
-                var id = $(this).attr('id');                
-                html = '';
-                html += '<div class="pagination">'+
-                '<ul>';
-                $.each(entries,function(index,item){                    
-                    i = index + 1;
-                    html += '<li><a href="#'+id+'">'+i+'</a></li>';
-                });
-                html += '</ul>'+
-                '</div>';
-                var html = html;
-                $(this).fadeOut('fast',function(){
-                    $(this).html($.tmpl( itemTemplate(options), entries )).append(html).fadeIn('fast');
-                    /* hide elements and display first */
-                    $('#'+id+' div.thumbnail').hide();
-                    $('#'+id+' div.thumbnail:eq(0)').show();
-                    $('#'+id+' .pagination ul li:eq(0)').addClass('active');
-                    /* carrusel listeners */                
-                    $('#' + id + ' .pagination a').click(paginationFeed);
-                });                
-            }
-        };
-    };   
-    var paginationFeed = function(e){                    
-        e.preventDefault();
-        idParen = $(this).attr('href');
-        $(idParen + ' .pagination li').removeClass('active');
-        $(this).parent().addClass('active'); 
-        $(idParen + ' div.thumbnail').hide();
-        $(idParen + ' div.thumbnail:eq(' + (parseInt($(this).text()) - 1) + ')').show();        
-        $(idParen + ' .pagination li a').bind('click',paginationFeed);
-        $(this).unbind('click',paginationFeed);
+    $.fn.carruselPagination = function() {
+      return $(this).each(function() {
+        var id, parentID;
+        id = $(this).attr('id');
+        parentID = "#" + id;
+        $("" + parentID + " .thumbnail-feed").hide();
+        $("" + parentID + " .thumbnail-feed:eq(0)").show();
+        $("" + parentID + " .pagination ul li:eq(0)").addClass('active');
+        return $("" + parentID + " .pagination ul li a").click(linkBehavior);
+      });
     };
-    var itemTemplate = function(options){
-        return '<div class="thumbnail thumbnail-feed">'+
-                    '<img src="' + options.logo + '" data-src="holder.js/120x120" class="pull-left" alt="${author}"/>'+
-                    '<h3>${title}</h3>'+
-                    '<p>${contentSnippet}</p>'+ 
-                '</div>';
+    linkBehavior = function(e) {
+      var allSelector, item, parent, selector;
+      e.preventDefault();
+      if ($(this).parent().hasClass('active')) {
+        return;
+      }
+      parent = $(this).attr('href');
+      item = $(this).text();
+      item = parseInt(item) - 1;
+      $("" + parent + " .pagination ul li").removeClass('active');
+      $(this).parent().addClass('active');
+      selector = "" + parent + " .thumbnail-feed:eq(" + item + ")";
+      allSelector = "" + parent + " .thumbnail-feed";
+      return $(parent).fadeOut('slow', function() {
+        $(allSelector).hide();
+        $(selector).show();
+        return $(this).fadeIn('slow');
+      });
     };
-})(jQuery);
+    widgetTmpl = function(entries, logo, element) {
+      var conteiner, feeds, items, pages, pagination, parent;
+      parent = $(element).attr('id');
+      feeds = [];
+      pages = [];
+      $.each(entries, function(index, item) {
+        var pag, tmpl;
+        tmpl = "<div class=\"row-fluid thumbnail thumbnail-feed\">			<img src=\"" + logo + "\" data-src=\"holder.js/120x120\" class=\"pull-left\" alt=\"" + item.author + "\"/>			<h3>" + item.title + "</h3><p>" + item.contentSnippet + "</p>			</div>";
+        index = index + 1;
+        pag = "<li><a href=\"#" + parent + "\">" + index + "</a></li>";
+        pages.push(pag);
+        return feeds.push(tmpl);
+      });
+      items = feeds.join(' ');
+      pages = pages.join(' ');
+      pagination = "<div class=\"pagination pagination-large\"><ul>" + pages + "</ul></div>";
+      conteiner = "<div class=\"row-fluid\">" + items + " " + pagination + "</div>";
+      return conteiner;
+    };
+  });
+}).call(this);

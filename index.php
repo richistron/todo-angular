@@ -55,26 +55,10 @@
                         </div>
                         <div id="blogs" class="accordion-body collapse">
                             <div class="accordion-inner">
-                                <div class="row-fluid">
-                                    <div class="row-fluid">
-                                        <div class="span6">                                            
-                                            <div class="row-fluid" id="richistron"></div>                                            
-                                        </div>
-                                        <div class="span6">                                            
-                                            <div class="row-fluid" id="gabo"></div>                                            
-                                        </div>
-                                    </div> 
-
-                                    <div class="row-fluid">
-                                        <div class="span6">                                            
-                                            <div class="row-fluid" id="bbhx"></div>                                            
-                                        </div>
-                                        <div class="span6">                                            
-                                            <div class="row-fluid" id="levhita"></div>                                            
-                                        </div>
-                                    </div> 
-
-                                </div>
+                                <div class="row-fluid rssItem" id="gabo" data-feedUrl="http://feeds.feedburner.com/nethazard?format=xml" data-feedLogo="img/cats/120x120.jpg"></div>
+                                <div class="row-fluid rssItem" id="richistron" data-feedUrl="http://blog.richistron.com/feeds/posts/default" data-feedLogo="img/logo120.png"></div>                                            
+                                <div class="row-fluid rssItem" id="levhita" data-feedUrl="http://blog.levhita.net/feed/" data-feedLogo="img/cats/120x120.jpg"></div>
+                                <div class="row-fluid rssItem" id="bbhx" data-feedUrl="http://briceno.mx/feed/" data-feedLogo="img/cats/120x120.jpg"></div>                                
                             </div>
                         </div>
                         <div class="accordion-group">
