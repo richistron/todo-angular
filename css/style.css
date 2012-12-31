@@ -21,7 +21,7 @@ html{
 	font: 60px/68px 'DroidSansMonoRegular', Arial, sans-serif;letter-spacing: 0;
 	font-family: Helvetica, 'arial-sans', arial;
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: normal;
 	background: #fff;		
 }
 body{
@@ -57,22 +57,8 @@ html[xmlns] .clearfix {
 h1{
 	font-size: 4em; /* 40px / 10px */
 }
-body header , 
-body nav, 
-body footer, 
-body div#container{
-	margin: 0;
-	padding: 0;
-}
-body header ,
-body footer{
-	background: rgba(204, 204, 204, 0.5); /* #ccc */
-}
-body nav{
-	background: rgba(204, 204, 204, 1); /* #ccc */	
-}
-body div#container{
-	background: rgba(204, 204, 204, 0.3); /* #ccc */	
+html , body , nav {
+	background: rgba(204, 204, 204, 1); /* #ccc */
 }
 /* Transition */
 .transition-all{
@@ -85,6 +71,10 @@ body div#container{
 	margin: 0px;
 	padding: 0px;	
 	text-align: center;
+	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.65);
+	-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.65);
+	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.65);
+	margin-bottom: 4px;
 }
  .nav-ul { 	
  	display: inline;
@@ -179,6 +169,39 @@ nav ul li a{
 
 	}
 }
-body header{
+body header.mainheader{
 	.header;
+}
+div#container {
+	background: #fff;
+	section{
+		.box{
+			margin: 30px;
+			display: inline-block;
+			width: 418px;
+		}			
+		article{
+			margin: 20px;
+		}
+		header{
+			background: inherit;
+			margin-bottom: 1em;
+			h1{
+				background: inherit;
+				font-size: 1.8em;
+				line-height: 1em;
+			}
+		}		
+		img{
+			float: left;
+		}
+		p{
+			line-height: 1.2em;
+			font-size: 1.7em;
+		}
+	}		
+	width: 960px;
+	position: relative;
+	left: 50%;
+	margin-left: -480px;
 }
