@@ -1,0 +1,133 @@
+/* 
+    Document   : customized
+    Author     : richistron
+    Description:
+        less css stylesheet
+*/
+/* Font face */
+@font-face {
+    font-family: 'DroidSansMonoRegular';
+    src: url('/fonts/DroidSansMono-webfont.eot');
+    src: url('/fonts/DroidSansMono-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/DroidSansMono-webfont.woff') format('woff'),
+         url('/fonts/DroidSansMono-webfont.ttf') format('truetype'),
+         url('/fonts/DroidSansMono-webfont.svg#DroidSansMonoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+/* basic */
+html{
+	font: 60px/68px 'DroidSansMonoRegular', Arial, sans-serif;letter-spacing: 0;
+	font-family: Helvetica, 'arial-sans', arial;
+	font-size: 16px;
+	font-weight: bold;
+	background: #fff;		
+}
+body{
+	font-size: 62.5%;
+	color: rgba(0, 0, 0, 0.75);	
+}
+/* margin kill */
+html,body,div,p,h1,h2,h3,h4,span,section,article,
+ul,ol,li,header,nav,footer{
+	margin:0;
+	padding: 0;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+h1{
+	font-size: 4em; /* 40px / 10px */
+}
+body header:first-child , 
+body nav, 
+body footer, 
+body div#container{
+	margin: 0;
+	padding: 0;
+}
+body header:first-child ,
+body footer{
+	background: rgba(204, 204, 204, 0.5); /* #ccc */
+}
+body nav{
+	background: rgba(204, 204, 204, 1); /* #ccc */	
+}
+body div#container{
+	background: rgba(204, 204, 204, 0.3); /* #ccc */	
+}
+/* nav classes */
+.nav{
+	margin: 0px;
+	padding: 0px;	
+	text-align: center;
+}
+ .nav-ul { 	
+ 	display: inline;
+ }
+ .nav-li { 	 	
+ 	margin: 0 30px;
+ 	padding: 0 30px;
+ 	display: inline-block;	 	
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	&:hover , &:focus , &:active {
+		background:  #000;
+		background: rgba(0,0,0,0.5);			
+		a {
+			color: rgba(255, 255, 255, 0.6);
+		}
+	}	
+ }
+ .nav-a{
+ 	color: rgba(0, 0, 0, 0.65);
+	text-decoration: none;
+	font-size: 2em; /* 20px / 10px */	
+	-moz-transition: all .5s ease-in-out;
+	-webkit-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+	&:hover , &:focus , &:active {
+		color: #fff;
+		-webkit-transform: scale(2);
+		-moz-transform: scale(2);
+		transform: scale(2);
+		-moz-text-shadow: 1px 1px 3px rgba(204, 204, 204, 0.3);
+		-webkit-text-shadow: 1px 1px 3px rgba(204, 204, 204, 0.3);
+		text-shadow: 1px 1px 3px rgba(204, 204, 204, 0.3);
+	}
+ }
+ // end
+ /* nav classes */
+
+
+ body nav{
+ 	.nav;
+ }
+nav ul {	
+	.nav-ul;
+}
+nav ul li {
+	.nav-li;
+}
+nav ul li a{	
+	.nav-a;	
+}
