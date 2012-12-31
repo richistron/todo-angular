@@ -11,9 +11,10 @@
         <title>richistron.com | Otro dude más en el interwebs</title>
     </head>
     <body>  
-        <header class="logo">
+        <header>
             <h1>Richistron.com</h1>
             <p>Otro dude más en el interwebs</p>
+            <a href="#" class="logo">http://richistron.com/</a>
         </header>
         <nav>
             <ul>

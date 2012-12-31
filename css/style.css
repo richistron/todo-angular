@@ -57,14 +57,14 @@ html[xmlns] .clearfix {
 h1{
 	font-size: 4em; /* 40px / 10px */
 }
-body header:first-child , 
+body header , 
 body nav, 
 body footer, 
 body div#container{
 	margin: 0;
 	padding: 0;
 }
-body header:first-child ,
+body header ,
 body footer{
 	background: rgba(204, 204, 204, 0.5); /* #ccc */
 }
@@ -73,6 +73,12 @@ body nav{
 }
 body div#container{
 	background: rgba(204, 204, 204, 0.3); /* #ccc */	
+}
+/* Transition */
+.transition-all{
+	-moz-transition: all .5s ease-in-out;
+	-webkit-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
 }
 /* nav classes */
 .nav{
@@ -87,9 +93,7 @@ body div#container{
  	margin: 0 30px;
  	padding: 0 30px;
  	display: inline-block;	 	
-	-moz-transition: all .3s ease-in-out;
-	-webkit-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
+	.transition-all;
 	&:hover , &:focus , &:active {
 		background:  #000;
 		background: rgba(0,0,0,0.5);			
@@ -102,9 +106,7 @@ body div#container{
  	color: rgba(0, 0, 0, 0.65);
 	text-decoration: none;
 	font-size: 2em; /* 20px / 10px */	
-	-moz-transition: all .5s ease-in-out;
-	-webkit-transition: all .5s ease-in-out;
-	transition: all .5s ease-in-out;
+	.transition-all;
 	&:hover , &:focus , &:active {
 		color: #fff;
 		-webkit-transform: scale(2);
@@ -130,4 +132,53 @@ nav ul li {
 }
 nav ul li a{	
 	.nav-a;	
+}
+
+/* header */
+.header{
+	background: url('/img/dark_Tire.png');
+	padding: 0 25px;
+	h1{		
+		display: inline-block;
+		margin-right: 25px;
+		.transition-all;
+		&:hover{			
+			color: rgba(255, 255, 255, .85);			
+			-moz-transform: scale(.9) rotate(-1deg);
+			-webkit-transform: scale(.9) rotate(-1deg);
+			transform: scale(.9) rotate(-1deg);
+		}
+	}
+	p{		
+		display: inline-block;
+		display: inline-block;
+		font-size: 2em;
+		color: rgba(255, 255, 255, .4);
+		font-style: italic;
+		font-weight: bolder;
+		word-spacing: 0.2em;
+		.transition-all;
+		&:hover{
+			color: rgba(255, 255, 255, .1);
+		}
+	}
+	a.logo{
+		background: url(/img/logo76x60.png);
+		float: left;
+		margin-right: 25px;
+		text-indent: -999999px;
+		display: block;
+		width: 75px;
+		height: 59px;
+		margin-top: 7px;
+		opacity: 0.4;
+		.transition-all;		
+		&:hover{
+			opacity: 1;
+		}
+
+	}
+}
+body header{
+	.header;
 }
