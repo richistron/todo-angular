@@ -16,17 +16,24 @@
     font-style: normal;
 
 }
+/* Colors */
+@color-links: rgba(245, 135, 35, 1);
+@color-dark:  rgba(0, 0, 0, 1);
+@color-darkLight:  rgba(199, 186, 153, 1);
+@color-mid: rgba(212, 201, 173, 1);
+@color-light: rgba(241, 236, 223, 1);
+
 /* basic */
 html{
 	font: 60px/68px 'DroidSansMonoRegular', Arial, sans-serif;letter-spacing: 0;
 	font-family: Helvetica, 'arial-sans', arial;
 	font-size: 16px;
 	font-weight: normal;
-	background: #fff;		
+	background: @color-light;		
 }
 body{
 	font-size: 62.5%;
-	color: rgba(0, 0, 0, 0.75);	
+	color: @color-dark;	
 }
 /* margin kill */
 html,body,div,p,h1,h2,h3,h4,span,section,article,
@@ -58,7 +65,7 @@ h1{
 	font-size: 4em; /* 40px / 10px */
 }
 html , body , nav {
-	background: rgba(204, 204, 204, 1); /* #ccc */
+	background: @color-darkLight; 
 }
 /* Transition */
 .transition-all{
@@ -68,6 +75,7 @@ html , body , nav {
 }
 /* nav classes */
 .nav{
+	background: @color-mid;
 	margin: 0px;
 	padding: 0px;	
 	text-align: center;
@@ -130,13 +138,11 @@ nav ul li a{
 	padding: 0 25px;
 	h1{		
 		display: inline-block;
-		margin-right: 25px;
 		.transition-all;
+		color: @color-light;
+		margin: 0px 10px 0 10px;
 		&:hover{			
-			color: rgba(255, 255, 255, .85);			
-			-moz-transform: scale(.9) rotate(-1deg);
-			-webkit-transform: scale(.9) rotate(-1deg);
-			transform: scale(.9) rotate(-1deg);
+			opacity: 0.5;
 		}
 	}
 	p{		
@@ -155,16 +161,14 @@ nav ul li a{
 	a.logo{
 		background: url(/img/logo76x60.png);
 		float: left;
-		margin-right: 25px;
 		text-indent: -999999px;
 		display: block;
 		width: 75px;
 		height: 59px;
-		margin-top: 7px;
-		opacity: 0.4;
+		margin-top: 7px;		
 		.transition-all;		
 		&:hover{
-			opacity: 1;
+			opacity: 0.4;			
 		}
 
 	}
@@ -174,6 +178,10 @@ body header.mainheader{
 }
 div#container {
 	background: #fff;
+	a{
+		color: @color-links;
+		text-decoration: none;
+	}
 	section{
 		.box{
 			margin: 30px;
@@ -182,6 +190,11 @@ div#container {
 		}			
 		article{
 			margin: 20px;
+			a.readmore{
+				font-size: .8em;
+				font-weight: bolder;
+				font-style: italic;
+			}
 		}
 		header{
 			background: inherit;
@@ -190,18 +203,40 @@ div#container {
 				background: inherit;
 				font-size: 1.8em;
 				line-height: 1em;
+				a{
+					color: @color-dark;
+				}
 			}
-		}		
-		img{
+		}				
+		.thumb{
 			float: left;
+			width: 110px;
+			height: 110px;
+			overflow: hidden;
+			border-radius: 60px;
+			margin: 10px;
+			img{
+				width: 110px;
+			}
 		}
 		p{
 			line-height: 1.2em;
 			font-size: 1.7em;
+		}
+		.author{
+			background: red;
 		}
 	}		
 	width: 960px;
 	position: relative;
 	left: 50%;
 	margin-left: -480px;
+}
+
+footer{
+	background: @color-dark;
+	color: @color-light;
+	a{
+		color: @color-links;
+	}
 }
