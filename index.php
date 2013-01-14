@@ -48,5 +48,6 @@
         </div>                    
         <footer>Footer</footer>
         <script src="js/libs.js"></script>
+        <script src="js/backbone.js"></script>        
     </body>
 </html>
