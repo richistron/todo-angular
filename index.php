@@ -48,32 +48,6 @@
         </div>                    
         <footer>Footer</footer>
         <script src="js/libs.js"></script>
-        <script src="js/backbone.js"></script>
-        <script>
-            /* Models */
-            var ItemLi = Backbone.Model.extend({
-                url: '/feeds.php'
-            });                          
-            /* items */
-            var itemLi = new ItemLi({
-                feedUrl: 'http://blog.richistron.com/feeds/posts/default',
-                feedText: 'El blog del richistron'
-            });
-            /* views  */
-            var ItemLiView = Backbone.View.extend({
-                render: function(){
-                    var htmlStr = "<li>" + this.model.get('feedUrl') + "</li>";
-                    $(this.el).html(htmlStr);
-                }
-            });
-            var itemLiView = new ItemLiView({
-                model: itemLi
-            });
-            itemLiView.render();
-            console.log(itemLiView.el);
-            //console.log(itemLi.get('feedUrl'));
-            //itemLi.save();
-            // lvl 1 , min 5
-        </script>        
+        <script src="js/core.js"></script>        
     </body>
 </html>
