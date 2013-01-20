@@ -9,10 +9,29 @@
 
 
 (function() {
-  var ItemLiModel, ItemView, itemM, view;
+  var ItemLiModel, ItemView, itemM, selector, view;
 
   ItemLiModel = Backbone.Model.extend({
-    urlRoot: "/feeds.php?getRss=feeds"
+    urlRoot: "/feeds.php?getRss=feeds",
+    getData: function(e) {
+      var conf;
+      e.preventDefault();
+      conf = this.feedConf(this);
+      return view.$el.feeds(conf);
+    },
+    feedConf: function(element) {
+      element = element;
+      console.log(element);
+      return {
+        feeds: {
+          "feedUrl": element.get("feedUrl")
+        },
+        onComplete: function(data) {
+          element.set("feedData", data);
+          return console.log(element.get("feedData"));
+        }
+      };
+    }
   });
 
   itemM = new ItemLiModel({
@@ -22,17 +41,28 @@
     feedLogo: "/img/cats/120x120.jpg",
     feedDescription: "When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...",
     feedLink: "http://blog.richistron.com/",
-    feedAutor: "Ricardo Rivas"
+    feedAutor: "Ricardo Rivas",
+    feedData: {}
   });
 
   ItemView = Backbone.View.extend({
-    tagName: "article",
+    tagName: "div",
+    className: "box",
+    initialize: function() {
+      return this.model.on("change", this.render, this);
+    },
+    events: {
+      "click a": "getData"
+    },
+    getData: _.once(function(e) {
+      return this.model.getData(e);
+    }),
     render: function() {
       var data;
       data = this.model.toJSON();
       return this.$el.html(this.template(data));
     },
-    template: _.template("			<header>                            				<h1>					<a href='#<%= id %>'>						<%= feedTitle %>					</a>				</h1>			<div class='thumb'>				<img src='<%= feedLogo %>' alt='<%= id %>_logo'/>			</div>			<p>				<%= feedDescription %>				<a href='<%= feedLink %>' class='readmore'>Leer más</a>							</p>     			<span class='author'> Author: <strong> <%= feedAutor %> </strong></span>                   					")
+    template: _.template("			<article>				<header>                            					<h1>						<a href='#<%= id %>'>							<%= feedTitle %>						</a>					</h1>				<div class='thumb'>					<img src='<%= feedLogo %>' alt='<%= id %>_logo'/>				</div>				<p>					<%= feedDescription %>					<a href='<%= feedLink %>' class='readmore'>Leer más</a>								</p>     				<span class='author'> Author: <strong> <%= feedAutor %> </strong></span>                   						</article>		")
   });
 
   view = new ItemView({
@@ -41,8 +71,10 @@
 
   view.render();
 
+  selector = "#sitios";
+
   $(document).ready(function() {
-    return $("#sitios .box").html(function() {
+    return $(selector).html(function() {
       return view.el;
     });
   });
