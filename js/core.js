@@ -9,10 +9,10 @@
 
 
 (function() {
-  var ItemLiModel, ItemView, itemM, selector, view;
+  var ColletionView, ItemCollection, ItemLiModel, ItemView, colletionView, feedData, itemCollection, selector;
 
   ItemLiModel = Backbone.Model.extend({
-    urlRoot: "/feeds.php?getRss=feeds",
+    urlRoot: "/feeds",
     getData: function(e) {
       var conf;
       e.preventDefault();
@@ -34,17 +34,6 @@
     }
   });
 
-  itemM = new ItemLiModel({
-    id: "richistron",
-    feedUrl: "http://blog.richistron.com/feeds/posts/default",
-    feedTitle: "El blog del richistron",
-    feedLogo: "/img/cats/120x120.jpg",
-    feedDescription: "When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...",
-    feedLink: "http://blog.richistron.com/",
-    feedAutor: "Ricardo Rivas",
-    feedData: {}
-  });
-
   ItemView = Backbone.View.extend({
     tagName: "div",
     className: "box",
@@ -55,6 +44,8 @@
       "click a": "getData"
     },
     getData: _.once(function(e) {
+      e.preventDefault();
+      console.log(this.model);
       return this.model.getData(e);
     }),
     render: function() {
@@ -65,17 +56,61 @@
     template: _.template("			<article>				<header>                            					<h1>						<a href='#<%= id %>'>							<%= feedTitle %>						</a>					</h1>				<div class='thumb'>					<img src='<%= feedLogo %>' alt='<%= id %>_logo'/>				</div>				<p>					<%= feedDescription %>					<a href='<%= feedLink %>' class='readmore'>Leer más</a>								</p>     				<span class='author'> Author: <strong> <%= feedAutor %> </strong></span>                   						</article>		")
   });
 
-  view = new ItemView({
-    model: itemM
+  ItemCollection = Backbone.Collection.extend({});
+
+  itemCollection = new ItemCollection({
+    model: ItemLiModel
   });
 
-  view.render();
+  feedData = [
+    {
+      id: "richistron",
+      feedUrl: "http://blog.richistron.com/feeds/posts/default",
+      feedTitle: "El blog del richistron",
+      feedLogo: "/img/cats/120x120.jpg",
+      feedDescription: "When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...",
+      feedLink: "http://blog.richistron.com/",
+      feedAutor: "Ricardo Rivas",
+      feedData: {}
+    }, {
+      id: "asasdadasdas",
+      feedUrl: "http://blog.richistron.com/feeds/posts/default",
+      feedTitle: "kljaslkdjalskdjalsdjlk",
+      feedLogo: "/img/cats/120x120.jpg",
+      feedDescription: "When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...",
+      feedLink: "http://blog.richistron.com/",
+      feedAutor: "Ricardo Rivas",
+      feedData: {}
+    }
+  ];
+
+  itemCollection.reset(feedData);
+
+  ColletionView = Backbone.View.extend({
+    render: function() {
+      return this.collection.forEach(this.renderItem, this);
+    },
+    renderItem: function(element) {
+      var itemView_;
+      itemView_ = new ItemView({
+        model: element
+      });
+      itemView_.render();
+      return this.$el.append(itemView_.el);
+    }
+  });
+
+  colletionView = new ColletionView({
+    collection: itemCollection
+  });
+
+  colletionView.render();
 
   selector = "#sitios";
 
   $(document).ready(function() {
     return $(selector).html(function() {
-      return view.el;
+      return colletionView.el;
     });
   });
 

@@ -6,7 +6,7 @@
 ###
 # Model Class
 ItemLiModel = Backbone.Model.extend	
-	urlRoot: "/feeds.php?getRss=feeds"
+	urlRoot: "/feeds"
 	# load feed data
 	getData: (e)->		
 		e.preventDefault()		
@@ -21,16 +21,6 @@ ItemLiModel = Backbone.Model.extend
 		onComplete: (data)->							
 			element.set "feedData" , data	
 			console.log ( element.get "feedData" )
-# new Model
-itemM = new ItemLiModel	
-	id: "richistron"
-	feedUrl: "http://blog.richistron.com/feeds/posts/default"
-	feedTitle: "El blog del richistron"
-	feedLogo: "/img/cats/120x120.jpg"
-	feedDescription: "When programming in any language there are certain common errors that everyone makes as they mature and evolve their ..."
-	feedLink: "http://blog.richistron.com/"
-	feedAutor: "Ricardo Rivas"	
-	feedData: {}
 # View Class
 ItemView = Backbone.View.extend
 	tagName: "div"
@@ -40,7 +30,9 @@ ItemView = Backbone.View.extend
 	events: 
 		"click a": "getData"
 	#get feed data
-	getData: _.once (e)->				
+	getData: _.once (e)->
+		e.preventDefault()
+		console.log @.model				
 		@.model.getData(e)
 	# Render function
 	render: ->
@@ -64,14 +56,49 @@ ItemView = Backbone.View.extend
 				<span class='author'> Author: <strong> <%= feedAutor %> </strong></span>                   			
 			</article>
 		"
-# new View
-view = new ItemView
-	model: itemM
-# Render
-view.render()
+# Collection
+ItemCollection = Backbone.Collection.extend({})
+itemCollection = new ItemCollection
+	model: ItemLiModel
+feedData = [
+	{
+		id: "richistron"
+		feedUrl: "http://blog.richistron.com/feeds/posts/default"
+		feedTitle: "El blog del richistron"
+		feedLogo: "/img/cats/120x120.jpg"
+		feedDescription: "When programming in any language there are certain common errors that everyone makes as they mature and evolve their ..."
+		feedLink: "http://blog.richistron.com/"
+		feedAutor: "Ricardo Rivas"	
+		feedData: {}
+	}
+	{
+		id: "asasdadasdas"
+		feedUrl: "http://blog.richistron.com/feeds/posts/default"
+		feedTitle: "kljaslkdjalskdjalsdjlk"
+		feedLogo: "/img/cats/120x120.jpg"
+		feedDescription: "When programming in any language there are certain common errors that everyone makes as they mature and evolve their ..."
+		feedLink: "http://blog.richistron.com/"
+		feedAutor: "Ricardo Rivas"	
+		feedData: {}
+	}
+]	
+itemCollection.reset(feedData)
+# collection class
+ColletionView = Backbone.View.extend
+	render: ->
+		@.collection.forEach @.renderItem, @
+	renderItem: (element) ->
+		itemView_ = new ItemView
+			model: element
+		itemView_.render()
+		@.$el.append itemView_.el
+# colection view
+colletionView = new ColletionView
+	collection: itemCollection
+colletionView.render()
 # conteiner selector
 selector = "#sitios"
 # DOM ready
 $(document).ready ->
 	$( selector ).html ->
-		view.el
+		colletionView.el
