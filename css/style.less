@@ -23,13 +23,6 @@
 @color-red: #E01B1A;
 @color-white: #FFF;
 
-/* Colors */
-@color-links: rgba(245, 135, 35, 1);
-@color-dark:  rgba(0, 0, 0, 1);
-@color-darkLight:  rgba(199, 186, 153, 1);
-@color-mid: rgba(212, 201, 173, 1);
-@color-light: rgba(241, 236, 223, 1);
-
 
 /* basic */
 html{
@@ -37,7 +30,7 @@ html{
 	font-family: Helvetica, 'arial-sans', arial;
 	font-size: 16px;
 	font-weight: normal;
-	background: @color-light;		
+	background: @color-white;		
 }
 body{
 	font-size: 62.5%;
@@ -73,7 +66,7 @@ h1{
 	font-size: 4em; /* 40px / 10px */
 }
 html , body , nav {
-	background: @color-darkLight; 
+	background: @color-gray; 
 }
 /* Transition */
 .transition-all{
@@ -83,7 +76,7 @@ html , body , nav {
 }
 /* nav classes */
 .nav{
-	background: @color-mid;
+	background: @color-gray;
 	margin: 0px;
 	padding: 0px;	
 	text-align: center;
@@ -147,7 +140,7 @@ nav ul li a{
 	h1{		
 		display: inline-block;
 		.transition-all;
-		color: @color-light;
+		color: @color-white;
 		margin: 0px 10px 0 10px;
 		&:hover{			
 			opacity: 0.5;
@@ -187,7 +180,7 @@ body header.mainheader{
 div#container {
 	background: #fff;
 	a{
-		color: @color-links;
+		color: @color-blue;
 		text-decoration: none;
 	}
 	section{
@@ -243,8 +236,8 @@ div#container {
 
 footer{
 	background: @color-dark;
-	color: @color-light;
+	color: @color-white;
 	a{
-		color: @color-links;
+		color: @color-blue;
 	}
 }
