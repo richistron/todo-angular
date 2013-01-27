@@ -11,10 +11,11 @@
         <title>richistron.com | Otro dude más en el interwebs</title>
     </head>
     <body>  
-        <header class="mainheader">
-            <h1>Richistron.com</h1>
-            <p>Otro dude más en el interwebs</p>
-            <a href="#" class="logo">http://richistron.com/</a>
+        <header class="logo">
+            <a href="#">
+                <h1>Richistron.com</h1>
+                <p>Otro dude más en el interwebs</p>
+            </a>
         </header>
         <nav>
             <ul>
@@ -48,6 +49,5 @@
         </div>                    
         <footer>Footer</footer>
         <script src="js/libs.js"></script>
-        <script src="js/core.js"></script>        
     </body>
 </html>
