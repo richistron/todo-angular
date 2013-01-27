@@ -30,10 +30,16 @@ TodoView = Backbone.View.extend
 		@model.on "change", @render, @
 #Collection
 TodoList = Backbone.Collection.extend
+	url: 'feeds.php'
 	model: TodoModel
 #Collection View
 TodoListView = Backbone.View.extend
+	initialize: ->
+		@collection.on "add", @addItem, @
+		@collection.on "reset", @addAll, @
 	render: ->
+		@addAll()
+	addAll: ->
 		@collection.forEach @addItem, @
 	addItem: (item)->
 		todoView = new TodoView
@@ -44,10 +50,7 @@ TodoListView = Backbone.View.extend
 
 # INIT 
 todoList = new TodoList
-todo1 = new TodoModel
-todo2 = new TodoModel
-todoList.add todo1
-todoList.add todo2
+todoList.fetch()
 todoListView = new TodoListView
 	collection: todoList
 todoListView.render()
