@@ -12,20 +12,22 @@
     </head>
     <body>  
         <header class="logo">
-            <a href="#">
+            <a href="#home">
                 <h1>Richistron.com</h1>
                 <p>Otro dude más en el interwebs</p>
             </a>
         </header>
         <nav>
             <ul>
-                <li><a href="#">Comunidades</a></li>                
-                <li><a href="#">Noticias</a></li>
-                <li><a href="#">Blogs</a></li>                
+                <li><a href="#comunidades">Comunidades</a></li>                
+                <li><a href="#noticias">Noticias</a></li>
+                <li><a href="#blogs">Blogs</a></li>                
+                <li><a href="#tecnologia">Tecnología</a></li>
+                <li><a href="#about">About</a></li>
             </ul>                                
         </nav>
         <div id="container">
-            <section id="sitios">
+            <section>
                 <div class="box">
                     <article>
                         <header>                            
