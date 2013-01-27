@@ -28,25 +28,29 @@ TodoView = Backbone.View.extend
 		@model.clickPlusOne()
 	initialize: ->
 		@model.on "change", @render, @
-todos = [
-	{
-		id: 1
-		title: "todo item"
-		content: "kajdlkasjdlkasj askdjalkjdla ksajdlkasjdaljd ..."
-		clicks: 0
-	},
-	{	
-		id: 2
-		title: "todo item 2"
-		content: "kajdlkasjdlkasj askdjalkjdla ksajdlkasjdaljd ..."
-		clicks: 0
-	}	
-]
+#Collection
+TodoList = Backbone.Collection.extend
+	model: TodoModel
+#Collection View
+TodoListView = Backbone.View.extend
+	render: ->
+		@collection.forEach @addItem, @
+	addItem: (item)->
+		todoView = new TodoView
+			model: item
+		todoView.render()
+		html = todoView.el
+		@.$el.append html
 
+# INIT 
+todoList = new TodoList
 todo1 = new TodoModel
-view1 = new TodoView
-	model: todo1
-view1.render()
+todo2 = new TodoModel
+todoList.add todo1
+todoList.add todo2
+todoListView = new TodoListView
+	collection: todoList
+todoListView.render()
 # DOM READY
 $(document).ready ->
-	$("#container").html view1.el
+	$("#container").html todoListView.el
