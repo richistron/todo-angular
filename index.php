@@ -108,5 +108,6 @@
         </div>                    
         <footer>Footer</footer>
         <script src="js/libs.js"></script>
+        <script src="js/todos.js"></script>
     </body>
 </html>
