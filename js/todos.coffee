@@ -12,7 +12,6 @@ TodoModel = Backbone.Model.extend
 		click = @get 'clicks'
 		click = parseInt(click) + 1
 		@set 'clicks', click
-		console.log @get('clicks')
 #MODEL VIEW
 TodoView = Backbone.View.extend
 	template: _.template "
