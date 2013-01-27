@@ -50,10 +50,10 @@ TodoListView = Backbone.View.extend
 
 # INIT 
 todoList = new TodoList
-todoList.fetch()
 todoListView = new TodoListView
 	collection: todoList
 todoListView.render()
 # DOM READY
 $(document).ready ->
 	$("#container").html todoListView.el
+	todoList.fetch()
