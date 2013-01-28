@@ -12,6 +12,7 @@ TodoModel = Backbone.Model.extend
 		click = @get 'clicks'
 		click = parseInt(click) + 1
 		@set 'clicks', click
+		App.navigate "todos/#{@get 'id'}", trigger: true
 #MODEL VIEW
 TodoView = Backbone.View.extend
 	template: _.template "
@@ -47,13 +48,21 @@ TodoListView = Backbone.View.extend
 		todoView.render()
 		html = todoView.el
 		@.$el.append html
-
-# INIT 
-todoList = new TodoList
-todoListView = new TodoListView
-	collection: todoList
-todoListView.render()
+# App history
+App = new (Backbone.Router.extend
+	routes:
+		"" : "index" , "todos/:id" : "show"
+	initialize: ->
+		@todoList = new TodoList
+		@todoListView = new TodoListView
+			collection: @todoList
+		$("#container").html @todoListView.el
+	start: -> Backbone.history.start pushState: true
+	show: -> console.log @todoList
+	index: -> @todoList.fetch()
+)
 # DOM READY
 $(document).ready ->
-	$("#container").html todoListView.el
-	todoList.fetch()
+	#$("#container").html todoListView.el
+	#todoList.fetch()
+	App.start()
