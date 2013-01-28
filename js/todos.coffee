@@ -33,6 +33,9 @@ TodoView = Backbone.View.extend
 TodoList = Backbone.Collection.extend
 	url: 'feeds.php'
 	model: TodoModel
+	showOne: (id) ->
+		alert "aslkjasdlkjasd #{id}"
+		console.log @
 #Collection View
 TodoListView = Backbone.View.extend
 	initialize: ->
@@ -58,7 +61,7 @@ App = new (Backbone.Router.extend
 			collection: @todoList
 		$("#container").html @todoListView.el
 	start: -> Backbone.history.start pushState: true
-	show: -> console.log @todoList
+	show: (id)-> @todoList.showOne id
 	index: -> @todoList.fetch()
 )
 # DOM READY
