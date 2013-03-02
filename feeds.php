@@ -1,18 +1,30 @@
 <?php
 header('Content-Type: application/json');
 
-$feeds['blogs'][] = array(
-		'id' => 1,
-		'title' => "todo item",
-		"content" => "kajdlkasjdlkasj askdjalkjdla ksajdlkasjdaljd ...",
-		"clicks"  => 0
+$feeds['comunidades'][] = array(
+		'id' => 'richistron',
+		'title' => "El blog del richistron",
+		"slogan" => "Un blog de un dude y así",
+		"url"  => "http://blog.richistron.com/feeds/posts/default"
 	);
-$feeds['blogs'][] = array(
-		'id' => 2,
-		'title' => "todo item 2",
-		"content" => "adasdad...",
-		"clicks"  => 0
+$feeds['comunidades'][] = array(
+		'id' => 'hg',
+		'title' => "HackerGarage",
+		"slogan" => "Una comunidad para innovar",
+		"url"  => "http://hackergarage.mx/index.php/blog/rss.html"
+	);
+$feeds['comunidades'][] = array(
+		'id' => 'bbhx',
+		'title' => "BASILIO BRICEÑO",
+		"slogan" => "About Freedom, UNIX, Web Programming, among other stuff",
+		"url"  => "http://briceno.mx/feed/"
+	);
+$feeds['comunidades'][] = array(
+		'id' => 'levhita',
+		'title' => "RADIO LEVHITA",
+		"slogan" => "LA RADIO QUE SÓLO SE LEE PERO AÚN ASÍ SE ESCUCHA…",
+		"url"  => "http://blog.levhita.net/"
 	);
 
-echo json_encode($feeds['blogs']);
+echo json_encode($feeds);
 ?>

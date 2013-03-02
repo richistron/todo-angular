@@ -17,7 +17,7 @@
                 <p>Otro dude más en el interwebs</p>
             </a>
         </header>
-        <nav>
+        <nav id="navigation">
             <ul>
                 <li><a href="#comunidades">Comunidades</a></li>                
                 <li><a href="#noticias">Noticias</a></li>
