@@ -27,87 +27,14 @@
             </ul>                                
         </nav>
         <div id="container">
-            <section>
-                <div class="box">
-                    <article>
-                        <header>                            
-                            <h1>
-                                <a href="#">
-                                    10 PHP code quality tools to avoid a mess in your projects
-                                </a>
-                            </h1>
-                        </header>                        
-                        <div class="thumb">
-                            <img src="/img/cats/120x120.jpg" alt="logo"/>
-                        </div>
-                        <p>
-                            When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...
-                            <a href="#" class="readmore">Leer más</a>
-                        </p>                        
-                        <span class="author"> Author: <strong> Fulanito </strong> | <time datetime="2011-01-26">Monday, January 26,2011</time></span>
-                    </article>
-                </div>
-                <div class="box">
-                    <article>
-                        <header>                            
-                            <h1>
-                                <a href="#">
-                                    10 PHP code quality tools to avoid a mess in your projects
-                                </a>
-                            </h1>
-                        </header>                        
-                        <div class="thumb">
-                            <img src="/img/cats/120x120.jpg" alt="logo"/>
-                        </div>
-                        <p>
-                            When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...
-                            <a href="#" class="readmore">Leer más</a>
-                        </p>                        
-                        <span class="author"> Author: <strong> Fulanito </strong> | <time datetime="2011-01-26">Monday, January 26,2011</time></span>
-                    </article>
-                </div>
-                <div class="box">
-                    <article>
-                        <header>                            
-                            <h1>
-                                <a href="#">
-                                    10 PHP code quality tools to avoid a mess in your projects
-                                </a>
-                            </h1>
-                        </header>                        
-                        <div class="thumb">
-                            <img src="/img/cats/120x120.jpg" alt="logo"/>
-                        </div>
-                        <p>
-                            When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...
-                            <a href="#" class="readmore">Leer más</a>
-                        </p>                        
-                        <span class="author"> Author: <strong> Fulanito </strong> | <time datetime="2011-01-26">Monday, January 26,2011</time></span>
-                    </article>
-                </div>
-                <div class="box">
-                    <article>
-                        <header>                            
-                            <h1>
-                                <a href="#">
-                                    10 PHP code quality tools to avoid a mess in your projects
-                                </a>
-                            </h1>
-                        </header>                        
-                        <div class="thumb">
-                            <img src="/img/cats/120x120.jpg" alt="logo"/>
-                        </div>
-                        <p>
-                            When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...
-                            <a href="#" class="readmore">Leer más</a>
-                        </p>                        
-                        <span class="author"> Author: <strong> Fulanito </strong> | <time datetime="2011-01-26">Monday, January 26,2011</time></span>
-                    </article>
-                </div>
-            </section>            
+            Cupcake ipsum dolor sit. Amet topping chupa chups tiramisu faworki I love pudding. I love jelly-o pastry gummies pastry halvah.
+            Chocolate bar chocolate bar cotton candy ice cream faworki caramels wafer. I love muffin tart wafer sweet halvah candy canes cheesecake marzipan. I love wypas topping ice cream I love toffee.
+            Tiramisu I love gummies I love biscuit. I love danish gummi bears candy candy cake I love. Chocolate bar pastry cookie cookie wafer halvah.
+            Ice cream caramels sweet sweet roll. Muffin cotton candy cotton candy tiramisu soufflé brownie dessert danish candy. Halvah tootsie roll lollipop ice cream toffee sweet candy soufflé. Biscuit marzipan oat cake candy canes wypas dragée applicake.
+            Topping biscuit ice cream marshmallow I love I love bonbon. Chupa chups dessert candy topping carrot cake bonbon wypas. Faworki apple pie gummies I love jelly beans.
         </div>                    
         <footer>Footer</footer>
         <script src="js/libs.js"></script>
-        <script src="js/todos.js"></script>
+        <script src="js/core.js"></script>
     </body>
 </html>
