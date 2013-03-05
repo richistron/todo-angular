@@ -6,8 +6,15 @@
 ###
 richisCore = 
 	init: ->		
+		# loading data from the server
+		@loadSections()
+		# prevent default all document
 		$(document).on "click" , "a" , (e)-> e.preventDefault()
-		@loadSections()		
+		# main navegation
+		@navElements = $("#navigation")
+		@navElements.bind "click" , @navBehavior
+	navBehavior: (e) -> 
+		console.log @
 	richistoken: -> Math.random().toString(36).substr(2)
 	loadSections: ->					
 		$.ajax(
@@ -19,12 +26,7 @@ richisCore =
 		).done (data) =>			
 			@initSections data
 	initSections: (@response = false)->		
-		console.log @response
-		@navElements = $("#navigation")
-		@navElements.on "click" , "a" , (e)->
-			e.preventDefault()
-			console.log @
-			$(@).unbind()
+		console.log @response							
 ###
 <div id="container">
 <section>
