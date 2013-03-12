@@ -8,14 +8,15 @@ richisCore =
 	init: ->		
 		@loadSections()
 		$(document).on "click" , "a" , (e)-> e.preventDefault()
-		@navElements = $("#navigation").find("ul").find("li").find("a").not "a:eq(0)"
+		@navElements = $("#navigation").find("ul").find("li").find("a").not("a:eq(0)")
 		@navElements.bind "click" , @navBehavior
 	mainContainer: "#container"
 	loaded: []
 	navBehavior: (e) -> 		
-		element = $(@)
-		console.log "loading section #{element}"
+		element = $(@)		
 		section = element.attr("href").replace "#" , ""
+		console.log "loading section "		
+		console.log section
 		element.unbind()			
 		richisCore.loadSection section		
 	richistoken: -> Math.random().toString(36).substr(2)
@@ -36,37 +37,54 @@ richisCore =
 		currentSelector = selector
 		$.each @response , (index,item) =>
 			if @sectionStrID == index
-				html = @sectionTpl item
-				$(@mainContainer).html html
-				$("#{currentSelector}").bind "click" , @toggleSection
+				html = @sectionTpl item , @sectionStrID
+				$(@mainContainer).html html				
+				$("#{currentSelector}").bind "click" , @toggleSection				
+				initElements = $("##{@sectionStrID}").find("div.box")				
+				initElements.bind "click" , @loadRssInit
+	loadRssInit: (e) =>
+		$(e.currentTarget).unbind "click" , @loadRssInit
+		element = $(e.currentTarget)
+		rssLink = element.find("a.readmore").attr("href")
+		feedConf = 
+			feeds:
+				feed1: rssLink
+			max: 5
+			onComplete: (data)->
+				console.log data
+		element.feeds feedConf
+		# here
+		console.log rssLink
+		console.log feedConf
 	toggleSection: -> console.log "toggleSection"
-	sectionTpl: (data)->
+	sectionTpl: (data,elementID)->
+		data.id = elementID
 		tpl = "
-			<section>
+			<section id=\"<%= data.id %>\">
 				<% _.each(data, function(rss) { %>
 					<div class=\"box\">
 						<article>
 							<header>                            
 								<h1>
-									<a href=\"#\">
+									<a href=\"<%= rss.url %>\">
 										<%= rss.title %>
 									</a>
 								</h1>
 							</header>                        
 							<div class=\"thumb\">
-								<img src=\"/img/cats/120x120.jpg\" alt=\"logo\"/>
+								<img src=\"<%= rss.logo %>\" alt=\"logo\"/>
 							</div>
 							<p>
-								When programming in any language there are certain common errors that everyone makes as they mature and evolve their ...
-								<a href=\"#\" class=\"readmore\">Leer más</a>
+								<%= rss.slogan %>
+								<a href=\"<%= rss.urlFeed %>\" class=\"readmore\">Rss</a>
 							</p>                        
 							<span class=\"author\"> 
-								Author: <strong> Fulanito </strong> | <time datetime=\"2011-01-26\">Monday, January 26,2011</time>
+								Author: <strong> <%= rss.author %> </strong> | <time datetime=\"<%= rss.date %>\"><%= rss.date %></time>
 							</span>
 						</article>
 					</div>
 					<% }); %>
-			<section>
+			</section>
 		"
 		_.template tpl, data: data
 ###
