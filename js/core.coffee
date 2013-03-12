@@ -1,7 +1,7 @@
 ###
 	richisCore v0.1
 	@Author @richistron
-	@description coffeScript core
+	@description coffeeScript core
 	@License MIT
 ###
 richisCore = 
@@ -44,25 +44,36 @@ richisCore =
 				initElements.bind "click" , @loadRssInit
 	loadRssInit: (e) =>
 		$(e.currentTarget).unbind "click" , @loadRssInit
-		element = $(e.currentTarget)
+		element = $(e.currentTarget)				
 		rssLink = element.find("a.readmore").attr("href")
 		feedConf = 
 			feeds:
 				feed1: rssLink
 			max: 5
-			onComplete: (data)->
-				console.log data
-		element.feeds feedConf
-		# here
-		console.log rssLink
-		console.log feedConf
+			onComplete: (data) ->				
+				richisCore.parseEntries data , element
+			loadingTemplate: richisCore.loadingTemplate
+		element.feeds feedConf	
+	loadingTemplate: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
+	parseEntries: (data,element)-> 
+		logo = $(element).data "logo"						
+		$(element).html( @entrieTemplate data ,logo )
+		articles = $(element).find("article")
+		articles.css "opacity" , 1
+		articles.not(":eq(0)").hide()		
+		paginationA = $(element).find(".articlePagination").find("a")
+		paginationA.filter(":eq(0)").addClass("active")
+		paginationA.bind "click" , (e)=>
+			@changeEntrie e
+	changeEntrie: (e)->
+		console.log e.currentTarget
 	toggleSection: -> console.log "toggleSection"
 	sectionTpl: (data,elementID)->
 		data.id = elementID
 		tpl = "
 			<section id=\"<%= data.id %>\">
 				<% _.each(data, function(rss) { %>
-					<div class=\"box\">
+					<div class=\"box\" data-logo=\"<%= rss.logo %>\">
 						<article>
 							<header>                            
 								<h1>
@@ -79,7 +90,7 @@ richisCore =
 								<a href=\"<%= rss.urlFeed %>\" class=\"readmore\">Rss</a>
 							</p>                        
 							<span class=\"author\"> 
-								Author: <strong> <%= rss.author %> </strong> | <time datetime=\"<%= rss.date %>\"><%= rss.date %></time>
+								Author: <strong> <%= rss.author %> </strong> 
 							</span>
 						</article>
 					</div>
@@ -87,6 +98,39 @@ richisCore =
 			</section>
 		"
 		_.template tpl, data: data
+	entrieTemplate: (data,logo = "/img/cats/120x120.jpg")-> 		
+		tpl = "
+			<% _.each(data, function(rss) { %>
+				<article>
+					<header>                            
+						<h1>
+							<a href=\"<%= rss.link %>\">
+								<%= rss.title %>
+							</a>
+						</h1>
+					</header>                        
+					<div class=\"thumb\">
+						<img src=\"<%= logo %>\" alt=\"logo\"/>
+					</div>
+					<p>
+						<%= rss.contentSnippet %>
+						<a href=\"<%= rss.link %>\" class=\"readmore\">Leer más</a>
+					</p>                        
+					<span class=\"author\"> 
+						Author: <strong> <%= rss.author %> </strong>
+					</span>
+				</article>
+			<% }); %>
+			<div class=\"articlePagination\">
+				<% _.each(data,function(item,i){ %>
+					<a href=\"#<%= i %>\"><%= i + 1 %></a>
+				<% }); %>
+			</div>
+		"
+		params = 
+			data:data
+			logo: logo
+		_.template tpl , params
 ###
 	DOM ready
 ###

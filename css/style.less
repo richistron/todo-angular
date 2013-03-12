@@ -210,6 +210,26 @@ html , body , nav {
 				span.author{
 					color: @color-gray;										
 				}
+			}
+			div.articlePagination{
+				margin: 0;
+				padding: 0;				
+				height: 30px;
+				line-height: 1.8em;
+				font-size: 1.7em;
+				text-align: right;
+				font-weight: bolder;
+				a{
+					color: @color-blue;
+					text-decoration: none;
+					.transition-all;
+					&:hover,&:focus,&:active{
+						color: @color-gray;							
+					}
+					&.active{
+						color: @color-gray;						
+					}
+				}
 			}			
 		}
 	}	
