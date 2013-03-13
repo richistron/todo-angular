@@ -14,11 +14,9 @@ richisCore =
 	loaded: []
 	navBehavior: (e) -> 		
 		element = $(@)		
-		section = element.attr("href").replace "#" , ""
-		console.log "loading section "		
-		console.log section
-		element.unbind()			
-		richisCore.loadSection section		
+		section = element.attr("href").replace "#" , ""		
+		element.unbind()					
+		richisCore.loadSection section	, element	
 	richistoken: -> Math.random().toString(36).substr(2)
 	loadSections: ->					
 		$.ajax(
@@ -32,14 +30,20 @@ richisCore =
 	initSections: (@response = false)-> 								
 		element = $("#navigation").find("ul").find("li").find("a:eq(0)")
 		section = element.attr("href").replace "#" , ""
-		@loadSection section , element.selector		
-	loadSection: (@sectionStrID,selector)-> 					
+		console.log element.selector
+		@loadSection section , element.selector	, true 	
+	loadSection: ( @sectionStrID, selector, initReplace = false)-> 							
 		currentSelector = selector
 		$.each @response , (index,item) =>
 			if @sectionStrID == index
 				html = @sectionTpl item , @sectionStrID
-				$(@mainContainer).html html				
-				$("#{currentSelector}").bind "click" , @toggleSection				
+				if initReplace == true
+					$(@mainContainer).html html				
+					$("#{currentSelector}").bind "click" , @toggleSection
+				else
+					$(@mainContainer).append html		
+					# aqui voy :P										
+					console.log $(selector).attr "href"
 				initElements = $("##{@sectionStrID}").find("div.box")				
 				initElements.bind "click" , @loadRssInit
 	loadRssInit: (e) =>
