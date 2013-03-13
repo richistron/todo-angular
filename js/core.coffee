@@ -49,7 +49,7 @@ richisCore =
 		feedConf = 
 			feeds:
 				feed1: rssLink
-			max: 5
+			max: 10
 			onComplete: (data) ->				
 				richisCore.parseEntries data , element
 			loadingTemplate: richisCore.loadingTemplate
@@ -61,12 +61,22 @@ richisCore =
 		articles = $(element).find("article")
 		articles.css "opacity" , 1
 		articles.not(":eq(0)").hide()		
+		articles.on "click","a", (e)->
+			link = $(@).attr "href"
+			window.open link , "_blank"
 		paginationA = $(element).find(".articlePagination").find("a")
 		paginationA.filter(":eq(0)").addClass("active")
 		paginationA.bind "click" , (e)=>
 			@changeEntrie e
 	changeEntrie: (e)->
-		console.log e.currentTarget
+		clicked = $(e.currentTarget).attr("href")
+		clicked = clicked.replace "#" , ""
+		box = $(e.currentTarget).closest ".box"				
+		box.find("article").hide()
+		box.find("article").filter(":eq(#{clicked})").show()
+		paginationDiv = $(e.currentTarget).closest "div"
+		paginationDiv.find("a.active").removeClass("active")
+		$(e.currentTarget).addClass("active")
 	toggleSection: -> console.log "toggleSection"
 	sectionTpl: (data,elementID)->
 		data.id = elementID
