@@ -9,11 +9,14 @@ richisCore =
 		@loadSections()
 		$(document).on "click" , "a" , (e)-> e.preventDefault()
 		@navElements = $("#navigation").find("ul").find("li").find("a").not("a:eq(0)")
+		$("#navigation").find("ul").find("li:eq(0)").addClass "active"
 		@navElements.bind "click" , @navBehavior
 	mainContainer: "#container"
 	loaded: []
 	navBehavior: (e) -> 		
-		element = $(@)		
+		element = $(@)				
+		element.closest("ul").find("li").removeClass "active"
+		element.closest("li").addClass "active"
 		section = element.attr("href").replace "#" , ""		
 		element.unbind()					
 		richisCore.loadSection section	, element	
@@ -30,7 +33,6 @@ richisCore =
 	initSections: (@response = false)-> 								
 		element = $("#navigation").find("ul").find("li").find("a:eq(0)")
 		section = element.attr("href").replace "#" , ""
-		console.log element.selector
 		@loadSection section , element.selector	, true 	
 	loadSection: ( @sectionStrID, selector, initReplace = false)-> 							
 		currentSelector = selector
@@ -41,9 +43,12 @@ richisCore =
 					$(@mainContainer).html html				
 					$("#{currentSelector}").bind "click" , @toggleSection
 				else
-					$(@mainContainer).append html		
-					# aqui voy :P										
-					console.log $(selector).attr "href"
+					$(@mainContainer).append html																	
+					id = $(selector).attr "href"
+					elements = $(@mainContainer).find "section" 					
+					elements.hide()
+					elements.filter(id).show()
+					$(selector).bind "click" , @toggleSection
 				initElements = $("##{@sectionStrID}").find("div.box")				
 				initElements.bind "click" , @loadRssInit
 	loadRssInit: (e) =>
@@ -81,7 +86,15 @@ richisCore =
 		paginationDiv = $(e.currentTarget).closest "div"
 		paginationDiv.find("a.active").removeClass("active")
 		$(e.currentTarget).addClass("active")
-	toggleSection: -> console.log "toggleSection"
+	toggleSection: -> 		
+		liItems = $(@).closest("ul").find("li")
+		liItems.removeClass "active"	
+		$(@).closest("li").addClass "active"	
+		id = $(@).attr "href"		
+		container = $(id).closest "div"		
+		sections = container.find "section"
+		sections.hide()
+		sections.filter(id).show()
 	sectionTpl: (data,elementID)->
 		data.id = elementID
 		tpl = "
