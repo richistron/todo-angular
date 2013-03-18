@@ -94,5 +94,41 @@ $feeds['blogs'][] = array(
 		"logo" => "/img/cats/logo120.jpg"
 	);
 
+$feeds['noticias'][] = array(
+		'id' => 'alt1040',
+		'title' => "alt1040.com",
+		"slogan" => "Cultura geek",
+		"url"  => "http://alt1040.com/",
+		"urlFeed"  => "http://alt1040.com/feed",
+		"author" => "Hipertextual",
+		"logo" => "/img/cats/logo120.jpg"
+	);
+$feeds['noticias'][] = array(
+		'id' => 'alt1040',
+		'title' => "alt1040.com",
+		"slogan" => "Cultura geek",
+		"url"  => "http://conecti.ca/",
+		"urlFeed"  => "http://feeds.feedburner.com/feedconectica",
+		"author" => "conecti.ca",
+		"logo" => "/img/conecti.png"
+	);
+$feeds['noticias'][] = array(
+		'id' => 'microsiervos',
+		'title' => "microsiervos.com",
+		"slogan" => "un blog de divulgación sobre tecnología, ciencia, informática y muchas cosas má",
+		"url"  => "http://www.microsiervos.com/",
+		"urlFeed"  => "http://feeds2.feedburner.com/microsiervos",
+		"author" => "@Microsiervos",
+		"logo" => "/img/logo-microsiervos-li.png"
+	);
+$feeds['noticias'][] = array(
+		'id' => 'geekchick',
+		'title' => "geekchick.mx",
+		"slogan" => "Tecnología para chicas",
+		"url"  => "http://geekchick.mx/",
+		"urlFeed"  => "http://geekchick.mx/feed/",
+		"author" => "@geekchickmx",
+		"logo" => "/img/geekchick_.png"
+	);
 echo json_encode($feeds);
 ?>
