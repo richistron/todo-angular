@@ -248,6 +248,37 @@ html , body , nav {
 	color: @color-white;
 	a{
 		color: @color-blue;
+	}	
+	.socialLinks{
+		text-align: center;
+		a{
+			display: inline-block;
+			text-indent: -99999px;
+			width: 100px;
+			height: 100px;
+			&.fb{
+				background: url(/img/fb100.png);
+			}
+			&.twitter{
+				background: url(/img/twitter100.png);
+			}
+			&.linkedin{
+				background: url(/img/linkedin100.png);
+			}
+			&:hover,&:focus,&:active{
+				opacity: 0.5;
+			}
+		}
+	}
+	.license{		
+		text-align: center;
+		line-height: 2em;
+		padding-top: 20px;
+	}
+	.about , .legal {
+		text-align: center;	
+		opacity: 0.5;	
+		line-height: 2em;
 	}
  }
 /* Apply */

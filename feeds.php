@@ -11,7 +11,7 @@ $feeds['comunidades'][] = array(
 		"author" => "@HackerGarage",
 		"logo" => "/img/hg.png"
 	);
-/*$feeds['comunidades'][] = array(
+$feeds['comunidades'][] = array(
 		'id' => 'phpmx',
 		'title' => "PHP México",
 		"slogan" => "Twitter us hashtag!! #phpmx RT @phpmx",
@@ -19,7 +19,7 @@ $feeds['comunidades'][] = array(
 		"urlFeed"  => "http://phpmexico.mx/rss.xml",
 		"author" => "@phpmx",
 		"logo" => "/img/phpmx300.png"
-	);*/
+	);
 $feeds['comunidades'][] = array(
 		'id' => 'tequila',
 		'title' => "Tequila Valley",
@@ -129,6 +129,15 @@ $feeds['noticias'][] = array(
 		"urlFeed"  => "http://geekchick.mx/feed/",
 		"author" => "@geekchickmx",
 		"logo" => "/img/geekchick_.png"
+	);
+$feeds['empleos'][] = array(
+		'id' => 'hjobs',
+		'title' => "Hacker Jobs",
+		"slogan" => "Trabajos para hackers",
+		"url"  => "http://jobs.hackergarage.mx/",
+		"urlFeed"  => "http://jobs.hackergarage.mx/rss/all/all/",
+		"author" => "@HackerGarage",
+		"logo" => "/img/hg.png"
 	);
 echo json_encode($feeds);
 ?>

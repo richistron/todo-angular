@@ -8,6 +8,9 @@ richisCore =
 	init: ->		
 		@loadSections()
 		$(document).on "click" , "a" , (e)-> e.preventDefault()
+		$("footer").find("a").bind "click" , (e)-> 						
+			link = $(@).attr "href"
+			window.open link , "_blank"
 		@navElements = $("#navigation").find("ul").find("li").find("a").not("a:eq(0)")
 		$("#navigation").find("ul").find("li:eq(0)").addClass "active"
 		@navElements.bind "click" , @navBehavior
