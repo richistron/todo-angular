@@ -11,7 +11,7 @@ $feeds['comunidades'][] = array(
 		"author" => "@HackerGarage",
 		"logo" => "/img/hg.png"
 	);
-$feeds['comunidades'][] = array(
+/*$feeds['comunidades'][] = array(
 		'id' => 'phpmx',
 		'title' => "PHP México",
 		"slogan" => "Twitter us hashtag!! #phpmx RT @phpmx",
@@ -19,6 +19,15 @@ $feeds['comunidades'][] = array(
 		"urlFeed"  => "http://phpmexico.mx/rss.xml",
 		"author" => "@phpmx",
 		"logo" => "/img/phpmx300.png"
+	);*/
+$feeds['comunidades'][] = array(
+		'id' => 'tequila',
+		'title' => "Tequila Valley",
+		"slogan" => "Es una comunidad abierta al desarrollo de contenidos y creación de nuevos medios, orientados al beneficio y crecimiento tecnológico del país.",
+		"url"  => "http://www.tequilavalley.com/",
+		"urlFeed"  => "http://www.tequilavalley.com/feed/",
+		"author" => "@tequilavalley",
+		"logo" => "/img/logotqv.png"
 	);
 $feeds['comunidades'][] = array(
 		'id' => 'ruby',
@@ -28,15 +37,6 @@ $feeds['comunidades'][] = array(
 		"urlFeed"  => "http://feeds.feedburner.com/railsmx",
 		"author" => "@railsmx",
 		"logo" => "/img/ruby-logo.png"
-	);
-$feeds['comunidades'][] = array(
-		'id' => 'tequila',
-		'title' => "Tequila Valley",
-		"slogan" => "Es una comunidad abierta al desarrollo de contenidos y creación de nuevos medios, orientados al beneficio y crecimiento tecnológico del país.",
-		"url"  => "http://www.tequilavalley.com/",
-		"urlFeed"  => "http://www.tequilavalley.com/feed/",
-		"author" => "@tequilavalley",
-		"logo" => "/img/logotqv.png"
 	);
 
 $feeds['blogs'][] = array(

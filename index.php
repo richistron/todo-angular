@@ -20,10 +20,10 @@
         <nav id="navigation">
             <ul>
                 <li><a href="#comunidades">Comunidades</a></li>                
-                <li><a href="#noticias">Noticias</a></li>
+                <!-- <li><a href="#noticias">Noticias</a></li> -->
                 <li><a href="#blogs">Blogs</a></li>                
-                <li><a href="#tecnologia">Tecnología</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#empleos">Empleos</a></li>
+                <!-- <li><a href="#about">About</a></li> -->
             </ul>                                
         </nav>
         <div id="container">
