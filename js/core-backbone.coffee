@@ -9,29 +9,29 @@ a.Model = Backbone.Model.extend({})
 a.View = Backbone.View.extend
 	className: "box"
 	template: "			
-	<article data-logo=\"<%= logo %>\">
+	<article data-logo=\"{{logo}}\">
 		<header>                            
 			<h1>
-				<a href=\"<%= url %>\">
-					<%= title %>					
+				<a href=\"{{url}}\">					
+					{{title}}
 				</a>
 			</h1>
 		</header>                        
 		<div class=\"thumb\">
-			<img src=\"<%= logo %>\" alt=\"logo\"/>
+			<img src=\"{{logo}}\" alt=\"logo\"/>
 		</div>
 		<p>
-			<%= slogan %>
-			<a href=\"<%= urlFeed %>\" class=\"readmore\">Rss</a>
+			{{slogan}}
+			<a href=\"{{urlFeed}}\" class=\"readmore\">Rss</a>
 		</p>                        
 		<span class=\"author\"> 
-			Author: <strong> <%= author %> </strong> 
+			Author: <strong> {{author}} </strong> 
 		</span>
 	</article>
 	"
-	render: ->
-		html = _.template @template , @model.toJSON()
-		@.$el.html html
+	render: ->				
+		tpl = Mustache.compile @template		
+		@.$el.html tpl(@model.toJSON())
 a.CollectionView = Backbone.View.extend	
 	render: ->		
 		@.$el.attr "id", "blogs"
