@@ -139,5 +139,10 @@ $feeds['empleos'][] = array(
 		"author" => "@HackerGarage",
 		"logo" => "/img/hg.png"
 	);
-echo json_encode($feeds);
+if(isset($_GET['section'])){
+	$section = $_GET['section'];
+	echo json_encode($feeds[$section]);
+}else{
+	echo json_encode($feeds);
+}
 ?>
