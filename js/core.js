@@ -1,6 +1,6 @@
 (function() {
   /*
-  	richisCore v0.1
+  	richisCore v1.0
   	@Author @richistron
   	@description coffeeScript core
   	@License MIT
