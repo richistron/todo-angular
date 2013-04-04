@@ -50,8 +50,15 @@ App = Backbone.View.extend
 					@sectionCollectionView = new APP.Views.sectionCollectionView
 						el: $("#container")
 						collection: @sectionCollection
+					@defaultSection = "blogs"
 					@sectionCollection.fetch 
-						success: => @sectionCollectionView.showSection "blogs"
+						success: => 
+							section = window.location.hash							
+							if section == ""	
+								section = @defaultSection
+							else
+								section = section.replace("#","")									
+							@sectionCollectionView.showSection section
 				routes: 
 					"(:idStr)" : "index"					
 				index: (id = "blogs")-> 

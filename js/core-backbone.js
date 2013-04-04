@@ -1,12 +1,16 @@
+
+/*
+	richisCore v1.0
+	@Author @richistron
+	@description coffeeScript and backbone core
+	@License MIT
+*/
+
 (function() {
-  /*
-  	richisCore v1.0
-  	@Author @richistron
-  	@description coffeeScript and backbone core
-  	@License MIT
-  */  var APP, App, app, sectionModel;
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var APP, App, app, sectionModel;
+
   sectionModel = Backbone.Model.extend({});
+
   APP = {
     Models: {
       "sectionModel": sectionModel
@@ -63,27 +67,35 @@
     },
     loading: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
   };
+
   App = Backbone.View.extend({
     Routers: new (Backbone.Router.extend({
       initialize: function() {
+        var _this = this;
         this.sectionCollection = new APP.Collections.sectionCollection;
         this.sectionCollectionView = new APP.Views.sectionCollectionView({
           el: $("#container"),
           collection: this.sectionCollection
         });
+        this.defaultSection = "blogs";
         return this.sectionCollection.fetch({
-          success: __bind(function() {
-            return this.sectionCollectionView.showSection("blogs");
-          }, this)
+          success: function() {
+            var section;
+            section = window.location.hash;
+            if (section === "") {
+              section = _this.defaultSection;
+            } else {
+              section = section.replace("#", "");
+            }
+            return _this.sectionCollectionView.showSection(section);
+          }
         });
       },
       routes: {
         "(:idStr)": "index"
       },
       index: function(id) {
-        if (id == null) {
-          id = "blogs";
-        }
+        if (id == null) id = "blogs";
         return this.sectionCollectionView.showSection(id);
       }
     })),
@@ -101,10 +113,13 @@
       });
     }
   });
+
   app = new App({
     el: document.body
   });
+
   $(document).ready(function() {
     return app.start();
   });
+
 }).call(this);
