@@ -6,16 +6,71 @@
 ### 
 
 sectionModel = Backbone.Model.extend({})
-
+blogsModel = Backbone.Model.extend({})
 APP =
 	Models: 
+		"blogsModel" : blogsModel
 		"sectionModel": sectionModel
 	Views: 
+		"blogView": Backbone.View.extend			
+			events:
+				"click a" : (e)->
+					e.preventDefault()
+					console.log e
+			tagName: "div"
+			className: "box"
+			render:->
+				html_ = Mustache.compile @template
+				html = html_ @model.toJSON()
+				@.$el.append html
+			template: "
+				<article>
+					<header>
+						<h1>
+							<a href=\"{{urlFeed}}\">
+								{{title}}
+							</a>
+						</h1>
+					</header>
+					<div class=\"thumb\">
+					<img src=\"{{logo}}\" alt=\"{{title}}\">
+					</div>
+					<p>
+						{{slogan}}
+						<a href=\"{{urlFeed}}\" class=\"readmore\">
+							Rss
+						</a>
+					</p>
+					<span class=\"author\">
+						Author: <strong>{{author}}</strong>
+					</span>
+				</article>
+			"
+		"blogViewCollections": Backbone.View.extend	
+			tagName: "p"
+			initialize: ->				
+				@collection.on "add", @addOne, @
+				@collection.on "reset", @addAll, @		
+			addAll: ->
+				@collection.forEach @addOne , @
+			addOne: (element)->
+				blogView = new APP.Views.blogView
+					model: element
+				blogView.render()
+				@.$el.append blogView.el
 		"sectionView": Backbone.View.extend
 			tagName: "section"
-			render: ->			
+			render: ->	
+				section = @model.get "id"
+				@blogCollection_ = new APP.Collections.blogCollection
+				@blogViewCollections_ = new APP.Views.blogViewCollections		
+					collection: @blogCollection_
+				@blogCollection_.fetch 
+					data:
+						"section": section					
+				@blogViewCollections_.render()				
 				@.$el.attr "id"	, (@model.get "id")
-				@.$el.html (@model.get "id")
+				@.$el.html @blogViewCollections_.el
 		"sectionCollectionView": Backbone.View.extend 			
 			addAll: ->
 				@collection.forEach @addOne , @
@@ -32,6 +87,11 @@ APP =
 				@collection.on "add", @addOne, @
 				@collection.on "reset", @addAll, @
 	Collections: 
+		"blogCollection": Backbone.Collection.extend
+			model: blogsModel
+			url: "feeds.php"
+			parse: (@response) ->
+				@response
 		"sectionCollection": Backbone.Collection.extend
 			url: "feeds.php"
 			model: sectionModel

@@ -7,20 +7,70 @@
 */
 
 (function() {
-  var APP, App, app, sectionModel;
+  var APP, App, app, blogsModel, sectionModel;
 
   sectionModel = Backbone.Model.extend({});
 
+  blogsModel = Backbone.Model.extend({});
+
   APP = {
     Models: {
+      "blogsModel": blogsModel,
       "sectionModel": sectionModel
     },
     Views: {
+      "blogView": Backbone.View.extend({
+        events: {
+          "click a": function(e) {
+            e.preventDefault();
+            return console.log(e);
+          }
+        },
+        tagName: "div",
+        className: "box",
+        render: function() {
+          var html, html_;
+          html_ = Mustache.compile(this.template);
+          html = html_(this.model.toJSON());
+          return this.$el.append(html);
+        },
+        template: "				<article>					<header>						<h1>							<a href=\"{{urlFeed}}\">								{{title}}							</a>						</h1>					</header>					<div class=\"thumb\">					<img src=\"{{logo}}\" alt=\"{{title}}\">					</div>					<p>						{{slogan}}						<a href=\"{{urlFeed}}\" class=\"readmore\">							Rss						</a>					</p>					<span class=\"author\">						Author: <strong>{{author}}</strong>					</span>				</article>			"
+      }),
+      "blogViewCollections": Backbone.View.extend({
+        tagName: "p",
+        initialize: function() {
+          this.collection.on("add", this.addOne, this);
+          return this.collection.on("reset", this.addAll, this);
+        },
+        addAll: function() {
+          return this.collection.forEach(this.addOne, this);
+        },
+        addOne: function(element) {
+          var blogView;
+          blogView = new APP.Views.blogView({
+            model: element
+          });
+          blogView.render();
+          return this.$el.append(blogView.el);
+        }
+      }),
       "sectionView": Backbone.View.extend({
         tagName: "section",
         render: function() {
+          var section;
+          section = this.model.get("id");
+          this.blogCollection_ = new APP.Collections.blogCollection;
+          this.blogViewCollections_ = new APP.Views.blogViewCollections({
+            collection: this.blogCollection_
+          });
+          this.blogCollection_.fetch({
+            data: {
+              "section": section
+            }
+          });
+          this.blogViewCollections_.render();
           this.$el.attr("id", this.model.get("id"));
-          return this.$el.html(this.model.get("id"));
+          return this.$el.html(this.blogViewCollections_.el);
         }
       }),
       "sectionCollectionView": Backbone.View.extend({
@@ -47,6 +97,14 @@
       })
     },
     Collections: {
+      "blogCollection": Backbone.Collection.extend({
+        model: blogsModel,
+        url: "feeds.php",
+        parse: function(response) {
+          this.response = response;
+          return this.response;
+        }
+      }),
       "sectionCollection": Backbone.Collection.extend({
         url: "feeds.php",
         model: sectionModel,
