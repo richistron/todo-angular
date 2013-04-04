@@ -12,7 +12,7 @@
     </head>
     <body>  
         <header class="logo">
-            <a href="#home">
+            <a href="#">
                 <h1>Richistron.com</h1>
                 <p>Otro dude más en el interwebs</p>
             </a>

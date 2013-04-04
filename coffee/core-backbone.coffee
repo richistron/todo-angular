@@ -3,74 +3,67 @@
 	@Author @richistron
 	@description coffeeScript and backbone core
 	@License MIT
-###
-a = {}
-a.Model = Backbone.Model.extend({})
-a.View = Backbone.View.extend
-	className: "box"
-	template: "			
-	<article data-logo=\"{{logo}}\">
-		<header>                            
-			<h1>
-				<a href=\"{{url}}\">					
-					{{title}}
-				</a>
-			</h1>
-		</header>                        
-		<div class=\"thumb\">
-			<img src=\"{{logo}}\" alt=\"logo\"/>
-		</div>
-		<p>
-			{{slogan}}
-			<a href=\"{{urlFeed}}\" class=\"readmore\">Rss</a>
-		</p>                        
-		<span class=\"author\"> 
-			Author: <strong> {{author}} </strong> 
-		</span>
-	</article>
-	"
-	render: ->				
-		tpl = Mustache.compile @template		
-		@.$el.html tpl(@model.toJSON())
-a.CollectionView = Backbone.View.extend	
-	render: ->		
-		@.$el.attr "id", "blogs"
-		html = @addAll()
-		@.$el.html html		
-	tagName: "section"
-	addOne: (item)->		
-		rssItemViewm = new a.View
-			model: item
-		rssItemViewm.render()
-		@.$el.append rssItemViewm.el
-	addAll: ->
-		@collection.forEach @addOne, @	
-	initialize: ->
-		@collection.on "add", @addOne, @
-		@collection.on "reset", @addAll, @
-a.Collection = Backbone.Collection.extend
-	url: "feeds.php"	
-	model: a.Model
-	parse: (data) ->
-		data		
-# App router	
-App = new ( Backbone.Router.extend 
-		initialize: ->
-			@rssCollection = new a.Collection
-			@rssCollectionView = new a.CollectionView
-				collection: @rssCollection
-			container = $("#container")
-			@rssCollectionView.render()
-			container.html @rssCollectionView.el
-		start: -> Backbone.history.start pushState: true
-		routes:
-			"":"index"
-		index: ->			
-			@rssCollection.fetch 
-				data:
-					section: "blogs"
-	)
-#window.App = App
+### 
+
+sectionModel = Backbone.Model.extend({})
+
+APP =
+	Models: 
+		"sectionModel": sectionModel
+	Views: 
+		"sectionView": Backbone.View.extend
+			tagName: "section"
+			render: ->			
+				@.$el.attr "id"	, (@model.get "id")
+				@.$el.html (@model.get "id")
+		"sectionCollectionView": Backbone.View.extend 			
+			addAll: ->
+				@collection.forEach @addOne , @
+			addOne: (element)->				
+				sectionView = new APP.Views.sectionView
+					model: element
+				sectionView.render()
+				@.$el.append sectionView.el			
+			showSection: (section) ->
+				@.$el.find("section").hide()
+				@.$el.find("section##{section}").show()
+			initialize: ->
+				@.$el.html ""
+				@collection.on "add", @addOne, @
+				@collection.on "reset", @addAll, @
+	Collections: 
+		"sectionCollection": Backbone.Collection.extend
+			url: "feeds.php"
+			model: sectionModel
+			parse: (@response)->
+				arr = []
+				_.each @response , (item,index)->
+					section = "id" : index
+					arr.push section
+				arr
+	loading: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
+App = Backbone.View.extend		
+	Routers: new ( 
+			Backbone.Router.extend
+				initialize: ->					
+					@sectionCollection = new APP.Collections.sectionCollection
+					@sectionCollectionView = new APP.Views.sectionCollectionView
+						el: $("#container")
+						collection: @sectionCollection
+					@sectionCollection.fetch 
+						success: => @sectionCollectionView.showSection "blogs"
+				routes: 
+					"(:idStr)" : "index"					
+				index: (id = "blogs")-> 
+					@sectionCollectionView.showSection id
+		)
+	events: 
+		"click #navigation a": (e)->
+			e.preventDefault()			
+			Backbone.history.navigate e.target.hash , trigger:true
+	start: ->
+		Backbone.history.start pushState:false
+app = new App el: document.body
 # DOM READY
 $(document).ready ->
-	App.start()
+	app.start()
