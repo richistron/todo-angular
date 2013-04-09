@@ -1,18 +1,13 @@
-
-/*
-	richisCore v1.0
-	@Author @richistron
-	@description coffeeScript and backbone core
-	@License MIT
-*/
-
 (function() {
-  var APP, App, app, blogsModel, sectionModel;
-
+  /*
+  	richisCore v1.0
+  	@Author @richistron
+  	@description coffeeScript and backbone core
+  	@License MIT
+  */  var APP, App, app, blogsModel, sectionModel;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   sectionModel = Backbone.Model.extend({});
-
   blogsModel = Backbone.Model.extend({});
-
   APP = {
     Models: {
       "blogsModel": blogsModel,
@@ -21,18 +16,51 @@
     Views: {
       "blogView": Backbone.View.extend({
         events: {
-          "click a": function(e) {
-            e.preventDefault();
-            return console.log(e);
-          }
+          "mouseenter": "loadRss"
         },
         tagName: "div",
         className: "box",
+        rssRender: function() {
+          var data, htmlStr, htmlStr_, pagination, paginationTpl, tpl;
+          tpl = "				{{#rssData}}					<article>						<header>							<h1>								<a href=\"{{link}}\" target=\"_blank\">									{{title}}								</a>							</h1>						</header>						<div class=\"thumb\">							<img src=\"{{model.logo}}\" alt=\"{{model.title}}\">						</div>						<p>							{{contentSnippet}}							<a href=\"{{link}}\" target=\"_blank\" class=\"readmore\">								Leer más							</a>						</p>						<span class=\"author\">							Author: <strong>{{author}}</strong>						</span>					</article>				{{/rssData}}								";
+          paginationTpl = "				<div class=\"articlePagination\">					<% _.each(data,function(item,i){ %>						<a href=\"#<%= i %>\"><%= i + 1 %></a>					<% }); %>				</div>				";
+          data = {
+            model: this.model.toJSON(),
+            rssData: this.rssData
+          };
+          htmlStr_ = Mustache.compile(tpl);
+          htmlStr = htmlStr_(data);
+          data = {
+            data: this.rssData
+          };
+          pagination = _.template(paginationTpl, data);
+          return htmlStr = "" + htmlStr + " " + pagination;
+        },
         render: function() {
           var html, html_;
           html_ = Mustache.compile(this.template);
           html = html_(this.model.toJSON());
           return this.$el.append(html);
+        },
+        loadRss: function(e) {
+          var feedConf;
+          e.preventDefault();
+          $(this.$el).unbind("mouseenter");
+          feedConf = {
+            feeds: {
+              feed: this.model.get("urlFeed")
+            },
+            max: 10,
+            loadingTemplate: APP.loading,
+            onComplete: __bind(function(rssData) {
+              this.rssData = rssData;
+              $(this.$el).html(this.rssRender());
+              $(this.$el).find("article").css("opacity", "1");
+              $(this.$el).find("article").hide();
+              return $(this.$el).find("article").filter(':eq(0)').show();
+            }, this)
+          };
+          return $(this.$el).feeds(feedConf);
         },
         template: "				<article>					<header>						<h1>							<a href=\"{{urlFeed}}\">								{{title}}							</a>						</h1>					</header>					<div class=\"thumb\">					<img src=\"{{logo}}\" alt=\"{{title}}\">					</div>					<p>						{{slogan}}						<a href=\"{{urlFeed}}\" class=\"readmore\">							Rss						</a>					</p>					<span class=\"author\">						Author: <strong>{{author}}</strong>					</span>				</article>			"
       }),
@@ -125,11 +153,9 @@
     },
     loading: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
   };
-
   App = Backbone.View.extend({
     Routers: new (Backbone.Router.extend({
       initialize: function() {
-        var _this = this;
         this.sectionCollection = new APP.Collections.sectionCollection;
         this.sectionCollectionView = new APP.Views.sectionCollectionView({
           el: $("#container"),
@@ -137,23 +163,25 @@
         });
         this.defaultSection = "blogs";
         return this.sectionCollection.fetch({
-          success: function() {
+          success: __bind(function() {
             var section;
             section = window.location.hash;
             if (section === "") {
-              section = _this.defaultSection;
+              section = this.defaultSection;
             } else {
               section = section.replace("#", "");
             }
-            return _this.sectionCollectionView.showSection(section);
-          }
+            return this.sectionCollectionView.showSection(section);
+          }, this)
         });
       },
       routes: {
         "(:idStr)": "index"
       },
       index: function(id) {
-        if (id == null) id = "blogs";
+        if (id == null) {
+          id = "blogs";
+        }
         return this.sectionCollectionView.showSection(id);
       }
     })),
@@ -171,13 +199,10 @@
       });
     }
   });
-
   app = new App({
     el: document.body
   });
-
   $(document).ready(function() {
     return app.start();
   });
-
 }).call(this);

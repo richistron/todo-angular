@@ -14,15 +14,68 @@ APP =
 	Views: 
 		"blogView": Backbone.View.extend			
 			events:
-				"click a" : (e)->
-					e.preventDefault()
-					console.log e
+				"mouseenter" : "loadRss"
 			tagName: "div"
 			className: "box"
+			rssRender: ->
+				tpl = "
+				{{#rssData}}
+					<article>
+						<header>
+							<h1>
+								<a href=\"{{link}}\" target=\"_blank\">
+									{{title}}
+								</a>
+							</h1>
+						</header>
+						<div class=\"thumb\">
+							<img src=\"{{model.logo}}\" alt=\"{{model.title}}\">
+						</div>
+						<p>
+							{{contentSnippet}}
+							<a href=\"{{link}}\" target=\"_blank\" class=\"readmore\">
+								Leer más
+							</a>
+						</p>
+						<span class=\"author\">
+							Author: <strong>{{author}}</strong>
+						</span>
+					</article>
+				{{/rssData}}				
+				"
+				paginationTpl = "
+				<div class=\"articlePagination\">
+					<% _.each(data,function(item,i){ %>
+						<a href=\"#<%= i %>\"><%= i + 1 %></a>
+					<% }); %>
+				</div>
+				"						
+				data = 
+					model: @model.toJSON()
+					rssData: @rssData										
+				htmlStr_ = Mustache.compile tpl
+				htmlStr = htmlStr_ data
+				data = data: @rssData
+				pagination = _.template paginationTpl , data				
+				htmlStr = "#{htmlStr} #{pagination}"
 			render:->
 				html_ = Mustache.compile @template
 				html = html_ @model.toJSON()
 				@.$el.append html
+			loadRss: (e)->
+				e.preventDefault()									
+				$(@.$el).unbind "mouseenter"								
+				feedConf = 
+					feeds:
+						feed : @model.get "urlFeed"
+					max: 10
+					loadingTemplate: APP.loading
+					onComplete: (@rssData) => 
+						$(@.$el).html @rssRender()
+						$(@.$el).find("article").css "opacity" , "1"
+						$(@.$el).find("article").hide()
+						$(@.$el).find("article").filter(':eq(0)').show()
+				$(@.$el).feeds feedConf			
 			template: "
 				<article>
 					<header>
@@ -45,7 +98,7 @@ APP =
 						Author: <strong>{{author}}</strong>
 					</span>
 				</article>
-			"
+			"		
 		"blogViewCollections": Backbone.View.extend	
 			tagName: "p"
 			initialize: ->				
