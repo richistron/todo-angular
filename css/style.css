@@ -195,12 +195,6 @@ html, body, nav {
   width: 415px;
   vertical-align: top;
 }
-.container section div.box article {
-  opacity: 0.4;
-}
-.container section div.box article:hover, .container section div.box article:focus, .container section div.box article:active {
-  opacity: 1;
-}
 .container section div.box article a {
   text-decoration: none;
 }
@@ -426,12 +420,6 @@ div#container section div.box {
   display: inline-block;
   width: 415px;
   vertical-align: top;
-}
-div#container section div.box article {
-  opacity: 0.4;
-}
-div#container section div.box article:hover, div#container section div.box article:focus, div#container section div.box article:active {
-  opacity: 1;
 }
 div#container section div.box article a {
   text-decoration: none;

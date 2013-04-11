@@ -20,19 +20,18 @@ APP =
 		"blogView": Backbone.View.extend			
 			events:
 				"mouseenter" : "loadRss"
-				"click .articlePagination a" : (e)->
-					e.preventDefault()
-					console.log e
-					element = e.currentTarget
-					target = $(element).attr "href"
-					target = target.replace "#" , ""
-					console.log target
-					$(element).closest(".box").find("article").hide()
-					$(element).closest(".box").find("article").filter(":eq(#{target})").show()
-					$(element).closest(".articlePagination").find('a').removeClass "active"
-					$(element).addClass "active"
+				"click .articlePagination a" : "pagBehavior"
 			tagName: "div"
 			className: "box"
+			pagBehavior: (e)->
+				e.preventDefault()
+				element = e.currentTarget
+				target = $(element).attr "href"
+				target = target.replace "#" , ""
+				$(element).closest(".box").find("article").hide()
+				$(element).closest(".box").find("article").filter(":eq(#{target})").show()
+				$(element).closest(".articlePagination").find('a').removeClass "active"
+				$(element).addClass "active"
 			rssRender: ->
 				tpl = "
 				{{#rssData}}
@@ -88,9 +87,9 @@ APP =
 					loadingTemplate: APP.loading
 					onComplete: (@rssData) => 
 						$(@.$el).html @rssRender()
-						$(@.$el).find("article").css "opacity" , "1"
 						$(@.$el).find("article").hide()
 						$(@.$el).find("article").filter(':eq(0)').show()
+						$(@.$el).find(".articlePagination").find("a:eq(0)").addClass "active"
 				$(@.$el).feeds feedConf			
 			template: "
 				<article>
@@ -174,10 +173,7 @@ APP =
 ###
 	document view
 ###
-App = Backbone.View.extend
-	###
-		router		
-	###
+App = Backbone.View.extend	
 	Routers: new ( 
 			Backbone.Router.extend
 				initialize: ->					
@@ -213,8 +209,5 @@ App = Backbone.View.extend
 	new app
 ###
 app = new App el: document.body
-###
-	app start
-###
 $(document).ready ->
 	app.start()

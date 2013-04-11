@@ -7,7 +7,7 @@
         <meta name="author" content="Ricardo Rivas">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="img/favicon.ico">
-        <link href="css/style-min.css" rel="stylesheet" media="screen">
+        <link href="css/style.css" rel="stylesheet" media="screen">
         <title>richistron.com | Otro dude más en el interwebs</title>
     </head>
     <body>  
@@ -51,7 +51,7 @@
                 <a class="twitter" href="http://twitter.com/richistron">
                     Twitter
                 </a>
-                <a class="linkedin" href="http://mx.linkedin.com/in/richistron/">
+                <a class="linkedin" href="http://mx.linkedin.com/in/richistron">
                     Linkedin
                 </a>
             </div>

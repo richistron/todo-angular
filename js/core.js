@@ -1,15 +1,11 @@
-
-/*
-	richisCore v1.0
-	@Author @richistron
-	@description coffeeScript core
-	@License MIT
-*/
-
 (function() {
-  var richisCore,
-    _this = this;
-
+  /*
+  	richisCore v1.0
+  	@Author @richistron
+  	@description coffeeScript core
+  	@License MIT
+  */  var richisCore;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   richisCore = {
     init: function() {
       this.loadSections();
@@ -40,7 +36,6 @@
       return Math.random().toString(36).substr(2);
     },
     loadSections: function() {
-      var _this = this;
       return $.ajax({
         url: "feeds.php",
         dataType: "JSON",
@@ -48,9 +43,9 @@
         data: {
           token: this.richistoken()
         }
-      }).done(function(data) {
-        return _this.initSections(data);
-      });
+      }).done(__bind(function(data) {
+        return this.initSections(data);
+      }, this));
     },
     initSections: function(response) {
       var element, section;
@@ -60,34 +55,35 @@
       return this.loadSection(section, element.selector, true);
     },
     loadSection: function(sectionStrID, selector, initReplace) {
-      var currentSelector,
-        _this = this;
+      var currentSelector;
       this.sectionStrID = sectionStrID;
-      if (initReplace == null) initReplace = false;
+      if (initReplace == null) {
+        initReplace = false;
+      }
       currentSelector = selector;
-      return $.each(this.response, function(index, item) {
+      return $.each(this.response, __bind(function(index, item) {
         var elements, html, id, initElements;
-        if (_this.sectionStrID === index) {
-          html = _this.sectionTpl(item, _this.sectionStrID);
+        if (this.sectionStrID === index) {
+          html = this.sectionTpl(item, this.sectionStrID);
           if (initReplace === true) {
-            $(_this.mainContainer).html(html);
-            $("" + currentSelector).bind("click", _this.toggleSection);
+            $(this.mainContainer).html(html);
+            $("" + currentSelector).bind("click", this.toggleSection);
           } else {
-            $(_this.mainContainer).append(html);
+            $(this.mainContainer).append(html);
             id = $(selector).attr("href");
-            elements = $(_this.mainContainer).find("section");
+            elements = $(this.mainContainer).find("section");
             elements.hide();
             elements.filter(id).show();
-            $(selector).bind("click", _this.toggleSection);
+            $(selector).bind("click", this.toggleSection);
           }
-          initElements = $("#" + _this.sectionStrID).find("div.box");
-          return initElements.bind("click", _this.loadRssInit);
+          initElements = $("#" + this.sectionStrID).find("div.box");
+          return initElements.bind("click", this.loadRssInit);
         }
-      });
+      }, this));
     },
-    loadRssInit: function(e) {
+    loadRssInit: __bind(function(e) {
       var element, feedConf, rssLink;
-      $(e.currentTarget).unbind("click", _this.loadRssInit);
+      $(e.currentTarget).unbind("click", this.loadRssInit);
       element = $(e.currentTarget);
       rssLink = element.find("a.readmore").attr("href");
       feedConf = {
@@ -101,11 +97,10 @@
         loadingTemplate: richisCore.loadingTemplate
       };
       return element.feeds(feedConf);
-    },
+    }, this),
     loadingTemplate: "<img src=\"/img/loading.gif\" alt=\"loading...\" />",
     parseEntries: function(data, element) {
-      var articles, logo, paginationA,
-        _this = this;
+      var articles, logo, paginationA;
       logo = $(element).data("logo");
       $(element).html(this.entrieTemplate(data, logo));
       articles = $(element).find("article");
@@ -118,9 +113,9 @@
       });
       paginationA = $(element).find(".articlePagination").find("a");
       paginationA.filter(":eq(0)").addClass("active");
-      return paginationA.bind("click", function(e) {
-        return _this.changeEntrie(e);
-      });
+      return paginationA.bind("click", __bind(function(e) {
+        return this.changeEntrie(e);
+      }, this));
     },
     changeEntrie: function(e) {
       var box, clicked, paginationDiv;
@@ -154,7 +149,9 @@
     },
     entrieTemplate: function(data, logo) {
       var params, tpl;
-      if (logo == null) logo = "/img/cats/120x120.jpg";
+      if (logo == null) {
+        logo = "/img/cats/120x120.jpg";
+      }
       tpl = "			<% _.each(data, function(rss) { %>				<article>					<header>                            						<h1>							<a href=\"<%= rss.link %>\">								<%= rss.title %>							</a>						</h1>					</header>                        					<div class=\"thumb\">						<img src=\"<%= logo %>\" alt=\"logo\"/>					</div>					<p>						<%= rss.contentSnippet %>						<a href=\"<%= rss.link %>\" class=\"readmore\">Leer más</a>					</p>                        					<span class=\"author\"> 						Author: <strong> <%= rss.author %> </strong>					</span>				</article>			<% }); %>			<div class=\"articlePagination\">				<% _.each(data,function(item,i){ %>					<a href=\"#<%= i %>\"><%= i + 1 %></a>				<% }); %>			</div>		";
       params = {
         data: data,
@@ -163,13 +160,10 @@
       return _.template(tpl, params);
     }
   };
-
   /*
   	DOM ready
   */
-
   $(document).ready(function() {
     return richisCore.init();
   });
-
 }).call(this);

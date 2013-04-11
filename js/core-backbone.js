@@ -1,26 +1,19 @@
-
-/*
-	richisCore v1.0
-	@Author @richistron
-	@description coffeeScript and backbone core
-	@License MIT
-*/
-
-/*
-	models
-*/
-
 (function() {
-  var APP, App, app, blogsModel, sectionModel;
-
+  /*
+  	richisCore v1.0
+  	@Author @richistron
+  	@description coffeeScript and backbone core
+  	@License MIT
+  */
+  /*
+  	models
+  */  var APP, App, app, blogsModel, sectionModel;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   sectionModel = Backbone.Model.extend({});
-
   blogsModel = Backbone.Model.extend({});
-
   /*
   	APP
   */
-
   APP = {
     Models: {
       "blogsModel": blogsModel,
@@ -30,22 +23,21 @@
       "blogView": Backbone.View.extend({
         events: {
           "mouseenter": "loadRss",
-          "click .articlePagination a": function(e) {
-            var element, target;
-            e.preventDefault();
-            console.log(e);
-            element = e.currentTarget;
-            target = $(element).attr("href");
-            target = target.replace("#", "");
-            console.log(target);
-            $(element).closest(".box").find("article").hide();
-            $(element).closest(".box").find("article").filter(":eq(" + target + ")").show();
-            $(element).closest(".articlePagination").find('a').removeClass("active");
-            return $(element).addClass("active");
-          }
+          "click .articlePagination a": "pagBehavior"
         },
         tagName: "div",
         className: "box",
+        pagBehavior: function(e) {
+          var element, target;
+          e.preventDefault();
+          element = e.currentTarget;
+          target = $(element).attr("href");
+          target = target.replace("#", "");
+          $(element).closest(".box").find("article").hide();
+          $(element).closest(".box").find("article").filter(":eq(" + target + ")").show();
+          $(element).closest(".articlePagination").find('a').removeClass("active");
+          return $(element).addClass("active");
+        },
         rssRender: function() {
           var data, htmlStr, htmlStr_, pagination, paginationTpl, tpl;
           tpl = "				{{#rssData}}					<article>						<header>							<h1>								<a href=\"{{link}}\" target=\"_blank\">									{{title}}								</a>							</h1>						</header>						<div class=\"thumb\">							<img src=\"{{model.logo}}\" alt=\"{{model.title}}\">						</div>						<p>							{{contentSnippet}}							<a href=\"{{link}}\" target=\"_blank\" class=\"readmore\">								Leer más							</a>						</p>						<span class=\"author\">							Author: <strong>{{author}}</strong>						</span>					</article>				{{/rssData}}								";
@@ -69,8 +61,7 @@
           return this.$el.append(html);
         },
         loadRss: function(e) {
-          var feedConf,
-            _this = this;
+          var feedConf;
           e.preventDefault();
           $(this.$el).unbind("mouseenter");
           feedConf = {
@@ -79,13 +70,13 @@
             },
             max: 10,
             loadingTemplate: APP.loading,
-            onComplete: function(rssData) {
-              _this.rssData = rssData;
-              $(_this.$el).html(_this.rssRender());
-              $(_this.$el).find("article").css("opacity", "1");
-              $(_this.$el).find("article").hide();
-              return $(_this.$el).find("article").filter(':eq(0)').show();
-            }
+            onComplete: __bind(function(rssData) {
+              this.rssData = rssData;
+              $(this.$el).html(this.rssRender());
+              $(this.$el).find("article").hide();
+              $(this.$el).find("article").filter(':eq(0)').show();
+              return $(this.$el).find(".articlePagination").find("a:eq(0)").addClass("active");
+            }, this)
           };
           return $(this.$el).feeds(feedConf);
         },
@@ -180,18 +171,12 @@
     },
     loading: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
   };
-
   /*
   	document view
   */
-
   App = Backbone.View.extend({
-    /*
-    		router
-    */
     Routers: new (Backbone.Router.extend({
       initialize: function() {
-        var _this = this;
         this.sectionCollection = new APP.Collections.sectionCollection;
         this.sectionCollectionView = new APP.Views.sectionCollectionView({
           el: $("#container"),
@@ -199,23 +184,25 @@
         });
         this.defaultSection = "blogs";
         return this.sectionCollection.fetch({
-          success: function() {
+          success: __bind(function() {
             var section;
             section = window.location.hash;
             if (section === "") {
-              section = _this.defaultSection;
+              section = this.defaultSection;
             } else {
               section = section.replace("#", "");
             }
-            return _this.sectionCollectionView.showSection(section);
-          }
+            return this.sectionCollectionView.showSection(section);
+          }, this)
         });
       },
       routes: {
         "(:idStr)": "index"
       },
       index: function(id) {
-        if (id == null) id = "blogs";
+        if (id == null) {
+          id = "blogs";
+        }
         return this.sectionCollectionView.showSection(id);
       }
     })),
@@ -239,20 +226,13 @@
       });
     }
   });
-
   /*
   	new app
   */
-
   app = new App({
     el: document.body
-    /*
-    	app start
-    */
   });
-
   $(document).ready(function() {
     return app.start();
   });
-
 }).call(this);
