@@ -1,168 +1,213 @@
 ###
 	richisCore v1.0
 	@Author @richistron
-	@description coffeeScript core
+	@description coffeeScript and backbone core
 	@License MIT
+### 
 ###
-richisCore = 
-	init: ->		
-		@loadSections()
-		$(document).on "click" , "a" , (e)-> e.preventDefault()
-		$("footer").find("a").bind "click" , (e)-> 						
-			link = $(@).attr "href"
-			window.open link , "_blank"
-		@navElements = $("#navigation").find("ul").find("li").find("a").not("a:eq(0)")
-		$("#navigation").find("ul").find("li:eq(0)").addClass "active"
-		@navElements.bind "click" , @navBehavior
-	mainContainer: "#container"
-	loaded: []
-	navBehavior: (e) -> 		
-		element = $(@)				
-		element.closest("ul").find("li").removeClass "active"
-		element.closest("li").addClass "active"
-		section = element.attr("href").replace "#" , ""		
-		element.unbind()					
-		richisCore.loadSection section	, element	
-	richistoken: -> Math.random().toString(36).substr(2)
-	loadSections: ->					
-		$.ajax(
-			url: "feeds.php"
-			dataType: "JSON"
-			type: "POST"
-			data: 
-				token: @richistoken()
-		).done (data) =>			
-			@initSections data
-	initSections: (@response = false)-> 								
-		element = $("#navigation").find("ul").find("li").find("a:eq(0)")
-		section = element.attr("href").replace "#" , ""
-		@loadSection section , element.selector	, true 	
-	loadSection: ( @sectionStrID, selector, initReplace = false)-> 							
-		currentSelector = selector
-		$.each @response , (index,item) =>
-			if @sectionStrID == index
-				html = @sectionTpl item , @sectionStrID
-				if initReplace == true
-					$(@mainContainer).html html				
-					$("#{currentSelector}").bind "click" , @toggleSection
-				else
-					$(@mainContainer).append html																	
-					id = $(selector).attr "href"
-					elements = $(@mainContainer).find "section" 					
-					elements.hide()
-					elements.filter(id).show()
-					$(selector).bind "click" , @toggleSection
-				initElements = $("##{@sectionStrID}").find("div.box")				
-				initElements.bind "click" , @loadRssInit
-	loadRssInit: (e) =>
-		$(e.currentTarget).unbind "click" , @loadRssInit
-		element = $(e.currentTarget)				
-		rssLink = element.find("a.readmore").attr("href")
-		feedConf = 
-			feeds:
-				feed1: rssLink
-			max: 10
-			onComplete: (data) ->				
-				richisCore.parseEntries data , element
-			loadingTemplate: richisCore.loadingTemplate
-		element.feeds feedConf	
-	loadingTemplate: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
-	parseEntries: (data,element)-> 
-		logo = $(element).data "logo"						
-		$(element).html( @entrieTemplate data ,logo )
-		articles = $(element).find("article")
-		articles.css "opacity" , 1
-		articles.not(":eq(0)").hide()		
-		articles.on "click","a", (e)->
-			link = $(@).attr "href"
-			window.open link , "_blank"
-		paginationA = $(element).find(".articlePagination").find("a")
-		paginationA.filter(":eq(0)").addClass("active")
-		paginationA.bind "click" , (e)=>
-			@changeEntrie e
-	changeEntrie: (e)->
-		clicked = $(e.currentTarget).attr("href")
-		clicked = clicked.replace "#" , ""
-		box = $(e.currentTarget).closest ".box"				
-		box.find("article").hide()
-		box.find("article").filter(":eq(#{clicked})").show()
-		paginationDiv = $(e.currentTarget).closest "div"
-		paginationDiv.find("a.active").removeClass("active")
-		$(e.currentTarget).addClass("active")
-	toggleSection: -> 		
-		liItems = $(@).closest("ul").find("li")
-		liItems.removeClass "active"	
-		$(@).closest("li").addClass "active"	
-		id = $(@).attr "href"		
-		container = $(id).closest "div"		
-		sections = container.find "section"
-		sections.hide()
-		sections.filter(id).show()
-	sectionTpl: (data,elementID)->
-		data.id = elementID
-		tpl = "
-			<section id=\"<%= data.id %>\">
-				<% _.each(data, function(rss) { %>
-					<div class=\"box\" data-logo=\"<%= rss.logo %>\">
-						<article>
-							<header>                            
-								<h1>
-									<a href=\"<%= rss.url %>\">
-										<%= rss.title %>
-									</a>
-								</h1>
-							</header>                        
-							<div class=\"thumb\">
-								<img src=\"<%= rss.logo %>\" alt=\"logo\"/>
-							</div>
-							<p>
-								<%= rss.slogan %>
-								<a href=\"<%= rss.urlFeed %>\" class=\"readmore\">Rss</a>
-							</p>                        
-							<span class=\"author\"> 
-								Author: <strong> <%= rss.author %> </strong> 
-							</span>
-						</article>
-					</div>
+	models
+###
+sectionModel = Backbone.Model.extend({})
+blogsModel = Backbone.Model.extend({})
+###
+	APP
+###
+APP =
+	Models: 
+		"blogsModel" : blogsModel
+		"sectionModel": sectionModel
+	Views: 
+		"blogView": Backbone.View.extend			
+			events:
+				"mouseenter" : "loadRss"
+				"click .articlePagination a" : "pagBehavior"
+			tagName: "div"
+			className: "box"
+			pagBehavior: (e)->
+				e.preventDefault()
+				element = e.currentTarget
+				target = $(element).attr "href"
+				target = target.replace "#" , ""
+				$(element).closest(".box").find("article").hide()
+				$(element).closest(".box").find("article").filter(":eq(#{target})").show()
+				$(element).closest(".articlePagination").find('a').removeClass "active"
+				$(element).addClass "active"
+			rssRender: ->
+				tpl = "
+				{{#rssData}}
+					<article>
+						<header>
+							<h1>
+								<a href=\"{{link}}\" target=\"_blank\">
+									{{title}}
+								</a>
+							</h1>
+						</header>
+						<div class=\"thumb\">
+							<img src=\"{{model.logo}}\" alt=\"{{model.title}}\">
+						</div>
+						<p>
+							{{contentSnippet}}
+							<a href=\"{{link}}\" target=\"_blank\" class=\"readmore\">
+								Leer más
+							</a>
+						</p>
+						<span class=\"author\">
+							Author: <strong>{{author}}</strong>
+						</span>
+					</article>
+				{{/rssData}}				
+				"
+				paginationTpl = "
+				<div class=\"articlePagination\">
+					<% _.each(data,function(item,i){ %>
+						<a href=\"#<%= i %>\"><%= i + 1 %></a>
 					<% }); %>
-			</section>
-		"
-		_.template tpl, data: data
-	entrieTemplate: (data,logo = "/img/cats/120x120.jpg")-> 		
-		tpl = "
-			<% _.each(data, function(rss) { %>
+				</div>
+				"						
+				data = 
+					model: @model.toJSON()
+					rssData: @rssData										
+				htmlStr_ = Mustache.compile tpl
+				htmlStr = htmlStr_ data
+				data = data: @rssData
+				pagination = _.template paginationTpl , data				
+				htmlStr = "#{htmlStr} #{pagination}"
+			render:->
+				html_ = Mustache.compile @template
+				html = html_ @model.toJSON()
+				@.$el.append html
+			loadRss: (e)->
+				e.preventDefault()									
+				$(@.$el).unbind "mouseenter"								
+				feedConf = 
+					feeds:
+						feed : @model.get "urlFeed"
+					max: 10
+					loadingTemplate: APP.loading
+					onComplete: (@rssData) => 
+						$(@.$el).html @rssRender()
+						$(@.$el).find("article").hide()
+						$(@.$el).find("article").filter(':eq(0)').show()
+						$(@.$el).find(".articlePagination").find("a:eq(0)").addClass "active"
+				$(@.$el).feeds feedConf			
+			template: "
 				<article>
-					<header>                            
+					<header>
 						<h1>
-							<a href=\"<%= rss.link %>\">
-								<%= rss.title %>
+							<a href=\"{{urlFeed}}\">
+								{{title}}
 							</a>
 						</h1>
-					</header>                        
+					</header>
 					<div class=\"thumb\">
-						<img src=\"<%= logo %>\" alt=\"logo\"/>
+					<img src=\"{{logo}}\" alt=\"{{title}}\">
 					</div>
 					<p>
-						<%= rss.contentSnippet %>
-						<a href=\"<%= rss.link %>\" class=\"readmore\">Leer más</a>
-					</p>                        
-					<span class=\"author\"> 
-						Author: <strong> <%= rss.author %> </strong>
+						{{slogan}}
+						<a href=\"{{urlFeed}}\" class=\"readmore\">
+							Rss
+						</a>
+					</p>
+					<span class=\"author\">
+						Author: <strong>{{author}}</strong>
 					</span>
 				</article>
-			<% }); %>
-			<div class=\"articlePagination\">
-				<% _.each(data,function(item,i){ %>
-					<a href=\"#<%= i %>\"><%= i + 1 %></a>
-				<% }); %>
-			</div>
-		"
-		params = 
-			data:data
-			logo: logo
-		_.template tpl , params
+			"		
+		"blogViewCollections": Backbone.View.extend	
+			tagName: "p"
+			initialize: ->				
+				@collection.on "add", @addOne, @
+				@collection.on "reset", @addAll, @		
+			addAll: ->
+				@collection.forEach @addOne , @
+			addOne: (element)->
+				blogView = new APP.Views.blogView
+					model: element
+				blogView.render()
+				@.$el.append blogView.el
+		"sectionView": Backbone.View.extend
+			tagName: "section"
+			render: ->	
+				section = @model.get "id"
+				@blogCollection_ = new APP.Collections.blogCollection
+				@blogViewCollections_ = new APP.Views.blogViewCollections		
+					collection: @blogCollection_
+				@blogCollection_.fetch 
+					data:
+						"section": section					
+				@blogViewCollections_.render()				
+				@.$el.attr "id"	, (@model.get "id")
+				@.$el.html @blogViewCollections_.el
+		"sectionCollectionView": Backbone.View.extend 			
+			addAll: ->
+				@collection.forEach @addOne , @
+			addOne: (element)->				
+				sectionView = new APP.Views.sectionView
+					model: element
+				sectionView.render()
+				@.$el.append sectionView.el			
+			showSection: (section) ->
+				@.$el.find("section").hide()
+				@.$el.find("section##{section}").show()
+			initialize: ->
+				@.$el.html ""
+				@collection.on "add", @addOne, @
+				@collection.on "reset", @addAll, @
+	Collections: 
+		"blogCollection": Backbone.Collection.extend
+			model: blogsModel
+			url: "feeds.php"
+			parse: (@response) ->
+				@response
+		"sectionCollection": Backbone.Collection.extend
+			url: "feeds.php"
+			model: sectionModel
+			parse: (@response)->
+				arr = []
+				_.each @response , (item,index)->
+					section = "id" : index
+					arr.push section
+				arr
+	loading: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
 ###
-	DOM ready
+	document view
 ###
+App = Backbone.View.extend	
+	Routers: new ( 
+			Backbone.Router.extend
+				initialize: ->					
+					@sectionCollection = new APP.Collections.sectionCollection
+					@sectionCollectionView = new APP.Views.sectionCollectionView
+						el: $("#container")
+						collection: @sectionCollection
+					@defaultSection = "blogs"
+					@sectionCollection.fetch 
+						success: => 
+							section = window.location.hash							
+							if section == ""	
+								section = @defaultSection
+							else
+								section = section.replace("#","")									
+							@sectionCollectionView.showSection section
+				routes: 
+					"(:idStr)" : "index"					
+				index: (id = "blogs")-> 
+					@sectionCollectionView.showSection id
+		)
+	events: 
+		"click #navigation a": (e)->
+			e.preventDefault()			
+			Backbone.history.navigate e.target.hash , trigger:true
+		"click footer a" : (e) ->
+			e.preventDefault()
+			link = e.currentTarget.href
+			window.open link , "_blank"
+	start: ->
+		Backbone.history.start pushState:false
+###
+	new app
+###
+app = new App el: document.body
 $(document).ready ->
-	richisCore.init()
+	app.start()

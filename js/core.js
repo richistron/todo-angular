@@ -2,168 +2,237 @@
   /*
   	richisCore v1.0
   	@Author @richistron
-  	@description coffeeScript core
+  	@description coffeeScript and backbone core
   	@License MIT
-  */  var richisCore;
+  */
+  /*
+  	models
+  */  var APP, App, app, blogsModel, sectionModel;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-  richisCore = {
-    init: function() {
-      this.loadSections();
-      $(document).on("click", "a", function(e) {
-        return e.preventDefault();
-      });
-      $("footer").find("a").bind("click", function(e) {
-        var link;
-        link = $(this).attr("href");
-        return window.open(link, "_blank");
-      });
-      this.navElements = $("#navigation").find("ul").find("li").find("a").not("a:eq(0)");
-      $("#navigation").find("ul").find("li:eq(0)").addClass("active");
-      return this.navElements.bind("click", this.navBehavior);
+  sectionModel = Backbone.Model.extend({});
+  blogsModel = Backbone.Model.extend({});
+  /*
+  	APP
+  */
+  APP = {
+    Models: {
+      "blogsModel": blogsModel,
+      "sectionModel": sectionModel
     },
-    mainContainer: "#container",
-    loaded: [],
-    navBehavior: function(e) {
-      var element, section;
-      element = $(this);
-      element.closest("ul").find("li").removeClass("active");
-      element.closest("li").addClass("active");
-      section = element.attr("href").replace("#", "");
-      element.unbind();
-      return richisCore.loadSection(section, element);
+    Views: {
+      "blogView": Backbone.View.extend({
+        events: {
+          "mouseenter": "loadRss",
+          "click .articlePagination a": "pagBehavior"
+        },
+        tagName: "div",
+        className: "box",
+        pagBehavior: function(e) {
+          var element, target;
+          e.preventDefault();
+          element = e.currentTarget;
+          target = $(element).attr("href");
+          target = target.replace("#", "");
+          $(element).closest(".box").find("article").hide();
+          $(element).closest(".box").find("article").filter(":eq(" + target + ")").show();
+          $(element).closest(".articlePagination").find('a').removeClass("active");
+          return $(element).addClass("active");
+        },
+        rssRender: function() {
+          var data, htmlStr, htmlStr_, pagination, paginationTpl, tpl;
+          tpl = "				{{#rssData}}					<article>						<header>							<h1>								<a href=\"{{link}}\" target=\"_blank\">									{{title}}								</a>							</h1>						</header>						<div class=\"thumb\">							<img src=\"{{model.logo}}\" alt=\"{{model.title}}\">						</div>						<p>							{{contentSnippet}}							<a href=\"{{link}}\" target=\"_blank\" class=\"readmore\">								Leer más							</a>						</p>						<span class=\"author\">							Author: <strong>{{author}}</strong>						</span>					</article>				{{/rssData}}								";
+          paginationTpl = "				<div class=\"articlePagination\">					<% _.each(data,function(item,i){ %>						<a href=\"#<%= i %>\"><%= i + 1 %></a>					<% }); %>				</div>				";
+          data = {
+            model: this.model.toJSON(),
+            rssData: this.rssData
+          };
+          htmlStr_ = Mustache.compile(tpl);
+          htmlStr = htmlStr_(data);
+          data = {
+            data: this.rssData
+          };
+          pagination = _.template(paginationTpl, data);
+          return htmlStr = "" + htmlStr + " " + pagination;
+        },
+        render: function() {
+          var html, html_;
+          html_ = Mustache.compile(this.template);
+          html = html_(this.model.toJSON());
+          return this.$el.append(html);
+        },
+        loadRss: function(e) {
+          var feedConf;
+          e.preventDefault();
+          $(this.$el).unbind("mouseenter");
+          feedConf = {
+            feeds: {
+              feed: this.model.get("urlFeed")
+            },
+            max: 10,
+            loadingTemplate: APP.loading,
+            onComplete: __bind(function(rssData) {
+              this.rssData = rssData;
+              $(this.$el).html(this.rssRender());
+              $(this.$el).find("article").hide();
+              $(this.$el).find("article").filter(':eq(0)').show();
+              return $(this.$el).find(".articlePagination").find("a:eq(0)").addClass("active");
+            }, this)
+          };
+          return $(this.$el).feeds(feedConf);
+        },
+        template: "				<article>					<header>						<h1>							<a href=\"{{urlFeed}}\">								{{title}}							</a>						</h1>					</header>					<div class=\"thumb\">					<img src=\"{{logo}}\" alt=\"{{title}}\">					</div>					<p>						{{slogan}}						<a href=\"{{urlFeed}}\" class=\"readmore\">							Rss						</a>					</p>					<span class=\"author\">						Author: <strong>{{author}}</strong>					</span>				</article>			"
+      }),
+      "blogViewCollections": Backbone.View.extend({
+        tagName: "p",
+        initialize: function() {
+          this.collection.on("add", this.addOne, this);
+          return this.collection.on("reset", this.addAll, this);
+        },
+        addAll: function() {
+          return this.collection.forEach(this.addOne, this);
+        },
+        addOne: function(element) {
+          var blogView;
+          blogView = new APP.Views.blogView({
+            model: element
+          });
+          blogView.render();
+          return this.$el.append(blogView.el);
+        }
+      }),
+      "sectionView": Backbone.View.extend({
+        tagName: "section",
+        render: function() {
+          var section;
+          section = this.model.get("id");
+          this.blogCollection_ = new APP.Collections.blogCollection;
+          this.blogViewCollections_ = new APP.Views.blogViewCollections({
+            collection: this.blogCollection_
+          });
+          this.blogCollection_.fetch({
+            data: {
+              "section": section
+            }
+          });
+          this.blogViewCollections_.render();
+          this.$el.attr("id", this.model.get("id"));
+          return this.$el.html(this.blogViewCollections_.el);
+        }
+      }),
+      "sectionCollectionView": Backbone.View.extend({
+        addAll: function() {
+          return this.collection.forEach(this.addOne, this);
+        },
+        addOne: function(element) {
+          var sectionView;
+          sectionView = new APP.Views.sectionView({
+            model: element
+          });
+          sectionView.render();
+          return this.$el.append(sectionView.el);
+        },
+        showSection: function(section) {
+          this.$el.find("section").hide();
+          return this.$el.find("section#" + section).show();
+        },
+        initialize: function() {
+          this.$el.html("");
+          this.collection.on("add", this.addOne, this);
+          return this.collection.on("reset", this.addAll, this);
+        }
+      })
     },
-    richistoken: function() {
-      return Math.random().toString(36).substr(2);
-    },
-    loadSections: function() {
-      return $.ajax({
+    Collections: {
+      "blogCollection": Backbone.Collection.extend({
+        model: blogsModel,
         url: "feeds.php",
-        dataType: "JSON",
-        type: "POST",
-        data: {
-          token: this.richistoken()
+        parse: function(response) {
+          this.response = response;
+          return this.response;
         }
-      }).done(__bind(function(data) {
-        return this.initSections(data);
-      }, this));
-    },
-    initSections: function(response) {
-      var element, section;
-      this.response = response != null ? response : false;
-      element = $("#navigation").find("ul").find("li").find("a:eq(0)");
-      section = element.attr("href").replace("#", "");
-      return this.loadSection(section, element.selector, true);
-    },
-    loadSection: function(sectionStrID, selector, initReplace) {
-      var currentSelector;
-      this.sectionStrID = sectionStrID;
-      if (initReplace == null) {
-        initReplace = false;
-      }
-      currentSelector = selector;
-      return $.each(this.response, __bind(function(index, item) {
-        var elements, html, id, initElements;
-        if (this.sectionStrID === index) {
-          html = this.sectionTpl(item, this.sectionStrID);
-          if (initReplace === true) {
-            $(this.mainContainer).html(html);
-            $("" + currentSelector).bind("click", this.toggleSection);
-          } else {
-            $(this.mainContainer).append(html);
-            id = $(selector).attr("href");
-            elements = $(this.mainContainer).find("section");
-            elements.hide();
-            elements.filter(id).show();
-            $(selector).bind("click", this.toggleSection);
-          }
-          initElements = $("#" + this.sectionStrID).find("div.box");
-          return initElements.bind("click", this.loadRssInit);
+      }),
+      "sectionCollection": Backbone.Collection.extend({
+        url: "feeds.php",
+        model: sectionModel,
+        parse: function(response) {
+          var arr;
+          this.response = response;
+          arr = [];
+          _.each(this.response, function(item, index) {
+            var section;
+            section = {
+              "id": index
+            };
+            return arr.push(section);
+          });
+          return arr;
         }
-      }, this));
+      })
     },
-    loadRssInit: __bind(function(e) {
-      var element, feedConf, rssLink;
-      $(e.currentTarget).unbind("click", this.loadRssInit);
-      element = $(e.currentTarget);
-      rssLink = element.find("a.readmore").attr("href");
-      feedConf = {
-        feeds: {
-          feed1: rssLink
-        },
-        max: 10,
-        onComplete: function(data) {
-          return richisCore.parseEntries(data, element);
-        },
-        loadingTemplate: richisCore.loadingTemplate
-      };
-      return element.feeds(feedConf);
-    }, this),
-    loadingTemplate: "<img src=\"/img/loading.gif\" alt=\"loading...\" />",
-    parseEntries: function(data, element) {
-      var articles, logo, paginationA;
-      logo = $(element).data("logo");
-      $(element).html(this.entrieTemplate(data, logo));
-      articles = $(element).find("article");
-      articles.css("opacity", 1);
-      articles.not(":eq(0)").hide();
-      articles.on("click", "a", function(e) {
-        var link;
-        link = $(this).attr("href");
-        return window.open(link, "_blank");
-      });
-      paginationA = $(element).find(".articlePagination").find("a");
-      paginationA.filter(":eq(0)").addClass("active");
-      return paginationA.bind("click", __bind(function(e) {
-        return this.changeEntrie(e);
-      }, this));
-    },
-    changeEntrie: function(e) {
-      var box, clicked, paginationDiv;
-      clicked = $(e.currentTarget).attr("href");
-      clicked = clicked.replace("#", "");
-      box = $(e.currentTarget).closest(".box");
-      box.find("article").hide();
-      box.find("article").filter(":eq(" + clicked + ")").show();
-      paginationDiv = $(e.currentTarget).closest("div");
-      paginationDiv.find("a.active").removeClass("active");
-      return $(e.currentTarget).addClass("active");
-    },
-    toggleSection: function() {
-      var container, id, liItems, sections;
-      liItems = $(this).closest("ul").find("li");
-      liItems.removeClass("active");
-      $(this).closest("li").addClass("active");
-      id = $(this).attr("href");
-      container = $(id).closest("div");
-      sections = container.find("section");
-      sections.hide();
-      return sections.filter(id).show();
-    },
-    sectionTpl: function(data, elementID) {
-      var tpl;
-      data.id = elementID;
-      tpl = "			<section id=\"<%= data.id %>\">				<% _.each(data, function(rss) { %>					<div class=\"box\" data-logo=\"<%= rss.logo %>\">						<article>							<header>                            								<h1>									<a href=\"<%= rss.url %>\">										<%= rss.title %>									</a>								</h1>							</header>                        							<div class=\"thumb\">								<img src=\"<%= rss.logo %>\" alt=\"logo\"/>							</div>							<p>								<%= rss.slogan %>								<a href=\"<%= rss.urlFeed %>\" class=\"readmore\">Rss</a>							</p>                        							<span class=\"author\"> 								Author: <strong> <%= rss.author %> </strong> 							</span>						</article>					</div>					<% }); %>			</section>		";
-      return _.template(tpl, {
-        data: data
-      });
-    },
-    entrieTemplate: function(data, logo) {
-      var params, tpl;
-      if (logo == null) {
-        logo = "/img/cats/120x120.jpg";
-      }
-      tpl = "			<% _.each(data, function(rss) { %>				<article>					<header>                            						<h1>							<a href=\"<%= rss.link %>\">								<%= rss.title %>							</a>						</h1>					</header>                        					<div class=\"thumb\">						<img src=\"<%= logo %>\" alt=\"logo\"/>					</div>					<p>						<%= rss.contentSnippet %>						<a href=\"<%= rss.link %>\" class=\"readmore\">Leer más</a>					</p>                        					<span class=\"author\"> 						Author: <strong> <%= rss.author %> </strong>					</span>				</article>			<% }); %>			<div class=\"articlePagination\">				<% _.each(data,function(item,i){ %>					<a href=\"#<%= i %>\"><%= i + 1 %></a>				<% }); %>			</div>		";
-      params = {
-        data: data,
-        logo: logo
-      };
-      return _.template(tpl, params);
-    }
+    loading: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
   };
   /*
-  	DOM ready
+  	document view
   */
+  App = Backbone.View.extend({
+    Routers: new (Backbone.Router.extend({
+      initialize: function() {
+        this.sectionCollection = new APP.Collections.sectionCollection;
+        this.sectionCollectionView = new APP.Views.sectionCollectionView({
+          el: $("#container"),
+          collection: this.sectionCollection
+        });
+        this.defaultSection = "blogs";
+        return this.sectionCollection.fetch({
+          success: __bind(function() {
+            var section;
+            section = window.location.hash;
+            if (section === "") {
+              section = this.defaultSection;
+            } else {
+              section = section.replace("#", "");
+            }
+            return this.sectionCollectionView.showSection(section);
+          }, this)
+        });
+      },
+      routes: {
+        "(:idStr)": "index"
+      },
+      index: function(id) {
+        if (id == null) {
+          id = "blogs";
+        }
+        return this.sectionCollectionView.showSection(id);
+      }
+    })),
+    events: {
+      "click #navigation a": function(e) {
+        e.preventDefault();
+        return Backbone.history.navigate(e.target.hash, {
+          trigger: true
+        });
+      },
+      "click footer a": function(e) {
+        var link;
+        e.preventDefault();
+        link = e.currentTarget.href;
+        return window.open(link, "_blank");
+      }
+    },
+    start: function() {
+      return Backbone.history.start({
+        pushState: false
+      });
+    }
+  });
+  /*
+  	new app
+  */
+  app = new App({
+    el: document.body
+  });
   $(document).ready(function() {
-    return richisCore.init();
+    return app.start();
   });
 }).call(this);
