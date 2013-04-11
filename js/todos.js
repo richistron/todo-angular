@@ -1,7 +1,11 @@
+
+/*
+	Todos practice from codeschool
+*/
+
 (function() {
-  /*
-  	Todos practice from codeschool
-  */  var App, TodoList, TodoListView, TodoModel, TodoView;
+  var App, TodoList, TodoListView, TodoModel, TodoView;
+
   TodoModel = Backbone.Model.extend({
     defaults: {
       title: "todo item",
@@ -18,6 +22,7 @@
       });
     }
   });
+
   TodoView = Backbone.View.extend({
     template: _.template("	<h1><%= title %></h1>	<p><%= content %></p>	Clicks: <%= clicks %>	"),
     render: function() {
@@ -35,6 +40,7 @@
       return this.model.on("change", this.render, this);
     }
   });
+
   TodoList = Backbone.Collection.extend({
     url: 'feeds.php',
     model: TodoModel,
@@ -43,6 +49,7 @@
       return console.log(this);
     }
   });
+
   TodoListView = Backbone.View.extend({
     initialize: function() {
       this.collection.on("add", this.addItem, this);
@@ -64,6 +71,7 @@
       return this.$el.append(html);
     }
   });
+
   App = new (Backbone.Router.extend({
     routes: {
       "": "index",
@@ -88,7 +96,9 @@
       return this.todoList.fetch();
     }
   }));
+
   $(document).ready(function() {
     return App.start();
   });
+
 }).call(this);

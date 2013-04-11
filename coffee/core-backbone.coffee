@@ -4,9 +4,14 @@
 	@description coffeeScript and backbone core
 	@License MIT
 ### 
-
+###
+	models
+###
 sectionModel = Backbone.Model.extend({})
 blogsModel = Backbone.Model.extend({})
+###
+	APP
+###
 APP =
 	Models: 
 		"blogsModel" : blogsModel
@@ -15,6 +20,17 @@ APP =
 		"blogView": Backbone.View.extend			
 			events:
 				"mouseenter" : "loadRss"
+				"click .articlePagination a" : (e)->
+					e.preventDefault()
+					console.log e
+					element = e.currentTarget
+					target = $(element).attr "href"
+					target = target.replace "#" , ""
+					console.log target
+					$(element).closest(".box").find("article").hide()
+					$(element).closest(".box").find("article").filter(":eq(#{target})").show()
+					$(element).closest(".articlePagination").find('a').removeClass "active"
+					$(element).addClass "active"
 			tagName: "div"
 			className: "box"
 			rssRender: ->
@@ -155,7 +171,13 @@ APP =
 					arr.push section
 				arr
 	loading: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
-App = Backbone.View.extend		
+###
+	document view
+###
+App = Backbone.View.extend
+	###
+		router		
+	###
 	Routers: new ( 
 			Backbone.Router.extend
 				initialize: ->					
@@ -181,9 +203,18 @@ App = Backbone.View.extend
 		"click #navigation a": (e)->
 			e.preventDefault()			
 			Backbone.history.navigate e.target.hash , trigger:true
+		"click footer a" : (e) ->
+			e.preventDefault()
+			link = e.currentTarget.href
+			window.open link , "_blank"
 	start: ->
 		Backbone.history.start pushState:false
+###
+	new app
+###
 app = new App el: document.body
-# DOM READY
+###
+	app start
+###
 $(document).ready ->
 	app.start()

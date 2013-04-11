@@ -1,13 +1,26 @@
+
+/*
+	richisCore v1.0
+	@Author @richistron
+	@description coffeeScript and backbone core
+	@License MIT
+*/
+
+/*
+	models
+*/
+
 (function() {
-  /*
-  	richisCore v1.0
-  	@Author @richistron
-  	@description coffeeScript and backbone core
-  	@License MIT
-  */  var APP, App, app, blogsModel, sectionModel;
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var APP, App, app, blogsModel, sectionModel;
+
   sectionModel = Backbone.Model.extend({});
+
   blogsModel = Backbone.Model.extend({});
+
+  /*
+  	APP
+  */
+
   APP = {
     Models: {
       "blogsModel": blogsModel,
@@ -16,7 +29,20 @@
     Views: {
       "blogView": Backbone.View.extend({
         events: {
-          "mouseenter": "loadRss"
+          "mouseenter": "loadRss",
+          "click .articlePagination a": function(e) {
+            var element, target;
+            e.preventDefault();
+            console.log(e);
+            element = e.currentTarget;
+            target = $(element).attr("href");
+            target = target.replace("#", "");
+            console.log(target);
+            $(element).closest(".box").find("article").hide();
+            $(element).closest(".box").find("article").filter(":eq(" + target + ")").show();
+            $(element).closest(".articlePagination").find('a').removeClass("active");
+            return $(element).addClass("active");
+          }
         },
         tagName: "div",
         className: "box",
@@ -43,7 +69,8 @@
           return this.$el.append(html);
         },
         loadRss: function(e) {
-          var feedConf;
+          var feedConf,
+            _this = this;
           e.preventDefault();
           $(this.$el).unbind("mouseenter");
           feedConf = {
@@ -52,13 +79,13 @@
             },
             max: 10,
             loadingTemplate: APP.loading,
-            onComplete: __bind(function(rssData) {
-              this.rssData = rssData;
-              $(this.$el).html(this.rssRender());
-              $(this.$el).find("article").css("opacity", "1");
-              $(this.$el).find("article").hide();
-              return $(this.$el).find("article").filter(':eq(0)').show();
-            }, this)
+            onComplete: function(rssData) {
+              _this.rssData = rssData;
+              $(_this.$el).html(_this.rssRender());
+              $(_this.$el).find("article").css("opacity", "1");
+              $(_this.$el).find("article").hide();
+              return $(_this.$el).find("article").filter(':eq(0)').show();
+            }
           };
           return $(this.$el).feeds(feedConf);
         },
@@ -153,9 +180,18 @@
     },
     loading: "<img src=\"/img/loading.gif\" alt=\"loading...\" />"
   };
+
+  /*
+  	document view
+  */
+
   App = Backbone.View.extend({
+    /*
+    		router
+    */
     Routers: new (Backbone.Router.extend({
       initialize: function() {
+        var _this = this;
         this.sectionCollection = new APP.Collections.sectionCollection;
         this.sectionCollectionView = new APP.Views.sectionCollectionView({
           el: $("#container"),
@@ -163,25 +199,23 @@
         });
         this.defaultSection = "blogs";
         return this.sectionCollection.fetch({
-          success: __bind(function() {
+          success: function() {
             var section;
             section = window.location.hash;
             if (section === "") {
-              section = this.defaultSection;
+              section = _this.defaultSection;
             } else {
               section = section.replace("#", "");
             }
-            return this.sectionCollectionView.showSection(section);
-          }, this)
+            return _this.sectionCollectionView.showSection(section);
+          }
         });
       },
       routes: {
         "(:idStr)": "index"
       },
       index: function(id) {
-        if (id == null) {
-          id = "blogs";
-        }
+        if (id == null) id = "blogs";
         return this.sectionCollectionView.showSection(id);
       }
     })),
@@ -191,6 +225,12 @@
         return Backbone.history.navigate(e.target.hash, {
           trigger: true
         });
+      },
+      "click footer a": function(e) {
+        var link;
+        e.preventDefault();
+        link = e.currentTarget.href;
+        return window.open(link, "_blank");
       }
     },
     start: function() {
@@ -199,10 +239,20 @@
       });
     }
   });
+
+  /*
+  	new app
+  */
+
   app = new App({
     el: document.body
+    /*
+    	app start
+    */
   });
+
   $(document).ready(function() {
     return app.start();
   });
+
 }).call(this);
