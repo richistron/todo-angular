@@ -12,7 +12,7 @@
     </head>
     <body>  
         <header class="logo">
-            <a href="#home">
+            <a href="#">
                 <h1>Richistron.com</h1>
                 <p>Otro dude más en el interwebs</p>
             </a>
@@ -21,8 +21,7 @@
             <ul>                                
                 <li><a href="#blogs">Blogs</a></li>                
                 <li><a href="#comunidades">Comunidades</a></li>
-                <li><a href="#noticias">Noticias</a></li>
-                <li><a href="#empleos">Empleos</a></li>
+                <li><a href="#noticias">Noticias</a></li>                
             </ul>                                
         </nav>
         <div id="container">
@@ -34,7 +33,7 @@
         </div>                    
         <footer>
             <div class="license">
-                <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">richistron.com</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://richistron.com" property="cc:attributionName" rel="cc:attributionURL">Ricardo Rivas G.</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/richistron/richistron-frontend" rel="dct:source">https://github.com/richistron/richistron-frontend</a>.
+                <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">richistron.com</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://richistron.com" property="cc:attributionName" rel="cc:attributionURL">Ricardo Rivas G.</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/richistron/richistron-frontend" rel="dct:source">github</a>.
             </div>
             <div class="about">
                 <strong>Acerca de el sitio:</strong>
@@ -51,7 +50,7 @@
                 <a class="twitter" href="http://twitter.com/richistron">
                     Twitter
                 </a>
-                <a class="linkedin" href="http://mx.linkedin.com/in/richistron/">
+                <a class="linkedin" href="http://mx.linkedin.com/in/richistron">
                     Linkedin
                 </a>
             </div>

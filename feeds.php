@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-
+// comunidades
 $feeds['comunidades'][] = array(
 		'id' => 'hg',
 		'title' => "HackerGarage",
@@ -12,13 +12,13 @@ $feeds['comunidades'][] = array(
 		"logo" => "/img/hg.png"
 	);
 $feeds['comunidades'][] = array(
-		'id' => 'phpmx',
-		'title' => "PHP México",
-		"slogan" => "Twitter us hashtag!! #phpmx RT @phpmx",
-		"url"  => "http://phpmexico.mx/",
-		"urlFeed"  => "http://phpmexico.mx/rss.xml",
-		"author" => "@phpmx",
-		"logo" => "/img/phpmx300.png"
+		'id' => 'geekchick',
+		'title' => "geekchick.mx",
+		"slogan" => "Tecnología para chicas",
+		"url"  => "http://geekchick.mx/",
+		"urlFeed"  => "http://geekchick.mx/feed/",
+		"author" => "@geekchickmx",
+		"logo" => "/img/geekchick_.png"
 	);
 $feeds['comunidades'][] = array(
 		'id' => 'tequila',
@@ -38,7 +38,34 @@ $feeds['comunidades'][] = array(
 		"author" => "@railsmx",
 		"logo" => "/img/ruby-logo.png"
 	);
-
+$feeds['comunidades'][] = array(
+		'id' => 'phpmx',
+		'title' => "PHP México",
+		"slogan" => "Twitter us hashtag!! #phpmx RT @phpmx",
+		"url"  => "http://phpmexico.mx/",
+		"urlFeed"  => "http://phpmexico.mx/rss.xml",
+		"author" => "@phpmx",
+		"logo" => "/img/phpmx300.png"
+	);
+// blogs
+$feeds['blogs'][] = array(
+		'id' => 'richistron',
+		'title' => "El blog del richistron",
+		"slogan" => "Un blog de un dude y así",
+		"url"  => "http://blog.richistron.com",
+		"urlFeed"  => "http://blog.richistron.com/feeds/posts/default",
+		"author" => "@richistron",		
+		"logo" => "/img/logo120.png"
+	);
+$feeds['blogs'][] = array(
+		'id' => "mich",
+		'title' => "Michelle Torres",
+		"slogan" => "Escritos y publicaciones de una chica geek mexicana acerca de tecnología y software libre",
+		"url"  => "http://michelle.slmx.org/",
+		"urlFeed"  => "http://michelle.slmx.org/feed/",
+		"author" => "@nmicht",
+		"logo" => "/img/mich.png"
+	);
 $feeds['blogs'][] = array(
 		'id' => 'gabo',
 		'title' => "Gabriel Saldaña",
@@ -58,15 +85,6 @@ $feeds['blogs'][] = array(
 		"logo" => "/img/levhita_logo.png"
 	);
 $feeds['blogs'][] = array(
-		'id' => "mich",
-		'title' => "Michelle Torres",
-		"slogan" => "Escritos y publicaciones de una chica geek mexicana acerca de tecnología y software libre",
-		"url"  => "http://michelle.slmx.org/",
-		"urlFeed"  => "http://michelle.slmx.org/feed/",
-		"author" => "@nmicht",
-		"logo" => "/img/mich.png"
-	);
-$feeds['blogs'][] = array(
 		'id' => 'odiseo',
 		'title' => "Odiseo.net",
 		"slogan" => "Like rats building a maze from which later we'll try to escape",
@@ -74,15 +92,6 @@ $feeds['blogs'][] = array(
 		"urlFeed"  => "http://odiseo.net/feed",
 		"author" => "@odiseo42",
 		"logo" => "/img/monkey.png"
-	);
-$feeds['blogs'][] = array(
-		'id' => 'richistron',
-		'title' => "El blog del richistron",
-		"slogan" => "Un blog de un dude y así",
-		"url"  => "http://blog.richistron.com",
-		"urlFeed"  => "http://blog.richistron.com/feeds/posts/default",
-		"author" => "@richistron",		
-		"logo" => "/img/logo120.png"
 	);
 $feeds['blogs'][] = array(
 		'id' => 'bbhx',
@@ -93,20 +102,29 @@ $feeds['blogs'][] = array(
 		"author" => "@bbhx",
 		"logo" => "/img/cats/logo120.jpg"
 	);
-
+// noticias
 $feeds['noticias'][] = array(
-		'id' => 'alt1040',
-		'title' => "alt1040.com",
-		"slogan" => "Cultura geek",
-		"url"  => "http://alt1040.com/",
-		"urlFeed"  => "http://alt1040.com/feed",
-		"author" => "Hipertextual",
-		"logo" => "/img/cats/logo120.jpg"
+		'id' => 'sopitas',
+		'title' => "Sopitas.com",
+		"slogan" => "Un tipo muy afortunado! | Noticias, Deportes, Música, Tecnología",
+		"url"  => "http://www.sopitas.com/",
+		"urlFeed"  => "http://www.sopitas.com/site/feed/",
+		"author" => "@Microsiervos",
+		"logo" => "/img/sopitas.jpg"
 	);
 $feeds['noticias'][] = array(
 		'id' => 'alt1040',
 		'title' => "alt1040.com",
-		"slogan" => "Cultura geek",
+		"slogan" => "En Hipertextual creemos que es bueno compartir y apoyamos ampliamente el desarrollo y uso de las licencias Creative Commons, por tal razón los hemos apoyado en todo lo que nos ha sido posible. Hipertextual está asociado a Creative Commons México.",
+		"url"  => "http://alt1040.com/",
+		"urlFeed"  => "http://alt1040.com/feed",
+		"author" => "Hipertextual",
+		"logo" => "/img/hptx-logo-footer.png"
+	);
+$feeds['noticias'][] = array(
+		'id' => 'conectica',
+		'title' => "conecti.ca",
+		"slogan" => "Android Aplicaciones Apple Apps BlackBerry CES Curiosidades Eventos Facebook Gadgets Geek Google Internet Ios Ipad IPhone Lanzamiento Microsoft México Móvil Música Negocios Nokia Noticias Redes Sociales RIM Rumores Samsung Seguridad Smartphones ",
 		"url"  => "http://conecti.ca/",
 		"urlFeed"  => "http://feeds.feedburner.com/feedconectica",
 		"author" => "conecti.ca",
@@ -121,15 +139,8 @@ $feeds['noticias'][] = array(
 		"author" => "@Microsiervos",
 		"logo" => "/img/logo-microsiervos-li.png"
 	);
-$feeds['noticias'][] = array(
-		'id' => 'geekchick',
-		'title' => "geekchick.mx",
-		"slogan" => "Tecnología para chicas",
-		"url"  => "http://geekchick.mx/",
-		"urlFeed"  => "http://geekchick.mx/feed/",
-		"author" => "@geekchickmx",
-		"logo" => "/img/geekchick_.png"
-	);
+
+// empleos
 $feeds['empleos'][] = array(
 		'id' => 'hjobs',
 		'title' => "Hacker Jobs",
@@ -139,5 +150,10 @@ $feeds['empleos'][] = array(
 		"author" => "@HackerGarage",
 		"logo" => "/img/hg.png"
 	);
-echo json_encode($feeds);
+if(isset($_GET['section'])){
+	$section = $_GET['section'];
+	echo json_encode($feeds[$section]);
+}else{
+	echo json_encode($feeds);
+}
 ?>
