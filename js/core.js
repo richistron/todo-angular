@@ -22,7 +22,6 @@
     Views: {
       "blogView": Backbone.View.extend({
         events: {
-          "mouseenter": "loadRss",
           "click .articlePagination a": "pagBehavior"
         },
         tagName: "div",
@@ -58,12 +57,11 @@
           var html, html_;
           html_ = Mustache.compile(this.template);
           html = html_(this.model.toJSON());
-          return this.$el.append(html);
+          this.$el.append(html);
+          return this.loadRss();
         },
-        loadRss: function(e) {
+        loadRss: function() {
           var feedConf;
-          e.preventDefault();
-          $(this.$el).unbind("mouseenter");
           feedConf = {
             feeds: {
               feed: this.model.get("urlFeed")

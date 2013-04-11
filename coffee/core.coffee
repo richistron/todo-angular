@@ -19,7 +19,6 @@ APP =
 	Views: 
 		"blogView": Backbone.View.extend			
 			events:
-				"mouseenter" : "loadRss"
 				"click .articlePagination a" : "pagBehavior"
 			tagName: "div"
 			className: "box"
@@ -77,9 +76,8 @@ APP =
 				html_ = Mustache.compile @template
 				html = html_ @model.toJSON()
 				@.$el.append html
-			loadRss: (e)->
-				e.preventDefault()									
-				$(@.$el).unbind "mouseenter"								
+				@loadRss()
+			loadRss: ->												
 				feedConf = 
 					feeds:
 						feed : @model.get "urlFeed"
