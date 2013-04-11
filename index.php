@@ -21,8 +21,7 @@
             <ul>                                
                 <li><a href="#blogs">Blogs</a></li>                
                 <li><a href="#comunidades">Comunidades</a></li>
-                <li><a href="#noticias">Noticias</a></li>
-                <li><a href="#empleos">Empleos</a></li>
+                <li><a href="#noticias">Noticias</a></li>                
             </ul>                                
         </nav>
         <div id="container">
