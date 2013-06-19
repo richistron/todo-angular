@@ -55,10 +55,10 @@
                 </a>
             </div>
         </footer>
-        <script src="js/libs.js"></script>
-        <script src="js/models-min.js"></script>
-        <script src="js/views-min.js"></script>
-        <script src="js/collections-min.js"></script>
-        <script src="js/core-min.js"></script>
+        <script src="js/libs-v2.0.1.js"></script>
+        <script src="js/models-min-v2.0.1.js"></script>
+        <script src="js/views-min-v2.0.1.js"></script>
+        <script src="js/collections-min-v2.0.1.js"></script>
+        <script src="js/core-min-v2.0.1.js"></script>
     </body>
 </html>
