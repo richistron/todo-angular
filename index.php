@@ -60,5 +60,6 @@
         <script src="js/views-min-v2.0.1.js"></script>
         <script src="js/collections-min-v2.0.1.js"></script>
         <script src="js/core-min-v2.0.1.js"></script>
+        <script src="js/analytics.js"></script>
     </body>
 </html>
