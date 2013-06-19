@@ -56,6 +56,9 @@
             </div>
         </footer>
         <script src="js/libs.js"></script>
-        <script src="js/core.js"></script>
+        <script src="js/models-min.js"></script>
+        <script src="js/views-min.js"></script>
+        <script src="js/collections-min.js"></script>
+        <script src="js/core-min.js"></script>
     </body>
 </html>
