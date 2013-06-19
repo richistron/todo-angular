@@ -11,6 +11,7 @@
         <title>richistron.com | Otro dude más en el interwebs</title>
     </head>
     <body>  
+        <div id="fb-root"></div>
         <header class="logo">
             <a href="#">
                 <h1>Richistron.com</h1>
@@ -32,6 +33,12 @@
             Topping biscuit ice cream marshmallow I love I love bonbon. Chupa chups dessert candy topping carrot cake bonbon wypas. Faworki apple pie gummies I love jelly beans.
         </div>                    
         <footer>
+            <div class="socialLinks">
+                <div class="fb-like" data-href="http://richistron.com/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://richistron.com/" data-via="richistron" data-lang="es" data-size="small" data-dnt="true">Twittear</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
             <div class="license">
                 <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">richistron.com</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://richistron.com" property="cc:attributionName" rel="cc:attributionURL">Ricardo Rivas G.</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/richistron/richistron-frontend" rel="dct:source">github</a>.
             </div>
@@ -60,6 +67,6 @@
         <script src="js/views-min-v2.0.1.js"></script>
         <script src="js/collections-min-v2.0.1.js"></script>
         <script src="js/core-min-v2.0.1.js"></script>
-        <script src="js/analytics.js"></script>
+        <script src="js/analytics.js"></script>        
     </body>
 </html>
