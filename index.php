@@ -56,6 +56,6 @@
             </div>
         </footer>
         <script src="js/libs.js"></script>
-        <script src="js/core-min.js"></script>
+        <script src="js/core.js"></script>
     </body>
 </html>

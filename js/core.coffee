@@ -46,7 +46,7 @@ APP =
 							<img src=\"{{model.logo}}\" alt=\"{{model.title}}\">
 						</div>
 						<p>
-							{{contentSnippet}}
+							{{&contentSnippet}}
 							<a href=\"{{link}}\" target=\"_blank\" class=\"readmore\">
 								Leer más
 							</a>
