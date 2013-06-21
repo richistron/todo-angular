@@ -62,11 +62,8 @@
                 </a>
             </div>
         </footer>
-        <script src="js/libs-v2.0.1.js"></script>
-        <script src="js/models-min-v2.0.1.js"></script>
-        <script src="js/views-min-v2.0.1.js"></script>
-        <script src="js/collections-min-v2.0.1.js"></script>
-        <script src="js/core-min-v2.0.1.js"></script>
+        <script src="js/libs-v2.0.1.js"></script>       
+        <script src="js/app-min-v2.0.1.js"></script>
         <script src="js/analytics.js"></script>        
     </body>
 </html>
