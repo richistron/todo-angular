@@ -1,1 +1,0 @@
-(function(){var a,c,b;a=window.APP||{};a.Models=a.Models||{};b=Backbone.Model.extend({});c=Backbone.Model.extend({});a.Models={blogsModel:c,sectionModel:b};window.APP=a}).call(this);
