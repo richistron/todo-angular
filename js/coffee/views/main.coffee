@@ -1,21 +1,29 @@
+
 ###
 	Richistron frontend
 	@richistron
 	06/22/2013
 	MIT License
 ###
+
 ( (window) ->
 	# App
 	App = window.App || {}
+
+
 
 
 	# Views
 	App.Views = App.Views || {}
 
 
+
+
 	# document view
 	App.Views.docV = Backbone.View.extend
 		initialize: -> @linkOne = $(@$el).find("nav#navigation").find("ul").find('li').find('a')[0]			
+
+
 
 	# main response view 
 	App.Views.mainResponseV = Backbone.View.extend
@@ -39,10 +47,22 @@
 					return true
 			return false
 		errorMsg: -> $(@$el).html App.Templates.Woops
-		goTo: (url) -> 
+		goTo: (url) ->
+			@deferred = $.Deferred() 
+			@deferred.done =>
+				if @url?
+					blog = @url[1].split ":"
+					_.each $(@$el).find("##{@url[0]}").find(".box") , (item,index)->
+						modelId = $(item).data "modelid"
+						if modelId == blog[0]				
+							target = parseInt(blog[1]) - 1							
+							$($(item).find(".articlePagination").find("a")[target]).trigger "click"
 			@fetchingColl.done => 				
 				$(@$el).find("section").hide()
-				$(@$el).find("##{url}").show()
+				$(@$el).find("##{url}").show()				
+			return @deferred.promise()
+
+
 
 	# section view
 	App.Views.sectionV = Backbone.View.extend	
@@ -89,6 +109,14 @@
 			articles = $(e.currentTarget).closest("div.box").find("article")
 			$(articles).hide()			
 			$($(articles)[target]).show()
+			# navigation			
+			box = $(e.currentTarget).closest(".box")									
+			blog = $(box).data("modelid");
+			section = $(e.currentTarget).closest("section")
+			id = $(section).attr "id"
+			Backbone.history.navigate "#{id}/#{blog}:#{$(e.currentTarget).html()}", trigger: true
+
+
 
 	# document view
 	App.Views.blogItemV = Backbone.View.extend
@@ -108,7 +136,7 @@
 			$(@$el).append tpl
 			link = $(@$el).find(".articlePagination").find("a")[0]
 			$(link).addClass "active"
-		load:->				
+		load:->					
 			@deferred = $.Deferred()
 			$(@$el).append $('<div class="tmp"></div>')
 			tmp = $(@$el).find(".tmp")
@@ -122,10 +150,20 @@
 				max: 10
 				onComplete:(data)=> 					
 					@model.attributes.entries = data
-					@deferred.resolve();
+					@deferred.resolve();							
+					if App.bundle.reponseV.url?
+						if App.bundle.reponseV.url[1].split(":")[0] == @model.attributes.id
+							App.bundle.reponseV.deferred.resolve()
 			$(tmp).feeds feedOptions
 			return @deferred.promise();
 
+
+
 	# App
 	return window.App = App
+
+
+
 )(window)
+
+

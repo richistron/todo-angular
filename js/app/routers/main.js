@@ -32,10 +32,17 @@
         });
       },
       routesHandler: function(url) {
-        if (url === "home") {
-          url = ($(this.docV.linkOne).attr("href")).replace("#", "");
+        url = url.split("/");
+        if (url.length >= 2) {
+          this.reponseV.url = url;
+          return this.reponseV.goTo(url[0]);
+        } else {
+          if (url[0] === "home") {
+            url[0] = ($(this.docV.linkOne).attr("href")).replace("#", "");
+          }
+          if (this.reponseV.url != null) delete this.reponseV.url;
+          return this.reponseV.goTo(url[0]);
         }
-        return this.reponseV.goTo(url);
       }
     });
     return window.App = App;

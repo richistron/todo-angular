@@ -53,10 +53,26 @@
       },
       goTo: function(url) {
         var _this = this;
-        return this.fetchingColl.done(function() {
+        this.deferred = $.Deferred();
+        this.deferred.done(function() {
+          var blog;
+          if (_this.url != null) {
+            blog = _this.url[1].split(":");
+            return _.each($(_this.$el).find("#" + _this.url[0]).find(".box"), function(item, index) {
+              var modelId, target;
+              modelId = $(item).data("modelid");
+              if (modelId === blog[0]) {
+                target = parseInt(blog[1]) - 1;
+                return $($(item).find(".articlePagination").find("a")[target]).trigger("click");
+              }
+            });
+          }
+        });
+        this.fetchingColl.done(function() {
           $(_this.$el).find("section").hide();
           return $(_this.$el).find("#" + url).show();
         });
+        return this.deferred.promise();
       }
     });
     App.Views.sectionV = Backbone.View.extend({
@@ -106,14 +122,21 @@
         return console.log(e);
       },
       pagination: function(e) {
-        var articles, target;
+        var articles, blog, box, id, section, target;
         e.preventDefault();
         $(e.currentTarget).closest("div").find("a").removeClass("active");
         $(e.currentTarget).addClass("active");
         target = parseInt($(e.currentTarget).html()) - 1;
         articles = $(e.currentTarget).closest("div.box").find("article");
         $(articles).hide();
-        return $($(articles)[target]).show();
+        $($(articles)[target]).show();
+        box = $(e.currentTarget).closest(".box");
+        blog = $(box).data("modelid");
+        section = $(e.currentTarget).closest("section");
+        id = $(section).attr("id");
+        return Backbone.history.navigate("" + id + "/" + blog + ":" + ($(e.currentTarget).html()), {
+          trigger: true
+        });
       }
     });
     App.Views.blogItemV = Backbone.View.extend({
@@ -158,7 +181,12 @@
           max: 10,
           onComplete: function(data) {
             _this.model.attributes.entries = data;
-            return _this.deferred.resolve();
+            _this.deferred.resolve();
+            if (App.bundle.reponseV.url != null) {
+              if (App.bundle.reponseV.url[1].split(":")[0] === _this.model.attributes.id) {
+                return App.bundle.reponseV.deferred.resolve();
+              }
+            }
           }
         };
         $(tmp).feeds(feedOptions);
