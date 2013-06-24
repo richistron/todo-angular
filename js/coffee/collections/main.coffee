@@ -1,9 +1,11 @@
+
 ###
 	Richistron frontend
 	@richistron
 	06/22/2013
 	MIT License
 ###
+
 ( (window) ->
 	# App
 	App = window.App || {}
@@ -31,3 +33,4 @@
 	# App
 	return window.App = App
 )(window)
+

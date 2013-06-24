@@ -1,9 +1,11 @@
+
 ###
 	Richistron frontend
 	@richistron
 	06/22/2013
 	MIT License
 ###
+
 ( (window) ->
 	# window
 	App = window.App || {}
@@ -34,6 +36,15 @@
 		{{#items}}
 			<a href=\"#\">{{index}}</a>
 		{{/items}}
+	</div>
+	"
+
+	App.Templates.modalBox = "
+	<div class=\"modalBox\">
+	    <div class=\"modalcontainer\">
+	    	<a href=\"#\" class=\"close\">X</a>
+	        {{content}}
+	    </div>
 	</div>
 	"
 

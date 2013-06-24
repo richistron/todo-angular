@@ -1,0 +1,1 @@
+(function(){(function(b){var a;a=b.App||{};a.Models={};a.Models.blogItem=Backbone.Model.extend({initialize:function(){},sync:function(e,d,c){return Backbone.sync.call(d,e,d,c)}});return b.App=a})(window)}).call(this);

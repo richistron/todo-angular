@@ -21,7 +21,36 @@
 
 	# document view
 	App.Views.docV = Backbone.View.extend
-		initialize: -> @linkOne = $(@$el).find("nav#navigation").find("ul").find('li').find('a')[0]			
+		initialize: -> 
+			@linkOne = $(@$el).find("nav#navigation").find("ul").find('li').find('a')[0]			
+			@addModal()
+		addModal: ->
+			tpl = (Mustache.compile App.Templates.modalBox)( content: "adasdasdas" )
+			$(@$el).append tpl			
+			$($(@$el).find(".modalBox")[0]).css("min-height",$(@$el).height())
+			$($(@$el).find(".modalBox")[0]).hide()
+			@modalEl = $($(@$el).find(".modalBox")[0])
+		modal: (options)->			
+			if options.action?
+				switch options.action
+					when "show"												
+						console.log $(options.e.currentTarget).attr("href")
+						_.find options.data.items , (item) -> 
+							console.log item
+						$(@modalEl).show();
+					when "close" then $(@modalEl).hide();
+					else $(@modalEl).hide();
+		events: 
+			"click .modalBox a.close": "closeModal"
+			"click .modalBox": "closeModal"
+			"click .modalcontainer": "doNothing"			
+		closeModal: (e)-> 
+			e.preventDefault()
+			e.stopPropagation()			
+			@modal action: "close"
+		doNothing: (e)->
+			e.preventDefault()
+			e.stopPropagation()
 
 
 
@@ -99,8 +128,12 @@
 			"click a.readmore": "viewNote"
 			"click article header a": "viewNote"
 		viewNote: (e)->
-			e.preventDefault()			
-			console.log e
+			e.preventDefault()		
+			options = 
+				"action": "show"
+				"data": @model.attributes
+				"e" : e
+			App.bundle.docV.modal(options)
 		pagination: (e)->
 			e.preventDefault()			
 			$(e.currentTarget).closest("div").find("a").removeClass("active")

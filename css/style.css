@@ -140,6 +140,7 @@ html, body, nav {
   text-decoration: none;
   font-size: 2em;
   /* 20px / 10px */
+
   -moz-transition: all 0.5s ease-in-out;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -172,6 +173,7 @@ html, body, nav {
   text-decoration: none;
   font-size: 2em;
   /* 20px / 10px */
+
   -moz-transition: all 0.5s ease-in-out;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -366,6 +368,7 @@ nav ul li:hover a, nav ul li:focus a, nav ul li:active a {
   text-decoration: none;
   font-size: 2em;
   /* 20px / 10px */
+
   -moz-transition: all 0.5s ease-in-out;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -398,6 +401,7 @@ nav ul li a {
   text-decoration: none;
   font-size: 2em;
   /* 20px / 10px */
+
   -moz-transition: all 0.5s ease-in-out;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -526,4 +530,38 @@ footer .about, footer .legal {
   text-align: center;
   opacity: 0.5;
   line-height: 2em;
+}
+/* modal */
+body .modalBox {
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+body .modalBox .modalcontainer {
+  z-index: 9999;
+  width: 960px;
+  background: #fff;
+  margin: auto;
+  top: 50px;
+  padding: 25px;
+  position: relative;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+body .modalBox .modalcontainer .close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #526569;
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  -moz-text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  -webkit-text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }

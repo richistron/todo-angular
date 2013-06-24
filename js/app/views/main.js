@@ -14,7 +14,50 @@
     App.Views = App.Views || {};
     App.Views.docV = Backbone.View.extend({
       initialize: function() {
-        return this.linkOne = $(this.$el).find("nav#navigation").find("ul").find('li').find('a')[0];
+        this.linkOne = $(this.$el).find("nav#navigation").find("ul").find('li').find('a')[0];
+        return this.addModal();
+      },
+      addModal: function() {
+        var tpl;
+        tpl = (Mustache.compile(App.Templates.modalBox))({
+          content: "adasdasdas"
+        });
+        $(this.$el).append(tpl);
+        $($(this.$el).find(".modalBox")[0]).css("min-height", $(this.$el).height());
+        $($(this.$el).find(".modalBox")[0]).hide();
+        return this.modalEl = $($(this.$el).find(".modalBox")[0]);
+      },
+      modal: function(options) {
+        if (options.action != null) {
+          switch (options.action) {
+            case "show":
+              console.log($(options.e.currentTarget).attr("href"));
+              _.find(options.data.items, function(item) {
+                return console.log(item);
+              });
+              return $(this.modalEl).show();
+            case "close":
+              return $(this.modalEl).hide();
+            default:
+              return $(this.modalEl).hide();
+          }
+        }
+      },
+      events: {
+        "click .modalBox a.close": "closeModal",
+        "click .modalBox": "closeModal",
+        "click .modalcontainer": "doNothing"
+      },
+      closeModal: function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return this.modal({
+          action: "close"
+        });
+      },
+      doNothing: function(e) {
+        e.preventDefault();
+        return e.stopPropagation();
       }
     });
     App.Views.mainResponseV = Backbone.View.extend({
@@ -118,8 +161,14 @@
         "click article header a": "viewNote"
       },
       viewNote: function(e) {
+        var options;
         e.preventDefault();
-        return console.log(e);
+        options = {
+          "action": "show",
+          "data": this.model.attributes,
+          "e": e
+        };
+        return App.bundle.docV.modal(options);
       },
       pagination: function(e) {
         var articles, blog, box, id, section, target;
