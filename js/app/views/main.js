@@ -19,23 +19,33 @@
       },
       addModal: function() {
         var tpl;
-        tpl = (Mustache.compile(App.Templates.modalBox))({
-          content: "adasdasdas"
-        });
+        tpl = (Mustache.compile(App.Templates.modalBox))();
         $(this.$el).append(tpl);
         $($(this.$el).find(".modalBox")[0]).css("min-height", $(this.$el).height());
         $($(this.$el).find(".modalBox")[0]).hide();
         return this.modalEl = $($(this.$el).find(".modalBox")[0]);
       },
       modal: function(options) {
+        var allEntries, returned, section, sectionName, selected, url;
         if (options.action != null) {
           switch (options.action) {
             case "show":
-              console.log($(options.e.currentTarget).attr("href"));
-              _.find(options.data.items, function(item) {
-                return console.log(item);
+              url = $(options.e.currentTarget).attr("href");
+              sectionName = $(options.e.currentTarget).closest("section").attr("id");
+              returned = {};
+              section = _.find(options.data, function(item, index) {
+                if (sectionName === index) return item;
               });
-              return $(this.modalEl).show();
+              allEntries = [];
+              _.each(section, function(item) {
+                return _.each(item, function(entrie) {
+                  return allEntries.push(entrie);
+                });
+              });
+              selected = _.find(allEntries, function(entrie) {
+                if (entrie.link === url) return entrie;
+              });
+              return this.parseModal(selected);
             case "close":
               return $(this.modalEl).hide();
             default:
@@ -58,6 +68,13 @@
       doNothing: function(e) {
         e.preventDefault();
         return e.stopPropagation();
+      },
+      parseModal: function(entrie) {
+        var tpl;
+        console.log(entrie);
+        tpl = (Mustache.compile(App.Templates.modalBoxEntrie))(entrie);
+        $(this.modalEl).find(".modalcontainer").html(tpl);
+        return $(this.modalEl).show();
       }
     });
     App.Views.mainResponseV = Backbone.View.extend({
@@ -120,6 +137,7 @@
     });
     App.Views.sectionV = Backbone.View.extend({
       tagName: "section",
+      entries: {},
       reder: function() {
         var tpl, tplParams;
         $(this.$el).attr("id", this.model.get("name"));
@@ -140,17 +158,24 @@
         name = this.model.get("name");
         items = [];
         _.each(boxes, function(box, index) {
-          var id, model, res, view;
+          var id, res, view;
           id = $(box).data("modelid");
           res = _.find(_this.model.attributes.items, function(item) {
             if (item.id === id) return item;
           });
-          model = new App.Models.blogItem(res);
+          res.section = name;
+          _this.itemModel = new App.Models.blogItem(res);
           view = new App.Views.blogItemV({
-            model: model,
+            model: _this.itemModel,
             el: $(box)
           });
-          view.load();
+          view.load().done(function(entries) {
+            if (entries == null) entries = [];
+            if (_this.entries[_this.model.attributes.name] == null) {
+              _this.entries[_this.model.attributes.name] = [];
+            }
+            return _this.entries[_this.model.attributes.name].push(entries);
+          });
           return items.push(view);
         });
         return this.allViews[name] = items;
@@ -165,7 +190,7 @@
         e.preventDefault();
         options = {
           "action": "show",
-          "data": this.model.attributes,
+          "data": this.entries,
           "e": e
         };
         return App.bundle.docV.modal(options);
@@ -230,7 +255,7 @@
           max: 10,
           onComplete: function(data) {
             _this.model.attributes.entries = data;
-            _this.deferred.resolve();
+            _this.deferred.resolve(data);
             if (App.bundle.reponseV.url != null) {
               if (App.bundle.reponseV.url[1].split(":")[0] === _this.model.attributes.id) {
                 return App.bundle.reponseV.deferred.resolve();

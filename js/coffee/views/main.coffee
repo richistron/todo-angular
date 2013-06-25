@@ -25,7 +25,7 @@
 			@linkOne = $(@$el).find("nav#navigation").find("ul").find('li').find('a')[0]			
 			@addModal()
 		addModal: ->
-			tpl = (Mustache.compile App.Templates.modalBox)( content: "adasdasdas" )
+			tpl = (Mustache.compile App.Templates.modalBox)()
 			$(@$el).append tpl			
 			$($(@$el).find(".modalBox")[0]).css("min-height",$(@$el).height())
 			$($(@$el).find(".modalBox")[0]).hide()
@@ -33,11 +33,21 @@
 		modal: (options)->			
 			if options.action?
 				switch options.action
-					when "show"												
-						console.log $(options.e.currentTarget).attr("href")
-						_.find options.data.items , (item) -> 
-							console.log item
-						$(@modalEl).show();
+					when "show"									
+						url = $(options.e.currentTarget).attr("href")
+						sectionName = $(options.e.currentTarget).closest("section").attr("id")						
+						returned = {}
+						section = _.find options.data , (item,index) ->
+							if sectionName == index
+								return item							
+						allEntries = [] 
+						_.each section , (item)->
+							_.each item , (entrie)->
+								allEntries.push entrie
+						selected = _.find allEntries , (entrie)->
+							if entrie.link == url
+								return entrie						
+						@parseModal selected						
 					when "close" then $(@modalEl).hide();
 					else $(@modalEl).hide();
 		events: 
@@ -51,6 +61,11 @@
 		doNothing: (e)->
 			e.preventDefault()
 			e.stopPropagation()
+		parseModal: (entrie)->
+			console.log entrie
+			tpl = (Mustache.compile App.Templates.modalBoxEntrie)(entrie)
+			$(@modalEl).find(".modalcontainer").html tpl
+			$(@modalEl).show()
 
 
 
@@ -95,7 +110,8 @@
 
 	# section view
 	App.Views.sectionV = Backbone.View.extend	
-		tagName: "section"			
+		tagName: "section"		
+		entries: {}
 		reder: -> 
 			$(@$el).attr "id" , @model.get("name")						
 			tplParams = 
@@ -116,11 +132,15 @@
 				res = _.find @model.attributes.items , (item)-> 
 					if item.id == id
 						return item
-				model = new App.Models.blogItem res
+				res.section = name
+				@itemModel = new App.Models.blogItem res
 				view = new App.Views.blogItemV
-					model: model
+					model: @itemModel
 					el: $(box)
-				view.load()
+				view.load().done (entries = []) => 						
+					unless @entries[@model.attributes.name]?		
+						@entries[@model.attributes.name] = []					
+					@entries[@model.attributes.name].push entries										
 				items.push view
 			@allViews[name] = items
 		events: 
@@ -131,8 +151,8 @@
 			e.preventDefault()		
 			options = 
 				"action": "show"
-				"data": @model.attributes
-				"e" : e
+				"data": @entries
+				"e" : e			
 			App.bundle.docV.modal(options)
 		pagination: (e)->
 			e.preventDefault()			
@@ -183,9 +203,9 @@
 				max: 10
 				onComplete:(data)=> 					
 					@model.attributes.entries = data
-					@deferred.resolve();							
+					@deferred.resolve( data );							
 					if App.bundle.reponseV.url?
-						if App.bundle.reponseV.url[1].split(":")[0] == @model.attributes.id
+						if App.bundle.reponseV.url[1].split(":")[0] == @model.attributes.id							
 							App.bundle.reponseV.deferred.resolve()
 			$(tmp).feeds feedOptions
 			return @deferred.promise();
