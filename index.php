@@ -63,12 +63,12 @@
             </div>
         </footer>        
         <script src="js/libs-v2.2.1.js"></script>        
-        <script src="js/app/collections/main.js"></script>
-        <script src="js/app/models/main.js"></script>
-        <script src="js/app/views/main.js"></script>
-        <script src="js/app/templates/main.js"></script>
-        <script src="js/app/routers/main.js"></script>
-        <script src="js/app/apps/main.js"></script>
+        <script src="js/app/collections/main-collections.js"></script>
+        <script src="js/app/models/main-models.js"></script>
+        <script src="js/app/views/main-views.js"></script>
+        <script src="js/app/templates/main-templates.js"></script>
+        <script src="js/app/routers/main-router.js"></script>
+        <script src="js/app/apps/main-app.js"></script>
         <!--<script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-12736297-8']);

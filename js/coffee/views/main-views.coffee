@@ -70,7 +70,6 @@
 			e.preventDefault()
 			window.open $(e.currentTarget).attr("href")
 		parseModal: (entrie)->	
-			console.log entrie		
 			@modalHeight()
 			tpl = (Mustache.compile App.Templates.modalBoxEntrie)(entrie)
 			$(@modalEl).find(".modalcontainer").find(".modalEntrie").html tpl

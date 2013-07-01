@@ -82,7 +82,6 @@
       },
       parseModal: function(entrie) {
         var tpl;
-        console.log(entrie);
         this.modalHeight();
         tpl = (Mustache.compile(App.Templates.modalBoxEntrie))(entrie);
         $(this.modalEl).find(".modalcontainer").find(".modalEntrie").html(tpl);
