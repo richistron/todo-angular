@@ -21,9 +21,15 @@
         var tpl;
         tpl = (Mustache.compile(App.Templates.modalBox))();
         $(this.$el).append(tpl);
-        $($(this.$el).find(".modalBox")[0]).css("min-height", $(this.$el).height());
         $($(this.$el).find(".modalBox")[0]).hide();
-        return this.modalEl = $($(this.$el).find(".modalBox")[0]);
+        this.modalEl = $($(this.$el).find(".modalBox")[0]);
+        return this.modalHeight();
+      },
+      modalHeight: function() {
+        var modalHeight;
+        $(this.modalEl).css("min-height", $(this.$el).height());
+        modalHeight = $(window).height() - 150;
+        return $(this.modalEl).find(".modalcontainer").css("height", modalHeight);
       },
       modal: function(options) {
         var allEntries, returned, section, sectionName, selected, url;
@@ -56,7 +62,8 @@
       events: {
         "click .modalBox a.close": "closeModal",
         "click .modalBox": "closeModal",
-        "click .modalcontainer": "doNothing"
+        "click .modalcontainer": "doNothing",
+        "click .modalcontainer a": "clickContainer"
       },
       closeModal: function(e) {
         e.preventDefault();
@@ -69,11 +76,16 @@
         e.preventDefault();
         return e.stopPropagation();
       },
+      clickContainer: function(e) {
+        e.preventDefault();
+        return window.open($(e.currentTarget).attr("href"));
+      },
       parseModal: function(entrie) {
         var tpl;
         console.log(entrie);
+        this.modalHeight();
         tpl = (Mustache.compile(App.Templates.modalBoxEntrie))(entrie);
-        $(this.modalEl).find(".modalcontainer").html(tpl);
+        $(this.modalEl).find(".modalcontainer").find(".modalEntrie").html(tpl);
         return $(this.modalEl).show();
       }
     });

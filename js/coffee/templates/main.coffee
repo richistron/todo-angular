@@ -41,12 +41,18 @@
 
 	App.Templates.modalBox = "
 	<div class=\"modalBox\">
-	    <div class=\"modalcontainer\"></div>
+	    <div class=\"modalcontainer\">
+	    	<a href=\"#\" class=\"close\">X</a>
+			<div class=\"modalEntrie\"></div>
+		</div>
 	</div>
 	"
-	App.Templates.modalBoxEntrie = "		    
-	<a href=\"#\" class=\"close\">X</a>
-	{{&content}}
+	App.Templates.modalBoxEntrie = "
+	<h1 class=\"entrieTitle\">{{title}}</h1>
+		<p><a href=\"{{link}}\">Ver original en sitio</a></p>
+	<p> {{&content}} </p>
+	<p> Publicado {{publishedDate}} </p>	
+	<p>Author {{feedAuthor}}</p>
 	" 
 
 	# App

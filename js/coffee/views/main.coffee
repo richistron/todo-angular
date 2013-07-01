@@ -27,9 +27,13 @@
 		addModal: ->
 			tpl = (Mustache.compile App.Templates.modalBox)()
 			$(@$el).append tpl			
-			$($(@$el).find(".modalBox")[0]).css("min-height",$(@$el).height())
 			$($(@$el).find(".modalBox")[0]).hide()
 			@modalEl = $($(@$el).find(".modalBox")[0])
+			@modalHeight()
+		modalHeight: ->
+			$(@modalEl).css("min-height",$(@$el).height())
+			modalHeight = $(window).height() - 150			
+			$(@modalEl).find(".modalcontainer").css("height",modalHeight)			
 		modal: (options)->			
 			if options.action?
 				switch options.action
@@ -54,6 +58,7 @@
 			"click .modalBox a.close": "closeModal"
 			"click .modalBox": "closeModal"
 			"click .modalcontainer": "doNothing"			
+			"click .modalcontainer a": "clickContainer"			
 		closeModal: (e)-> 
 			e.preventDefault()
 			e.stopPropagation()			
@@ -61,10 +66,14 @@
 		doNothing: (e)->
 			e.preventDefault()
 			e.stopPropagation()
-		parseModal: (entrie)->
-			console.log entrie
+		clickContainer: (e)-> 
+			e.preventDefault()
+			window.open $(e.currentTarget).attr("href")
+		parseModal: (entrie)->	
+			console.log entrie		
+			@modalHeight()
 			tpl = (Mustache.compile App.Templates.modalBoxEntrie)(entrie)
-			$(@modalEl).find(".modalcontainer").html tpl
+			$(@modalEl).find(".modalcontainer").find(".modalEntrie").html tpl
 			$(@modalEl).show()
 
 
