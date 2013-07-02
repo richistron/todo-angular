@@ -68,7 +68,9 @@ h1 {
   /* 40px / 10px */
 
 }
-html, body, nav {
+html,
+body,
+nav {
   background: #ffffff;
 }
 .transition-all {
@@ -97,14 +99,15 @@ html, body, nav {
 }
 .header a p {
   display: inline-block;
-  display: inline-block;
   font-size: 2em;
   color: rgba(255, 255, 255, 0.4);
   font-style: italic;
   font-weight: bolder;
   word-spacing: 0.2em;
 }
-.header a:hover, .header a:active, .header a:focus {
+.header a:hover,
+.header a:active,
+.header a:focus {
   opacity: 0.75;
   color: #526569;
   -moz-transform: scale(0.75) translate(-100px, 0);
@@ -131,11 +134,15 @@ html, body, nav {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-.nav-li:hover, .nav-li:focus, .nav-li:active {
+.nav-li:hover,
+.nav-li:focus,
+.nav-li:active {
   background: #000;
   background: rgba(0, 0, 0, 0.5);
 }
-.nav-li:hover a, .nav-li:focus a, .nav-li:active a {
+.nav-li:hover a,
+.nav-li:focus a,
+.nav-li:active a {
   color: rgba(0, 0, 0, 0.65);
   text-decoration: none;
   font-size: 2em;
@@ -178,7 +185,9 @@ html, body, nav {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-.nav-a:hover, .nav-a:focus, .nav-a:active {
+.nav-a:hover,
+.nav-a:focus,
+.nav-a:active {
   color: #ffffff;
   -moz-text-shadow: 1px 1px 3px rgba(204, 204, 204, 0.3);
   -webkit-text-shadow: 1px 1px 3px rgba(204, 204, 204, 0.3);
@@ -210,7 +219,9 @@ html, body, nav {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-.container section div.box article header h1 a:hover, .container section div.box article header h1 a:focus, .container section div.box article header h1 a:active {
+.container section div.box article header h1 a:hover,
+.container section div.box article header h1 a:focus,
+.container section div.box article header h1 a:active {
   color: #526569;
 }
 .container section div.box article div.thumb {
@@ -237,7 +248,9 @@ html, body, nav {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-.container section div.box article p a:hover, .container section div.box article p a:focus, .container section div.box article p a:active {
+.container section div.box article p a:hover,
+.container section div.box article p a:focus,
+.container section div.box article p a:active {
   color: #526569;
 }
 .container section div.box article span.author {
@@ -259,7 +272,9 @@ html, body, nav {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-.container section div.box div.articlePagination a:hover, .container section div.box div.articlePagination a:focus, .container section div.box div.articlePagination a:active {
+.container section div.box div.articlePagination a:hover,
+.container section div.box div.articlePagination a:focus,
+.container section div.box div.articlePagination a:active {
   color: #526569;
 }
 .container section div.box div.articlePagination a.active {
@@ -290,7 +305,9 @@ html, body, nav {
 .footer .socialLinks a.linkedin {
   background: url(/img/linkedin100.png);
 }
-.footer .socialLinks a:hover, .footer .socialLinks a:focus, .footer .socialLinks a:active {
+.footer .socialLinks a:hover,
+.footer .socialLinks a:focus,
+.footer .socialLinks a:active {
   opacity: 0.5;
 }
 .footer .license {
@@ -298,7 +315,8 @@ html, body, nav {
   line-height: 2em;
   padding-top: 20px;
 }
-.footer .about, .footer .legal {
+.footer .about,
+.footer .legal {
   text-align: center;
   opacity: 0.5;
   line-height: 2em;
@@ -325,14 +343,15 @@ body header.logo a h1 {
 }
 body header.logo a p {
   display: inline-block;
-  display: inline-block;
   font-size: 2em;
   color: rgba(255, 255, 255, 0.4);
   font-style: italic;
   font-weight: bolder;
   word-spacing: 0.2em;
 }
-body header.logo a:hover, body header.logo a:active, body header.logo a:focus {
+body header.logo a:hover,
+body header.logo a:active,
+body header.logo a:focus {
   opacity: 0.75;
   color: #526569;
   -moz-transform: scale(0.75) translate(-100px, 0);
@@ -359,11 +378,15 @@ nav ul li {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-nav ul li:hover, nav ul li:focus, nav ul li:active {
+nav ul li:hover,
+nav ul li:focus,
+nav ul li:active {
   background: #000;
   background: rgba(0, 0, 0, 0.5);
 }
-nav ul li:hover a, nav ul li:focus a, nav ul li:active a {
+nav ul li:hover a,
+nav ul li:focus a,
+nav ul li:active a {
   color: rgba(0, 0, 0, 0.65);
   text-decoration: none;
   font-size: 2em;
@@ -406,7 +429,9 @@ nav ul li a {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-nav ul li a:hover, nav ul li a:focus, nav ul li a:active {
+nav ul li a:hover,
+nav ul li a:focus,
+nav ul li a:active {
   color: #ffffff;
   -moz-text-shadow: 1px 1px 3px rgba(204, 204, 204, 0.3);
   -webkit-text-shadow: 1px 1px 3px rgba(204, 204, 204, 0.3);
@@ -438,7 +463,9 @@ div#container section div.box article header h1 a {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-div#container section div.box article header h1 a:hover, div#container section div.box article header h1 a:focus, div#container section div.box article header h1 a:active {
+div#container section div.box article header h1 a:hover,
+div#container section div.box article header h1 a:focus,
+div#container section div.box article header h1 a:active {
   color: #526569;
 }
 div#container section div.box article div.thumb {
@@ -465,7 +492,9 @@ div#container section div.box article p a {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-div#container section div.box article p a:hover, div#container section div.box article p a:focus, div#container section div.box article p a:active {
+div#container section div.box article p a:hover,
+div#container section div.box article p a:focus,
+div#container section div.box article p a:active {
   color: #526569;
 }
 div#container section div.box article span.author {
@@ -487,7 +516,9 @@ div#container section div.box div.articlePagination a {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-div#container section div.box div.articlePagination a:hover, div#container section div.box div.articlePagination a:focus, div#container section div.box div.articlePagination a:active {
+div#container section div.box div.articlePagination a:hover,
+div#container section div.box div.articlePagination a:focus,
+div#container section div.box div.articlePagination a:active {
   color: #526569;
 }
 div#container section div.box div.articlePagination a.active {
@@ -518,7 +549,9 @@ footer .socialLinks a.twitter {
 footer .socialLinks a.linkedin {
   background: url(/img/linkedin100.png);
 }
-footer .socialLinks a:hover, footer .socialLinks a:focus, footer .socialLinks a:active {
+footer .socialLinks a:hover,
+footer .socialLinks a:focus,
+footer .socialLinks a:active {
   opacity: 0.5;
 }
 footer .license {
@@ -526,10 +559,28 @@ footer .license {
   line-height: 2em;
   padding-top: 20px;
 }
-footer .about, footer .legal {
+footer .about,
+footer .legal {
   text-align: center;
   opacity: 0.5;
   line-height: 2em;
+}
+.pub970 {
+  width: 970px;
+  margin: auto;
+}
+.pub300x250 {
+  width: 300px;
+  height: 250px;
+  float: left;
+  margin: 25px;
+}
+span.pubLabel {
+  display: block;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bolder;
+  line-height: 1.5em;
 }
 /* modal */
 body .modalBox {
@@ -552,10 +603,58 @@ body .modalBox .modalcontainer {
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
+body .modalBox .modalcontainer .modalEntrie {
+  height: inherit;
+  width: inherit;
+  overflow: auto;
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+body .modalBox .modalcontainer .modalEntrie a {
+  color: #2a9eea;
+}
+body .modalBox .modalcontainer .modalEntrie a:hover,
+body .modalBox .modalcontainer .modalEntrie a:focus,
+body .modalBox .modalcontainer .modalEntrie a:active {
+  color: #526569;
+}
+body .modalBox .modalcontainer .modalEntrie h1 {
+  font-size: 1.5em;
+  line-height: 2em;
+}
+body .modalBox .modalcontainer .modalEntrie h2 {
+  font-size: 1.5em;
+  line-height: 2em;
+}
+body .modalBox .modalcontainer .modalEntrie h3 {
+  font-size: 1.5em;
+  line-height: 2em;
+}
+body .modalBox .modalcontainer .modalEntrie h4 {
+  font-size: 1.5em;
+  line-height: 2em;
+}
+body .modalBox .modalcontainer .modalEntrie h5 {
+  font-size: 1.5em;
+  line-height: 2em;
+}
+body .modalBox .modalcontainer .modalEntrie h6 {
+  font-size: 1.5em;
+  line-height: 2em;
+}
+body .modalBox .modalcontainer .modalEntrie .seeOriginal {
+  text-align: right;
+  padding-right: 20px;
+}
+body .modalBox .modalcontainer .modalEntrie .seeOriginal a {
+  font-size: 1.2em;
+  font-weight: bolder;
+  text-decoration: none;
+}
 body .modalBox .modalcontainer .close {
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: -20px;
+  right: 10px;
   color: #526569;
   font-size: 2em;
   font-weight: bold;

@@ -1,4 +1,4 @@
-richistron.com Frontend v2.0.1
+richistron.com Frontend v2.2.2
 ===============================
 
 Rss reader, frontent based byt @richistron

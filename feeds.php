@@ -38,15 +38,15 @@ $feeds['comunidades'][] = array(
 		"author" => "@railsmx",
 		"logo" => "/img/ruby-logo.png"
 	);
-$feeds['comunidades'][] = array(
-		'id' => 'phpmx',
-		'title' => "PHP México",
-		"slogan" => "Twitter us hashtag!! #phpmx RT @phpmx",
-		"url"  => "http://phpmexico.mx/",
-		"urlFeed"  => "http://phpmexico.mx/rss.xml",
-		"author" => "@phpmx",
-		"logo" => "/img/phpmx300.png"
-	);
+// $feeds['comunidades'][] = array(
+// 		'id' => 'phpmx',
+// 		'title' => "PHP México",
+// 		"slogan" => "Twitter us hashtag!! #phpmx RT @phpmx",
+// 		"url"  => "http://phpmexico.mx/",
+// 		"urlFeed"  => "http://phpmexico.mx/rss.xml",
+// 		"author" => "@phpmx",
+// 		"logo" => "/img/phpmx300.png"
+// 	);
 // blogs
 $feeds['blogs'][] = array(
 		'id' => 'richistron',
