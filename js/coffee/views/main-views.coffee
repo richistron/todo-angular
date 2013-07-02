@@ -56,9 +56,9 @@
 					else $(@modalEl).hide();
 		events: 
 			"click .modalBox a.close": "closeModal"
-			"click .modalBox": "closeModal"
 			"click .modalcontainer": "doNothing"			
 			"click .modalcontainer a": "clickContainer"			
+			"click .modalBox": "closeModal"
 		closeModal: (e)-> 
 			e.preventDefault()
 			e.stopPropagation()			
@@ -68,11 +68,16 @@
 			e.stopPropagation()
 		clickContainer: (e)-> 
 			e.preventDefault()
-			window.open $(e.currentTarget).attr("href")
+			unless $(e.currentTarget).hasClass("close")
+				window.open $(e.currentTarget).attr("href")
 		parseModal: (entrie)->	
-			@modalHeight()
-			tpl = (Mustache.compile App.Templates.modalBoxEntrie)(entrie)
-			$(@modalEl).find(".modalcontainer").find(".modalEntrie").html tpl
+			@modalHeight()						
+			pubAlready = $(@modalEl).find("#div-gpt-ad-1372719961964-0")			
+			if pubAlready.length == 0				
+				tpl = (Mustache.compile App.Templates.modalBoxEntriePub)( Pub:App.Templates.pub300250 )
+				$(@modalEl).find(".modalcontainer").find(".modalEntrie").html tpl
+			tplEntrie = (Mustache.compile App.Templates.modalBoxEntrie )( entrie )
+			$(@modalEl).find(".modalcontainer").find(".entrieEntrie").html tplEntrie
 			$(@modalEl).show()
 
 

@@ -47,13 +47,28 @@
 		</div>
 	</div>
 	"
-	App.Templates.modalBoxEntrie = "
+	App.Templates.modalBoxEntriePub = "
+	<div class=\"pub300x250\">{{&Pub}}</div>			
+	<div class=\"entrieEntrie\"></div>
+	" 
+
+	App.Templates.modalBoxEntrie = "				
 	<h1 class=\"entrieTitle\">{{title}}</h1>
-		<p><a href=\"{{link}}\">Ver original en sitio</a></p>
+	<p class=\"seeOriginal\"><a href=\"{{link}}\">Ver original en sitio</a></p>
 	<p> {{&content}} </p>
 	<p> Publicado {{publishedDate}} </p>	
-	<p>Author {{feedAuthor}}</p>
+	<p>Author {{feedAuthor}}</p>	
 	" 
+
+	App.Templates.pub300250 = "
+	<span class=\"pubLabel\">Publicidad</span>
+	<!-- r300x250 -->
+	<div id='div-gpt-ad-1372719961964-0' style='width:300px; height:250px;'>
+	<script type='text/javascript'>
+	googletag.cmd.push(function() { googletag.display('div-gpt-ad-1372719961964-0'); });
+	</script>
+	</div>
+	"
 
 	# App
 	window.App = App

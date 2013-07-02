@@ -531,6 +531,23 @@ footer .about, footer .legal {
   opacity: 0.5;
   line-height: 2em;
 }
+.pub970{
+  width: 970px;
+  margin: auto;
+}
+.pub300x250{
+  width: 300px;
+  height: 250px;
+  float: left;
+  margin: 25px;
+}
+span.pubLabel {
+  display: block;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bolder;
+  line-height: 1.5em;
+}
 /* modal */
 body {
   .modalBox{
@@ -557,6 +574,12 @@ body {
         overflow: auto;        
         font-size: 1.5em;
         line-height: 1.5em;
+        a{          
+          color: #2a9eea;
+          &:hover,&:focus,&:active{
+            color: #526569;
+          }
+        }
         h1{
           font-size: 1.5em;
           line-height: 2em;
@@ -580,6 +603,15 @@ body {
         h6{
           font-size: 1.5em;
           line-height: 2em;
+        }
+        .seeOriginal{
+          text-align: right;
+          padding-right: 20px;
+          a{
+            font-size: 1.2em;
+            font-weight: bolder;
+            text-decoration: none;            
+          }
         }
       }
       .close{

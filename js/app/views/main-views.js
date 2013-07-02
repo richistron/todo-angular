@@ -61,9 +61,9 @@
       },
       events: {
         "click .modalBox a.close": "closeModal",
-        "click .modalBox": "closeModal",
         "click .modalcontainer": "doNothing",
-        "click .modalcontainer a": "clickContainer"
+        "click .modalcontainer a": "clickContainer",
+        "click .modalBox": "closeModal"
       },
       closeModal: function(e) {
         e.preventDefault();
@@ -78,13 +78,22 @@
       },
       clickContainer: function(e) {
         e.preventDefault();
-        return window.open($(e.currentTarget).attr("href"));
+        if (!$(e.currentTarget).hasClass("close")) {
+          return window.open($(e.currentTarget).attr("href"));
+        }
       },
       parseModal: function(entrie) {
-        var tpl;
+        var pubAlready, tpl, tplEntrie;
         this.modalHeight();
-        tpl = (Mustache.compile(App.Templates.modalBoxEntrie))(entrie);
-        $(this.modalEl).find(".modalcontainer").find(".modalEntrie").html(tpl);
+        pubAlready = $(this.modalEl).find("#div-gpt-ad-1372719961964-0");
+        if (pubAlready.length === 0) {
+          tpl = (Mustache.compile(App.Templates.modalBoxEntriePub))({
+            Pub: App.Templates.pub300250
+          });
+          $(this.modalEl).find(".modalcontainer").find(".modalEntrie").html(tpl);
+        }
+        tplEntrie = (Mustache.compile(App.Templates.modalBoxEntrie))(entrie);
+        $(this.modalEl).find(".modalcontainer").find(".entrieEntrie").html(tplEntrie);
         return $(this.modalEl).show();
       }
     });
