@@ -1,8 +1,8 @@
 /* 
-    Document   : customized
-    Author     : richistron
-    Description:
-        less css stylesheet
+		Document   : customized
+		Author     : richistron
+		Description:
+				less css stylesheet
 */
 /* Font face */
 @font-face {
@@ -663,4 +663,80 @@ body .modalBox .modalcontainer .close {
   -moz-text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   -webkit-text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+/* responsive rules */
+@media (max-width: 970px) {
+  .pub970 {
+    display: none;
+  }
+  body div#container {
+    width: inherit;
+    position: inherit;
+    left: inherit;
+    margin: inherit;
+  }
+  body .modalBox .modalcontainer {
+    width: 850px;
+  }
+}
+@media (max-width: 960px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  body div#container section div.box {
+    display: block;
+    width: inherit;
+  }
+  body nav ul {
+    width: inherit;
+  }
+}
+@media (max-width: 900px) {
+  body .modalBox .modalcontainer {
+    width: 80%;
+  }
+  body .modalBox .modalcontainer .modalEntrie {
+    width: 100%;
+  }
+}
+@media (max-width: 850px) {
+  body header.logo a {
+    text-align: center;
+    line-height: 4.5em;
+  }
+}
+@media (max-width: 600px) {
+  body .pub300x250 {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  body header.logo a {
+    min-height: 80px;
+  }
+  body header.logo a p {
+    display: none;
+  }
+  body nav ul li {
+    margin: 0;
+  }
+}
+@media (max-width: 468px) {
+  body header.logo a {
+    background-position: center 8px;
+  }
+  body header.logo a h1 {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  body nav ul li a {
+    font-size: 1.5em;
+  }
+  body nav ul li a:hover,
+  body nav ul li a:active,
+  body nav ul li a:focus {
+    font-size: 1.5em;
+  }
 }

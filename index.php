@@ -7,29 +7,26 @@
 		<meta name="author" content="Ricardo Rivas">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="img/favicon.ico">
-		<link href="css/style.less" type="text/css" rel="stylesheet/less" media="screen">
+		<link href="css/style.css" rel="stylesheet" media="screen">
 		<title>richistron.com | Otro dude más en el interwebs</title>
 		<script type='text/javascript'>
-		var googletag = googletag || {};
-		googletag.cmd = googletag.cmd || [];
-		(function() {
-		var gads = document.createElement('script');
-		gads.async = true;
-		gads.type = 'text/javascript';
-		var useSSL = 'https:' == document.location.protocol;
-		gads.src = (useSSL ? 'https:' : 'http:') + 
-		'//www.googletagservices.com/tag/js/gpt.js';
-		var node = document.getElementsByTagName('script')[0];
-		node.parentNode.insertBefore(gads, node);
-		})();
-		</script>
-
-		<script type='text/javascript'>
-		googletag.cmd.push(function() {
-		googletag.defineSlot('/4381659/r300x250', [300, 250], 'div-gpt-ad-1372719961964-0').addService(googletag.pubads());
-		googletag.defineSlot('/4381659/r970x90', [970, 90], 'div-gpt-ad-1372720026487-0').addService(googletag.pubads());
-		googletag.enableServices();
-		});
+			var googletag = googletag || {};
+			googletag.cmd = googletag.cmd || [];
+			(function() {
+			var gads = document.createElement('script');
+			gads.async = true;
+			gads.type = 'text/javascript';
+			var useSSL = 'https:' == document.location.protocol;
+			gads.src = (useSSL ? 'https:' : 'http:') + 
+			'//www.googletagservices.com/tag/js/gpt.js';
+			var node = document.getElementsByTagName('script')[0];
+			node.parentNode.insertBefore(gads, node);
+			})();		
+			googletag.cmd.push(function() {
+			googletag.defineSlot('/4381659/r300x250', [300, 250], 'div-gpt-ad-1372719961964-0').addService(googletag.pubads());
+			googletag.defineSlot('/4381659/r970x90', [970, 90], 'div-gpt-ad-1372720026487-0').addService(googletag.pubads());
+			googletag.enableServices();
+			});
 		</script>
 	</head>
 	<body>  
