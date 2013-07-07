@@ -26,6 +26,10 @@
 			<header><h1><a href=\"{{link}}\">{{title}}</a></h1></header>
 			<div class=\"thumb\"><img src=\"{{model.logo}}\" alt=\"{{model.title}}\"></div>
 			<p>{{&contentSnippet}} <a href=\"{{link}}\" target=\"_blank\" class=\"readmore\">Leer m&aacute;s</a></p>
+			<div class=\"sharePost\">
+				<a class=\"twitter\" href=\"#\" data-service=\"twitter\" data-title=\"{{title}} || via @richistron\" data-url=\"{{link}}\">&nbsp;</a>
+				<a class=\"fb\" href=\"#\" data-service=\"facebook\" data-title=\"{{title}}\" data-url=\"{{link}}\">&nbsp;</a>
+			</div>
 			<span class=\"author\">Author: <strong>{{author}}</strong></span>
 		</article>
 	{{/entries}}
@@ -58,6 +62,10 @@
 	<p> {{&content}} </p>
 	<p> Publicado {{publishedDate}} </p>	
 	<p>Author {{feedAuthor}}</p>	
+	<div class=\"sharePost\">
+		<a class=\"twitter\" ref=\"#\" data-service=\"twitter\" data-title=\"{{title}} || via @richistron\" data-url=\"{{link}}\">&nbsp;</a>
+		<a class=\"fb\" href=\"#\" data-service=\"facebook\" data-title=\"{{title}}\" data-url=\"{{link}}\">&nbsp;</a>
+	</div>
 	" 
 
 	App.Templates.pub300250 = "

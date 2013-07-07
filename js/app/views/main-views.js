@@ -94,7 +94,8 @@
         }
         tplEntrie = (Mustache.compile(App.Templates.modalBoxEntrie))(entrie);
         $(this.modalEl).find(".modalcontainer").find(".entrieEntrie").html(tplEntrie);
-        return $(this.modalEl).show();
+        $(this.modalEl).show();
+        return $("div.sharePost a").share();
       }
     });
     App.Views.mainResponseV = Backbone.View.extend({
@@ -255,7 +256,8 @@
         tpl = (Mustache.compile(App.Templates.pagination))(data);
         $(this.$el).append(tpl);
         link = $(this.$el).find(".articlePagination").find("a")[0];
-        return $(link).addClass("active");
+        $(link).addClass("active");
+        return $("div.sharePost a").share();
       },
       load: function() {
         var feedOptions, tmp,

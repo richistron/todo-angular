@@ -548,6 +548,23 @@ span.pubLabel {
   font-weight: bolder;
   line-height: 1.5em;
 }
+.sharePost{
+  text-align: right;
+  float: right;
+  a{    
+    text-indent: -99999px;
+    width: 35px;
+    height: 35px;    
+    background-size: 100%;
+    display: inline-block;
+    &.twitter{
+      background-image: url(/img/twitter-black.png);
+    }
+    &.fb{
+      background-image: url(/img/fb-black.png);
+    }
+  }
+}
 /* modal */
 body {
   .modalBox{

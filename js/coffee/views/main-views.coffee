@@ -79,6 +79,7 @@
 			tplEntrie = (Mustache.compile App.Templates.modalBoxEntrie )( entrie )
 			$(@modalEl).find(".modalcontainer").find(".entrieEntrie").html tplEntrie
 			$(@modalEl).show()
+			$("div.sharePost a").share();
 
 
 
@@ -202,6 +203,7 @@
 			$(@$el).append tpl
 			link = $(@$el).find(".articlePagination").find("a")[0]
 			$(link).addClass "active"
+			$("div.sharePost a").share();
 		load:->					
 			@deferred = $.Deferred()
 			$(@$el).append $('<div class="tmp"></div>')
