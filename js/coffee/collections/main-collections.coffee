@@ -14,7 +14,7 @@
 
 	App.Collections.responseC = Backbone.Collection.extend
 		# localStorage: new Backbone.LocalStorage("app-richistron-storage")
-		url: "feeds.php"
+		url: "/json/feeds"
 		sync: (method,model,options)->
 			switch method	
 				when "read"					

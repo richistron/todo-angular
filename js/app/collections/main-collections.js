@@ -13,7 +13,7 @@
     App = window.App || {};
     App.Collections = App.Collections || {};
     App.Collections.responseC = Backbone.Collection.extend({
-      url: "feeds.php",
+      url: "/json/feeds",
       sync: function(method, model, options) {
         switch (method) {
           case "read":

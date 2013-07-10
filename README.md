@@ -9,3 +9,4 @@ Rss reader, frontent based byt @richistron
 * Mustache.js  v0.7.2
 * lessc 1.1.0 (LESS Compiler)
 * jQuery v2.0.2
+* Slim framework
