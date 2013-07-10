@@ -5,9 +5,9 @@ require 'vendor/autoload.php';
 // http://docs.slimframework.com/ 
 $app = new \Slim\Slim();
 
-$app->config('debug', true);
+$app->config('debug', false);
 $app->config('log.enable',true);
-$app->config('mode', "development");
+$app->config('mode', "production");
 
 $app->config('templates.path', "./tpl");
 
