@@ -5,13 +5,13 @@ require 'vendor/autoload.php';
 // http://docs.slimframework.com/ 
 $app = new \Slim\Slim();
 
-$app->config('debug', false);
+$app->config('debug', true);
 $app->config('log.enable',true);
-$app->config('mode', "production");
+$app->config('mode', "development");
 
 $app->config('templates.path', "./tpl");
 
-$appVersion =  md5("v2.3.1");
+// $appVersion =  md5("v2.3.1");
 
 // main page
 $app->get('/', function () use ($app,$appVersion){
