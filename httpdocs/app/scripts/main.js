@@ -31,7 +31,10 @@ require([
 ], function (Backbone) {
     require([
             'models/feed',
-        ],function(){            
-            Backbone.history.start();
+            "collections/feeds",
+            "views/feed",
+            "routes/feed",
+        ],function(){
+            // Backbone.history.start();
         });
 });

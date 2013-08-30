@@ -5,15 +5,9 @@
 	license MTI
 	Author @richistron
 ###
+
 class FeedModel extends Backbone.Model
-	constructor:()->		
-		@prom: $.Deferred()
-		@preload().done =>
-			console.log "done"
-			super
-	preload: ->
-		@prom.resolve()
-		@prom()
+	constructor:()-> super
 	defaults: 
 		elID: 0
 		title: ""
@@ -23,6 +17,4 @@ class FeedModel extends Backbone.Model
 		author: ""
 		logo: ""
 
-# tests
-feedModel = new FeedModel
-console.log feedModel
+console.log FeedModel
