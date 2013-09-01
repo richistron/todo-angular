@@ -6,35 +6,39 @@ require.config({
         underscore: {
             exports: '_'
         },
+        mustache: {
+            exports: 'Mustache'
+        },        
         backbone: {
             deps: [
                 'underscore',
-                'jquery'
+                'jquery',
+                // "mustache",
             ],
             exports: 'Backbone'
         },
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
-        }
+        },
+        app: {
+            deps: ["backbone"]
+        },        
     },
     paths: {
         jquery: '../bower_components/jquery/jquery',
         backbone: '../bower_components/backbone/backbone',
         underscore: '../bower_components/underscore/underscore',
-        bootstrap: 'vendor/bootstrap'
+        bootstrap: 'vendor/bootstrap',
+        mustache: "../bower_components/mustache/mustache",
+        app: "app",
+        tools: "tools/tools"
     }
 });
 
 require([
-    'backbone',    
-], function (Backbone) {
-    require([
-            'models/feed',
-            "collections/feeds",
-            "views/feed",
-            "routes/feed",
-        ],function(){
-            // Backbone.history.start();
-        });
+    'app',        
+], function (app) {    
+    console.log( app );
+    app.start();
 });

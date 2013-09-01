@@ -1,6 +1,10 @@
 
-class FeedsCollection extends Backbone.Collection
-	constructor: -> super
-	#model: FeedsModel
+define ['tools'], (Tools)->
+	
+	t = new Tools
 
-console.log FeedsCollection
+	class FeedsCollection extends Backbone.Collection
+		constructor: -> super
+		#model: FeedsModel
+
+	return FeedsCollection

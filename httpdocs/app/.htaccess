@@ -268,9 +268,9 @@ AddType text/vtt                            vtt
 # European providers.
 # This is the official 'bypass' suggested by O2 in the UK.
 
-# <IfModule mod_headers.c>
-# Header set Cache-Control "no-transform"
-# </IfModule>
+<IfModule mod_headers.c>
+ Header set Cache-Control "no-transform"
+</IfModule>
 
 
 # ----------------------------------------------------------------------

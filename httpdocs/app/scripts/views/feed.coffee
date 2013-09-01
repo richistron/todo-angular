@@ -1,5 +1,9 @@
 
-class FeedView extends Backbone.View
-	constructor: -> super
+define ['tools'], (Tools)->
+	
+	t = new Tools
 
-console.log FeedView
+	class FeedView extends Backbone.View
+		constructor: -> super
+
+	return FeedView
