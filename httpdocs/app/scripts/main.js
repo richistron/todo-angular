@@ -8,12 +8,11 @@ require.config({
         },
         mustache: {
             exports: 'Mustache'
-        },        
+        },
         backbone: {
             deps: [
                 'underscore',
-                'jquery',
-                // "mustache",
+                'jquery'
             ],
             exports: 'Backbone'
         },
@@ -22,23 +21,28 @@ require.config({
             exports: 'jquery'
         },
         app: {
-            deps: ["backbone"]
-        },        
+            deps: [
+                'backbone',
+                'underscore',
+                'mustache',
+                'backbone',
+                'bootstrap',
+                'jquery'
+            ],
+            exports:'app'
+        }
     },
     paths: {
         jquery: '../bower_components/jquery/jquery',
         backbone: '../bower_components/backbone/backbone',
         underscore: '../bower_components/underscore/underscore',
-        bootstrap: 'vendor/bootstrap',
-        mustache: "../bower_components/mustache/mustache",
-        app: "app",
-        tools: "tools/tools"
+        mustache: '../bower_components/mustache/mustache',
+        bootstrap: 'vendor/bootstrap'
     }
 });
 
 require([
-    'app',        
-], function (app) {    
-    console.log( app );
-    app.start();
+    'app'
+], function (App) {
+    App.start();
 });

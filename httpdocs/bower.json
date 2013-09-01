@@ -1,6 +1,6 @@
 {
-  "name": "httpdocs",
-  "version": "0.0.0",
+  "name": "front-richistron",
+  "version": "3.0.0",
   "dependencies": {
     "sass-bootstrap": "~2.3.0",
     "jquery": "~1.9.0",
@@ -9,7 +9,7 @@
     "requirejs": "~2.1.5",
     "requirejs-text": "~2.0.5",
     "modernizr": "~2.6.2",
-    "mustache": "~0.7.2",
+    "mustache": "~0.7.2"
   },
   "devDependencies": {}
 }
