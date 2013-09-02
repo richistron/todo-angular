@@ -1,9 +1,77 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+
+
+<div class="row-fluid">
+
+	<div class="span3">
+		<h4>New todo</h4>
+		<form class="">
+			<div class="control-group">
+				<div class="controls">
+				{{formTodoNew}}
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<fieldset>
+						<label>
+							Text
+						</label>
+						<input ng-model="formTodoNew" ng-model-instant type="text" placeholder="New todo"/>
+					</fieldset>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button ng-click="addTodo()" type="submit" class="btn">
+						<span class="icon-plus"></span>Add
+					</button>					
+					<button ng-click="clearTodos()" type="submit" class="btn btn-warning">
+						<span class="icon-minus"></span>Clear
+					</button>
+				</div>
+			</div>
+		</form>
+		<!-- <div class="control-group">
+			<div class="controls">
+				<button ng-click="clearTodos()" type="submit" class="btn btn-warning">
+					<span class="icon-minus"></span>Clear
+				</button>
+			</div>
+		</div> -->
+	</div>
+
+	<div class="span9 panel panel-default">
+		<div class="panel-heading">
+			<h4>Todos total {{todosTotal}}</h4>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Todo
+						</th>
+						<th>
+							Actions
+						</th>												
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="todo in todos">
+						<td class="todo-done-{{todo.done}}" ng-class="{muted: todo.done}">							
+							{{todo.text}}							
+						</td>
+						<td>
+							<input type="checkbox" ng-model="todo.done"/>							
+							<!-- <button class="btn btn-danger" ng-click="toggleDone(todo)">
+								<span class="icon-remove"></span>
+								Mark as complete
+							</button> -->						
+						</td>												
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
 </div>
