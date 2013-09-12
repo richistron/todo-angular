@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('main').controller('FeedsCtrl',function ($scope) {
+angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
 
 	// defaults
-	if($scope.todos === undefined || $scope.todos === null){
-		$scope.todosTotal = 1;
-		$scope.hideComplete = false;
-		$scope.todos = [
-			{text: 'start withi Angular',done:true},
+	if(sc.todos === undefined || sc.todos === null){
+		sc.todosTotal = 1;
+		sc.hideComplete = false;
+		sc.todos = [
+			{text: 'start with Angular',done:true},
 			{text: 'learn Angular as a badass',done:false},
 			{text: 'create todo app',done:false},
 			{text: 'add local storage',done:false}
@@ -15,15 +15,15 @@ angular.module('main').controller('FeedsCtrl',function ($scope) {
 	}
 
 	// ShowHide
-	$scope.ShowHide = function(){
-		if($scope.hideComplete === true){
+	sc.ShowHide = function(){
+		if(sc.hideComplete === true){
 			return "Show";
 		}
 		return "Hide";		
 	};
 
 	// done action
-	$scope.toggleDone = function(todo){
+	sc.toggleDone = function(todo){
 		if (todo.done === true) {
 			todo.done = false;
 		}else{
@@ -32,19 +32,19 @@ angular.module('main').controller('FeedsCtrl',function ($scope) {
 	};
 
 	// addTodo action
-	$scope.addTodo = function(){
-		if ($scope.formTodoNew === undefined || $scope.formTodoNew.trim() === ''){
+	sc.addTodo = function(){
+		if (sc.formTodoNew === undefined || sc.formTodoNew.trim() === ''){
 			return false;
 		}
-		$scope.todos.push({text: $scope.formTodoNew.trim(),done:false});
-		$scope.formTodoNew = '';
+		sc.todos.push({text: sc.formTodoNew.trim(),done:false});
+		sc.formTodoNew = '';
 	};
 
 	// clearTodos action
-	$scope.clearTodos = function(){
-		$scope.todos = _.filter($scope.todos,function(todo){
+	sc.clearTodos = function(){
+		sc.todos = _.filter(sc.todos,function(todo){
 			return !todo.done;
 		});
 	};
 
-});
+}]);

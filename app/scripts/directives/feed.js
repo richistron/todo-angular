@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('main').directive('feed', function () {
-	return {};
-});
+angular.module('main').directive('feedHover', [function () {
+	//
+}]);

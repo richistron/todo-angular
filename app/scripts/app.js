@@ -1,12 +1,12 @@
 'use strict';
+var module = angular.module('main',[]);
 
-angular.module('main', []).config(function ($routeProvider) {
-	$routeProvider
-		.when('/', {
+module.config(['$routeProvider',function (router) {
+	router.when('/', {
 			templateUrl: 'views/main.html',
 			controller: 'FeedsCtrl'
 		})
 		.otherwise({
 			redirectTo: '/'
 		});
-});
+}]);
