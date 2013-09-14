@@ -59,7 +59,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="todo in todos | filter:search | completedTodos:hideComplete ">
-						<td class="todo-done-{{todo.done}}" ng-class="{muted: todo.done}">							
+						<td get-todo-actions class="todo-done-{{todo.done}}" ng-class="{muted: todo.done}">							
 							{{todo.text | titleize}}							
 						</td>
 						<td>
