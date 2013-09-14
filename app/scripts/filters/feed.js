@@ -1,14 +1,16 @@
 'use strict';
 
-var module = angular.module('main');
+var _module = angular.module('main');
 
-module.filter('titleize', function () {
+var _ = _ || window._;
+
+_module.filter('titleize', function () {
 	return function(text){
 		return _.string.titleize(text);
 	};
 });
 
-module.filter('completedTodos', function () {
+_module.filter('completedTodos', function () {
 	return function(todos,hideComplete){
 		if(hideComplete === undefined || hideComplete === null || hideComplete === false){
 			return todos;

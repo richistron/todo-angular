@@ -2,8 +2,10 @@
 
 angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
 
+	var _ = _ || window._;
+
 	// defaults
-	var defaults = (function(sc){		
+	(function(sc){
 		if(sc.todos === undefined || sc.todos === null){
 			sc.todosTotal = 1;
 			sc.hideComplete = false;
@@ -19,9 +21,9 @@ angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
 	// ShowHide
 	sc.ShowHide = function(){
 		if(sc.hideComplete === true){
-			return "Show";
+			return 'Show';
 		}
-		return "Hide";		
+		return 'Hide';
 	};
 
 	// done action
