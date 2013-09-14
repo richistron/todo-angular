@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('main').directive('getTodoActions', [function () {
+angular.module('main').directive('highlight', [function () {
 	return {
 		restrict: "A",
 		link: function(scope,el,attrs){
-			console.log(scope.todo);
-			console.log(el);
-			console.log(attrs);			
+			el.bind("mouseenter mouseleave", function(e){
+				el.toggleClass('alert alert-info');
+			});
 		}
 	};
 }]);

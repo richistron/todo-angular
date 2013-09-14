@@ -3,16 +3,18 @@
 angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
 
 	// defaults
-	if(sc.todos === undefined || sc.todos === null){
-		sc.todosTotal = 1;
-		sc.hideComplete = false;
-		sc.todos = [
-			{text: 'start with Angular',done:true},
-			{text: 'learn Angular as a badass',done:false},
-			{text: 'create todo app',done:false},
-			{text: 'add local storage',done:false}
-		];
-	}
+	var defaults = (function(sc){		
+		if(sc.todos === undefined || sc.todos === null){
+			sc.todosTotal = 1;
+			sc.hideComplete = false;
+			sc.todos = [
+				{text: 'start with Angular',done:true},
+				{text: 'learn Angular as a badass',done:false},
+				{text: 'create todo app',done:false},
+				{text: 'add local storage',done:false}
+			];
+		}
+	})(sc);
 
 	// ShowHide
 	sc.ShowHide = function(){
