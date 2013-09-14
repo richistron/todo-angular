@@ -84,4 +84,15 @@ angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
 		sc.getNewTodoText = '';
 	};
 
+	sc.getTodosTotal = function(){
+		if(sc.hideComplete === true){
+			var items = [];
+			items = _.filter(sc.todos,function(todo){
+				return !todo.done;
+			});
+			return items.length;
+		}
+		return sc.todos.length;
+	};
+
 }]);
