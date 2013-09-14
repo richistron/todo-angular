@@ -11,9 +11,15 @@
 				<div class="controls">
 					<fieldset>
 						<label>
-							Text
+							Title
 						</label>
-						<input ng-model="formTodoNew" ng-model-instant type="text" placeholder="Example: Go to store"/>
+						<input ng-model="getNewTodoTitle" ng-model-instant type="text" placeholder="type a todo title"/>
+					</fieldset>
+					<fieldset>
+						<label>
+							Description
+						</label>						
+						<textarea ng-model="getNewTodoText" ng-model-instant placeholder="type a todo description" rows="3"></textarea>
 					</fieldset>
 				</div>
 			</div>
@@ -22,8 +28,11 @@
 					<button ng-click="addTodo()" type="submit" class="btn btn-success">
 						<span class="icon-plus"></span>Add
 					</button>					
-					<button ng-click="clearTodos()" type="submit" class="btn btn-danger">
+					<button ng-click="clearTodosForm()" type="submit" class="btn btn-warning">
 						<span class="icon-minus"></span>Clear
+					</button>
+					<button ng-click="clearTodos()" type="submit" class="btn btn-danger">
+						<span class="icon-minus"></span>Delete complete
 					</button>
 				</div>
 			</div>
@@ -59,8 +68,8 @@
 				</thead>
 				<tbody>
 					<tr highlight ng-repeat="todo in todos | filter:search | completedTodos:hideComplete ">
-						<td class="todo-done-{{todo.done}}" ng-class="{muted: todo.done}">							
-							{{todo.text | titleize}}							
+						<td>
+							<!-- directive: todo-item -->
 						</td>
 						<td>
 							<input type="checkbox" ng-model="todo.done"/>

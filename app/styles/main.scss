@@ -2,13 +2,39 @@ $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
 @import "bootstrap-sass/lib/bootstrap";
-@import "bootstrap-sass/lib/responsive";
 
-.container-fluid{
-    .row-fluid{
-        margin-top: 50px;        
-        .todo-done-true{
-        	text-decoration: line-through;        	        	
-        }
-    }
+$muted: #999999;
+
+@mixin muted{
+	color: $muted;
+}
+
+html {
+	font-size: 16px;
+}
+body{
+	font-size: 62.5%; /* 1em */
+}
+
+#container{
+
+	.row-fluid{
+
+		.todo-item{
+
+			h3{
+				font-size: 2em;
+			}
+
+			p{
+				font-size: 1.5em;
+			}
+
+			&.todo-done-true{
+				text-decoration: line-through;
+				@include muted;
+			}
+			
+		}
+	}
 }
