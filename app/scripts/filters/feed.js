@@ -4,7 +4,7 @@ var module = angular.module('main');
 
 module.filter('titleize', function () {
 	return function(text){
-		return text.trim().substring(0,1).toUpperCase() + text.trim().substring(1);
+		return _.string.titleize(text);
 	};
 });
 
