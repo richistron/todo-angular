@@ -5,7 +5,7 @@ var _module = angular.module('main',[]);
 _module.config(['$routeProvider',function (router) {
 	router.when('/', {
 		templateUrl: 'views/main.html',
-		controller: 'FeedsCtrl'
+		controller: 'TodosCtrl'
 	}).otherwise({
 		redirectTo: '/'
 	});

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
+angular.module('main').controller('TodosCtrl',['$scope',function (sc) {
 
 	var _ = _ || window._;
 	var confirm = confirm;

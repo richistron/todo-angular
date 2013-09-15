@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('main').service('Feed', function Feed() {});
+angular.module('main').service('Todos', function Feed() {});

@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('main').directive('highlight', [function () {
+var _module = angular.module('main');
+
+_module.directive('highlight', [function () {
 	return {
 		restrict: 'A',
 		link: function(scope,el){
@@ -11,7 +13,7 @@ angular.module('main').directive('highlight', [function () {
 	};
 }]);
 
-angular.module('main').directive('todoItem',function(){
+_module.directive('todoItem',function(){
 	return {
 		restrict: 'M',
 		templateUrl: 'views/todo.html',
