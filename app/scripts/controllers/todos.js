@@ -3,6 +3,7 @@
 angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
 
 	var _ = _ || window._;
+	var confirm = confirm;
 
 	// defaults
 	(function(sc){
@@ -10,23 +11,23 @@ angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
 			sc.todosTotal = 1;
 			sc.hideComplete = false;
 			sc.todos = [
-				{ 
-					title: 'start with Angular todo', 
+				{
+					title: 'start with Angular todo',
 					text: 'start with Angular description',
 					done:true
 				},
-				{ 
-					title: 'learn Angular as a badass todo', 
+				{
+					title: 'learn Angular as a badass todo',
 					text: 'learn Angular as a badass description',
 					done:false
 				},
-				{ 
-					title: 'create todo app todo', 
+				{
+					title: 'create todo app todo',
 					text: 'create todo app description',
 					done:false
 				},
-				{ 
-					title: 'add local storage todo', 
+				{
+					title: 'add local storage todo',
 					text: 'add local storage description',
 					done:false
 				}
@@ -72,14 +73,14 @@ angular.module('main').controller('FeedsCtrl',['$scope',function (sc) {
 
 	// clearTodos action
 	sc.clearTodos = function(){
-		if (confirm('Are you sure?')){			
+		if (confirm('Are you sure?')){
 			sc.todos = _.filter(sc.todos,function(todo){
 				return !todo.done;
 			});
 		}
 	};
 
-	sc.clearTodosForm = function(){		
+	sc.clearTodosForm = function(){
 		sc.getNewTodoTitle = '';
 		sc.getNewTodoText = '';
 	};
