@@ -1,8 +1,8 @@
 'use strict';
 
-var _module = angular.module('main',[]);
+var _app = angular.module('main',[]);
 
-_module.config(['$routeProvider',function (router) {
+_app.config(['$routeProvider',function (router) {
 	router.when('/', {
 		templateUrl: 'views/main.html',
 		controller: 'TodosCtrl'

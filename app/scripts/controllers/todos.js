@@ -1,39 +1,12 @@
 'use strict';
 
-angular.module('main').controller('TodosCtrl',['$scope',function (sc) {
+var _app = angular.module('main');
 
+_app.controller('TodosCtrl',['$scope','Todos', 'Todo', function (sc,Todos,Todo) {
+
+	// jshint prevent errors
 	var _ = _ || window._;
 	var confirm = confirm;
-
-	// defaults
-	(function(sc){
-		if(sc.todos === undefined || sc.todos === null){
-			sc.todosTotal = 1;
-			sc.hideComplete = false;
-			sc.todos = [
-				{
-					title: 'start with Angular todo',
-					text: 'start with Angular description',
-					done:true
-				},
-				{
-					title: 'learn Angular as a badass todo',
-					text: 'learn Angular as a badass description',
-					done:false
-				},
-				{
-					title: 'create todo app todo',
-					text: 'create todo app description',
-					done:false
-				},
-				{
-					title: 'add local storage todo',
-					text: 'add local storage description',
-					done:false
-				}
-			];
-		}
-	})(sc);
 
 	// ShowHide
 	sc.ShowHide = function(){
@@ -54,20 +27,15 @@ angular.module('main').controller('TodosCtrl',['$scope',function (sc) {
 
 	// addTodo action
 	sc.addTodo = function(){
-		if (sc.getNewTodoTitle === undefined || sc.getNewTodoTitle.trim() === ''){
-			return false;
-		}
-		if (sc.getNewTodoText === undefined || sc.getNewTodoText.trim() === ''){
-			sc.getNewTodoText = 'no description given';
-		}
 
-		sc.todos.push({
+		if (sc.getNewTodoTitle.length === 0) return;
+
+		sc.todos.push(new Todo({
 			title: sc.getNewTodoTitle.trim(),
-			text: sc.getNewTodoText.trim(),
-			done:false
-		});
+			text: sc.getNewTodoText.trim()
+		}));
 
-		sc.clearTodosForm();
+		return sc.clearTodosForm();
 
 	};
 
@@ -95,5 +63,15 @@ angular.module('main').controller('TodosCtrl',['$scope',function (sc) {
 		}
 		return sc.todos.length;
 	};
+
+	// defaults
+	(function(sc){
+		if(sc.todos === undefined || sc.todos === null){
+			sc.todosTotal = 1;
+			sc.hideComplete = false;
+			sc.todos = Todos.todos;
+		}
+		sc.clearTodosForm();
+	})(sc);
 
 }]);
