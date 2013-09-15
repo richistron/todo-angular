@@ -6,10 +6,10 @@ describe('Service: todo', function () {
   beforeEach(module('main'));
 
   // instantiate service
-  var todo;
-  beforeEach(inject(function (_todo_) {
-    todo = _todo_;
-  }));
+  // var todo;
+  // beforeEach(inject(function (_todo_) {
+  //   todo = _todo_;
+  // }));
 
   it('should do something', function () {
     // expect(!!todo).toBe(true);
