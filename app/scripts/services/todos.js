@@ -2,34 +2,33 @@
 
 var _app = angular.module('main');
 
-_app.service('Todos', ['Todo',function Todos(Todo) {		
-	this.todos = [
-		(new Todo({
-			title: 'start with Angular todo',
-			text: 'Create a todo app using angular and yeoman',
-			done:true
-		})),
-		(new Todo({
-			title: 'learn Angular as a badass todo'
-		})),
-		(new Todo({
-			title: 'create todo app todo',
-			done: true			
-		}))		
-	];
-}]);
-
-_app.factory('Todo',function(){
-
-	return function(defaults){				
-		if (defaults.text !== undefined && defaults.text !== null){
-			if (defaults.text.length === 0 ) delete defaults.text;
+_app.factory('TodosStorage',function(){
+	var storageID = 'angular-todo-app';	
+	return {
+		get: function(){
+			console.log('get');
+			return JSON.parse(localStorage.getItem(storageID) || '[]');
+		},
+		put: function(todos){
+			console.log('save');
+			localStorage.setItem(storageID,JSON.stringify(todos));
 		}
-		return _.extend({
-			title: '',
-			text: 'no description given',
-			done:false
-		},defaults);
 	};
-
 });
+
+_app.factory('underscore', function(){
+	return window._;
+});
+
+_app.factory('Todo', ['underscore' , function Todo(_){
+	return function(params){
+		if(params === undefined || params === null){
+			params = {}
+		}		
+		return _.extend({
+			title: 'Hello world',
+			description: 'create youre first yeoma app with angular-generator',
+			done: false
+		},params);
+	};
+}]);

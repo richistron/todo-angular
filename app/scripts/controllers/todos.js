@@ -1,77 +1,50 @@
 'use strict';
 
-var _app = angular.module('main');
+var _app = angular.module('main')
 
-_app.controller('TodosCtrl',['$scope','Todos', 'Todo', function (sc,Todos,Todo) {
+_app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', function ( $scope, todosStorage, Todo, _ ) {
 
-	// jshint prevent errors
-	var _ = _ || window._;
-	var confirm = confirm;
+	$scope.todos = todosStorage.get();
+	$scope.formTodoNewTitle = '';
+	$scope.formTodoNewDescription = '';
 
-	// ShowHide
-	sc.ShowHide = function(){
-		if(sc.hideComplete === true){
-			return 'Show';
-		}
-		return 'Hide';
+	$scope.clearForm = function(){
+		$scope.formTodoNewTitle = '';
+		$scope.formTodoNewDescription = '';
 	};
 
-	// done action
-	sc.toggleDone = function(todo){
-		if (todo.done === true) {
-			todo.done = false;
-		}else{
-			todo.done = true;
+	$scope.$watch('todos',function(newVal,oldVal){
+		if(newVal !== oldVal){			
+			todosStorage.put($scope.todos);
 		}
-	};
+	},true);
 
-	// addTodo action
-	sc.addTodo = function(){
-
-		if (sc.getNewTodoTitle.length === 0) return;
-
-		sc.todos.push(new Todo({
-			title: sc.getNewTodoTitle.trim(),
-			text: sc.getNewTodoText.trim()
+	$scope.addTodo = function(){	
+		$scope.todos.push(new Todo({
+			title: $scope.formTodoNewTitle,
+			description: $scope.formTodoNewDescription,
 		}));
-
-		return sc.clearTodosForm();
-
+		$scope.clearForm();
 	};
 
-	// clearTodos action
-	sc.clearTodos = function(){
-		if (confirm('Are you sure?')){
-			sc.todos = _.filter(sc.todos,function(todo){
-				return !todo.done;
-			});
-		}
+	$scope.editTodo = function(current,fields){
+		var _new = _.extend(current,fields);
+		var _todos = _.filter($scope.todos,function(_item){
+			if(_item.$$hashKey === _new.$$hashKey) {
+				_item = _new.$$hashKey;
+			}
+			return _item;
+		});
+		$scope.todos = _todos;
+		todosStorage.put($scope.todos);
 	};
 
-	sc.clearTodosForm = function(){
-		sc.getNewTodoTitle = '';
-		sc.getNewTodoText = '';
+	$scope.deleteComplete = function(){
+		var _todos = _.filter($scope.todos, function(_item){
+			if(_item.done !== true) return _item;
+		});
+		$scope.todos = _todos;
+		todosStorage.put($scope.todos);
 	};
-
-	sc.getTodosTotal = function(){
-		if(sc.hideComplete === true){
-			var items = [];
-			items = _.filter(sc.todos,function(todo){
-				return !todo.done;
-			});
-			return items.length;
-		}
-		return sc.todos.length;
-	};
-
-	// defaults
-	(function(sc){
-		if(sc.todos === undefined || sc.todos === null){
-			sc.todosTotal = 1;
-			sc.hideComplete = false;
-			sc.todos = Todos.todos;
-		}
-		sc.clearTodosForm();
-	})(sc);
 
 }]);

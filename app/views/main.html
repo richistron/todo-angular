@@ -1,81 +1,10 @@
 
 
 <div class="row-fluid" ng-controller="TodosCtrl">
-	<div class="span3">
-		<h4>New todo</h4>
-		<form class="">
-			<div class="control-group">
-				<div class="controls">
-				{{formTodoNew}}
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<fieldset>
-						<label>
-							Title
-						</label>
-						<input ng-model="getNewTodoTitle" ng-model-instant type="text" placeholder="type a todo title"/>
-					</fieldset>
-					<fieldset>
-						<label>
-							Description
-						</label>						
-						<textarea ng-model="getNewTodoText" ng-model-instant placeholder="type a todo description" rows="3"></textarea>
-					</fieldset>
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<button ng-click="addTodo()" type="submit" class="btn btn-success">
-						<span class="icon-plus"></span>Add
-					</button>					
-					<button ng-click="clearTodosForm()" type="submit" class="btn btn-warning">
-						<span class="icon-minus"></span>Clear
-					</button>
-					<button ng-click="clearTodos()" type="submit" class="btn btn-danger">
-						<span class="icon-minus"></span>Delete complete
-					</button>
-				</div>
-			</div>
-		</form>
-		<div class="row-fluid">
-			<fieldset>
-				<label>
-					<h4>Search</h4>
-				</label>
-				<input type="text" ng-model="search" placeholder="Example: Go to store" />				
-			</fieldset>
-			<fieldset>
-				<span ng-class="{true: 'icon-plus', false:'icon-minus'}[hideComplete]"></span>
-				{{ShowHide()}} completed <input type="checkbox" ng-model="hideComplete"/>
-			</fieldset>
-		</div>
-	</div>
-	<div class="span9 panel panel-default">				
-		<div class="panel-body">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>
-							{{getTodosTotal()}} Todo(s)
-						</th>
-						<th>
-							Actions
-						</th>												
-					</tr>
-				</thead>
-				<tbody>
-					<tr highlight ng-repeat="todo in todos | filter:search | completedTodos:hideComplete ">
-						<td>
-							<!-- directive: todo-item -->
-						</td>
-						<td>
-							<input type="checkbox" ng-model="todo.done"/>
-						</td>												
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+
+	<!-- directive: controls -->
+
+
+	<!-- directive: todosList -->
+
 </div>

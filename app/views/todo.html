@@ -1,5 +1,6 @@
 
-<div class="todo-item todo-done-{{todo.done}}">
+<div class="todo-item" ng-class="{true: 'todo-done-true'}[todo.done]" ng-model-instant>
 	<h3>{{todo.title | titleize}}</h3>
-	<p>{{todo.text}}</p>	
+	<p>{{todo.description}}</p>	
 </div>
+
