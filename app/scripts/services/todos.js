@@ -3,7 +3,7 @@
 var _app = angular.module('main');
 
 _app.factory('TodosStorage',function(){
-	var storageID = 'angular-todo-app';	
+	var storageID = 'angular-todo-app';
 	return {
 		get: function(){
 			// console.log('get');
@@ -23,11 +23,14 @@ _app.factory('underscore', function(){
 _app.factory('Todo', ['underscore' , function Todo(_){
 	return function(params){
 		if(params === undefined || params === null){
-			params = {}
-		}		
+			params = {};
+		}
 
-		if (params.description !== undefined || params.description !== null)
-			if (params.description.trim().length === 0) delete params.description;
+		if (params.description !== undefined || params.description !== null){
+			if (params.description.trim().length === 0){
+				delete params.description;
+			}
+		}
 
 		return _.extend({
 			title: 'Hello world',

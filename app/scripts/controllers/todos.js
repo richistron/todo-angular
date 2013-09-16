@@ -1,6 +1,6 @@
 'use strict';
 
-var _app = angular.module('main')
+var _app = angular.module('main');
 
 _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', function ( $scope, todosStorage, Todo, _ ) {
 
@@ -15,7 +15,7 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 	};
 
 	$scope.$watch('todos',function(newVal,oldVal){
-		if(newVal !== oldVal){			
+		if(newVal !== oldVal){
 			todosStorage.put($scope.todos);
 		}
 	},true);
@@ -42,7 +42,9 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 
 	$scope.deleteComplete = function(){
 		var _todos = _.filter($scope.todos, function(_item){
-			if(_item.done !== true) return _item;
+			if(_item.done !== true){
+				return _item;
+			}
 		});
 		$scope.todos = _todos;
 		todosStorage.put($scope.todos);

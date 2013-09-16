@@ -22,7 +22,7 @@ _app.directive('deleteComplete',function(){
 			el.click(function(){
 				var _modal = el.closest('#container').find('.modal');
 				if(_modal.length > 0){
-					_modal.modal('show');					
+					_modal.modal('show');
 					_modal.find('.cancel').bind('click',function(){
 						_modal.modal('hide');
 					});
@@ -41,7 +41,7 @@ _app.directive('modal',function(){
 		restrict: 'M',
 		replace: true,
 		templateUrl: 'views/modal.html',
-		link: function(scope,el){}
+		link: function(){}
 	};
 });
 
@@ -50,13 +50,13 @@ _app.directive('toogleTodo', [function () {
 		restrict: 'M',
 		template: '<input toggle-done type="checkbox" />',
 		replace: true,
-		link: function(scope,el,attrs){						
+		link: function(scope,el){
 			if(scope.todo.done === true){
 				el.attr('checked',true);
 			}
 			el.bind('click',function(){
 				el.closest('tr').find('.todo-item').toggleClass('todo-done-true');
-				scope.editTodo(scope.todo,{done: el.is(':checked')});				
+				scope.editTodo(scope.todo,{done: el.is(':checked')});
 			});
 		}
 	};
