@@ -13,6 +13,38 @@ _app.directive('highlight', [function () {
 	};
 }]);
 
+_app.directive('deleteComplete',function(){
+	return {
+		restrict: 'M',
+		replace: true,
+		template: '<button type="submit" class="btn btn-danger"><span class="icon-minus"></span>Delete complete</button>',
+		link: function(scope,el){
+			el.click(function(){
+				var _modal = el.closest('#container').find('.modal');
+				if(_modal.length > 0){
+					_modal.modal('show');					
+					_modal.find('.cancel').bind('click',function(){
+						_modal.modal('hide');
+					});
+					_modal.find('.delete').bind('click',function(){
+						_modal.modal('hide');
+						scope.deleteComplete();
+					});
+				}
+			});
+		}
+	};
+});
+
+_app.directive('modal',function(){
+	return {
+		restrict: 'M',
+		replace: true,
+		templateUrl: 'views/modal.html',
+		link: function(scope,el){}
+	};
+});
+
 _app.directive('toogleTodo', [function () {
 	return {
 		restrict: 'M',

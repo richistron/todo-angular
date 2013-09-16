@@ -6,11 +6,11 @@ _app.factory('TodosStorage',function(){
 	var storageID = 'angular-todo-app';	
 	return {
 		get: function(){
-			console.log('get');
+			// console.log('get');
 			return JSON.parse(localStorage.getItem(storageID) || '[]');
 		},
 		put: function(todos){
-			console.log('save');
+			// console.log('save');
 			localStorage.setItem(storageID,JSON.stringify(todos));
 		}
 	};

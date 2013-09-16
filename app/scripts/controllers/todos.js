@@ -20,7 +20,7 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 		}
 	},true);
 
-	$scope.addTodo = function(){	
+	$scope.addTodo = function(){
 		$scope.todos.push(new Todo({
 			title: $scope.formTodoNewTitle,
 			description: $scope.formTodoNewDescription,
@@ -41,14 +41,11 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 	};
 
 	$scope.deleteComplete = function(){
-		var sure = confirm('are you sure?');
-		if(sure === true){
-			var _todos = _.filter($scope.todos, function(_item){
-				if(_item.done !== true) return _item;
-			});
-			$scope.todos = _todos;
-			todosStorage.put($scope.todos);
-		}
+		var _todos = _.filter($scope.todos, function(_item){
+			if(_item.done !== true) return _item;
+		});
+		$scope.todos = _todos;
+		todosStorage.put($scope.todos);
 	};
 
 }]);
