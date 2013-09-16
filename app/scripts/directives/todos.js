@@ -6,6 +6,7 @@ _app.directive('highlight', [function () {
 	return {
 		restrict: 'A',
 		link: function(scope,el){
+			el.addClass('ng-class-highlight');
 			el.bind('mouseenter mouseleave', function(){
 				el.toggleClass('alert alert-info');
 			});

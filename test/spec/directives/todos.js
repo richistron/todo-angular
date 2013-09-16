@@ -1,21 +1,27 @@
 'use strict';
 
-describe('Directive: todo', function () {
+describe('Directive: todos', function () {
 
-  // load the directive's module
-  beforeEach(module('main'));
-
-  // var element,
-    // scope;
-
-  // beforeEach(inject(function ($rootScope) {
-    // scope = $rootScope.$new();
-  // }));
-
-  it('should make hidden element visible', inject(function ($compile) {
-    // element = angular.element('<todo></todo>');
-    // element = $compile(element)(scope);
-    // expect(element.text()).toBe('this is the todo directive');
-    expect(1).toBe(1);
-  }));
+	// load the directive's module
+	beforeEach(module('main'));
+	
+	var element,
+	scope;
+	
+	beforeEach(inject(function ($rootScope) {
+		scope = $rootScope.$new();
+	}));
+	// highlight directive
+	it('highlight', inject(function ($compile,$rootScope) {
+		element = angular.element('<todos highlight></todos>');
+		element = $compile(element)($rootScope);		
+		expect(element.hasClass('ng-class-highlight')).toBeTruthy();
+	}));
+	// deleteComplete directive
+	it('deleteComplete', inject(function ($compile) {
+		// element = angular.element('<div delete-complete>');
+		// console.log(element);
+		// element = $compile(element)(scope);
+		// console.log(element);
+	}));
 });
