@@ -12,7 +12,7 @@ _app.filter('titleize', function () {
 
 _app.filter('completedTodos', function () {
 	return function(todos,hideComplete){
-		if(hideComplete === undefined || hideComplete === null || hideComplete === false){
+		if(hideComplete === false){
 			return todos;
 		}
 		return _.filter(todos,function(todo){
