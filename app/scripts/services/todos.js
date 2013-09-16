@@ -25,6 +25,10 @@ _app.factory('Todo', ['underscore' , function Todo(_){
 		if(params === undefined || params === null){
 			params = {}
 		}		
+
+		if (params.description !== undefined || params.description !== null)
+			if (params.description.trim().length === 0) delete params.description;
+
 		return _.extend({
 			title: 'Hello world',
 			description: 'create youre first yeoma app with angular-generator',
