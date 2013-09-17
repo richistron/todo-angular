@@ -36,5 +36,14 @@ body{
 			}
 			
 		}
+
+		.toogleTodo{
+			vertical-align: middle;
+			text-align: center;
+			input[type="checkbox"]{				
+				width: 20px;
+				height: 20px;
+			}
+		}
 	}
 }
