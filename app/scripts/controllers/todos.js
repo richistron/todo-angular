@@ -8,6 +8,7 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 	$scope.formTodoNewTitle = '';
 	$scope.formTodoNewDescription = '';
 	$scope.hideComplete = false;
+	$scope.availableTodos = 0;
 
 	$scope.clearForm = function(){
 		$scope.formTodoNewTitle = '';
@@ -49,6 +50,16 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 		});
 		$scope.todos = _todos;
 		todosStorage.put($scope.todos);
+	};
+
+	$scope.getTodosTotal = function(){
+		if($scope.hideComplete !== true){
+			return $scope.todos.length;
+		}else{
+			return (_.filter($scope.todos,function(todo){
+							return !todo.done;
+						})).length;
+		}
 	};
 
 }]);

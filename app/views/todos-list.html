@@ -4,7 +4,7 @@
 			<thead>
 				<tr>
 					<th>
-						Todo(s)
+						{{getTodosTotal()}} Todo(s)
 					</th>
 					<th class="span1 toogleTodo">
 						Actions
@@ -14,7 +14,7 @@
 			<tbody>
 				<tr highlight ng-repeat="todo in todos | filter:search | completedTodos: hideComplete">
 					<td class="span8">
-						<!-- directive: todo-item -->
+						<!-- directive: todoItem -->
 					</td>
 					<td class="span1 toogleTodo">
 						<!-- directive: toogleTodo -->
