@@ -38,6 +38,7 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 		});
 		$scope.todos = _todos;
 		todosStorage.put($scope.todos);
+		$scope.$digest();
 	};
 
 	$scope.deleteComplete = function(){
