@@ -22,11 +22,13 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 	},true);
 
 	$scope.addTodo = function(){
-		$scope.todos.push(new Todo({
-			title: $scope.formTodoNewTitle,
-			description: $scope.formTodoNewDescription,
-		}));
-		$scope.clearForm();
+		if($scope.formTodoNewTitle.trim() !== ""){
+			$scope.todos.push(new Todo({
+				title: $scope.formTodoNewTitle,
+				description: $scope.formTodoNewDescription,
+			}));
+			$scope.clearForm();
+		}
 	};
 
 	$scope.editTodo = function(current,fields){
