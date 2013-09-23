@@ -3,6 +3,8 @@ Angular Todo App
 
 Release: 0.0.1
 
+Try http://richistron.github.io/richistron-frontend/
+
 Simple todo app created with yeoman.
 
 To run this app you need to command installed, if you don't have it you'll need to follow the installation instructions
