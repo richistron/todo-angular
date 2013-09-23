@@ -20,6 +20,10 @@ _app.factory('underscore', function(){
 	return window._;
 });
 
+_app.factory('$', function(){
+	return window.$;
+});
+
 _app.factory('Todo', ['underscore' , function Todo(_){
 	return function(params){
 		if(params === undefined || params === null){

@@ -1,5 +1,7 @@
-richistron-angular-todo-app v0.0.1
-==================================
+aAngular Todo App
+=================
+
+release: 0.0.1
 
 Created with yeoman
 

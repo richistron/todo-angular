@@ -21,8 +21,7 @@ _app.directive('deleteComplete',function(){
 	return {
 		restrict: 'M',
 		replace: true,
-		template: '<button type="submit" class="btn btn-danger">'
-		+'<span class="icon-minus"></span>Delete complete</button>',
+		template: '<button type="submit" class="btn btn-danger"><span class="icon-minus"></span>Delete complete</button>',
 		link: function(scope,el){
 			el.click(function(){
 				var _modal = el.closest('#container').find('.modal');
@@ -67,7 +66,7 @@ _app.directive('toogleTodo', [function () {
 	};
 }]);
 
-_app.directive('todoItem',function(){
+_app.directive('todoItem',['$',function($){
 	return {
 		restrict: 'M',
 		templateUrl: 'views/todo.html',
@@ -76,31 +75,31 @@ _app.directive('todoItem',function(){
 			el.find('.todoItemForm').addClass('hide');
 			var _toggleClass = function(){
 				el.find('.todoItem').toggleClass('hide');
-				el.find('.todoItemForm').toggleClass('hide');				
+				el.find('.todoItemForm').toggleClass('hide');
 			};
 			var _dbclick = function(){
-							el.closest('tr').bind('dblclick',function(){
-								$(this).unbind('dblclick');
-								_toggleClass();
-							});			
-						};
+					el.closest('tr').bind('dblclick',function(){
+						$(this).unbind('dblclick');
+						_toggleClass();
+					});
+				};
 			_dbclick();
 			el.find('.todoItemForm').bind('keydown keypress',function(e){
 				// enter and scape keys		
 				switch(e.keyCode){
-					case 13: 
-						_dbclick();
-						return _toggleClass();
-					case 27:
-						_dbclick();
-						return _toggleClass();
-					default:						
-						return;
-				}				
+				case 13:
+					_dbclick();
+					return _toggleClass();
+				case 27:
+					_dbclick();
+					return _toggleClass();
+				default:
+					return;
+				}
 			});
 		}
 	};
-});
+}]);
 
 _app.directive('controls',function(){
 	return{

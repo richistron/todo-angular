@@ -22,7 +22,7 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 	},true);
 
 	$scope.addTodo = function(){
-		if($scope.formTodoNewTitle.trim() !== ""){
+		if($scope.formTodoNewTitle.trim() !== ''){
 			$scope.todos.push(new Todo({
 				title: $scope.formTodoNewTitle,
 				description: $scope.formTodoNewDescription,
