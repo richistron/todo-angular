@@ -1,0 +1,20 @@
+<div class="todo-item" ng-model-instant="">
+	<div class="todoItem" ng-class="{true: 'todo-done-true'}[todo.done]">
+		<h3>{{todo.title | titleize}}</h3>
+		<p>{{todo.description}}</p>	
+	</div>
+	<div class="todoItemForm">
+		<fieldset>
+			<label>
+				Title
+			</label>
+			<input class="input-xxlarge" type="text" ng-model="todo.title" required="required" ng-model-instant="">
+		</fieldset>
+		<fieldset>
+			<label>
+				Description
+			</label>
+			<textarea class="input-xxlarge" rows="5" ng-model="todo.description" ng-model-instant=""></textarea>
+		</fieldset>
+	</div>
+</div>
