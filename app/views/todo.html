@@ -1,4 +1,3 @@
-
 <div class="todo-item" ng-model-instant>
 	<div class="todoItem" ng-class="{true: 'todo-done-true'}[todo.done]">
 		<h3>{{todo.title | titleize}}</h3>
@@ -17,6 +16,10 @@
 			</label>
 			<textarea class="input-xxlarge" rows="5" ng-model="todo.description" ng-model-instant></textarea>
 		</fieldset>
+		<div class="editTodoControls">
+			<button class="btn btn-danger disabled">Delete</button>
+			<button class="btn btn-primary disabled">Close</button>
+		</div>
 	</div>
 </div>
 
