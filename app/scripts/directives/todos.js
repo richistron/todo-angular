@@ -2,26 +2,11 @@
 
 var _app = angular.module('main');
 
-_app.directive('highlight', [function () {
-	return {
-		restrict: 'A',
-		link: function(scope,el){
-			el.data('toggle','tooltip');
-			el.attr('title','Double click to edit todo');
-			el.addClass('ng-class-highlight');
-			el.bind('mouseenter mouseleave', function(){
-				el.toggleClass('alert alert-info');
-				el.tooltip('toggle');
-			});
-		}
-	};
-}]);
-
 _app.directive('deleteComplete',function(){
 	return {
 		restrict: 'M',
 		replace: true,
-		template: '<button type="submit" class="btn btn-danger"><span class="icon-minus"></span>Delete complete</button>',
+		template: '<button type="submit" btn-disabled class="btn btn-danger"><span class="icon-minus"></span>Delete complete</button>',
 		link: function(scope,el){
 			el.click(function(){
 				var _modal = el.closest('#container').find('.modal');
@@ -125,5 +110,17 @@ _app.directive('todosList',function(){
 		templateUrl: 'views/todos-list.html',
 		replace: true,
 		link: function(){}
+	};
+});
+
+_app.directive('btnDisabled',function(){
+	return{
+		restrict: 'A',
+		link: function(scope,el){
+			el.addClass('disabled');
+			el.on('mouseenter mouseleave',function(){
+				el.toggleClass('disabled');
+			})
+		}
 	};
 });

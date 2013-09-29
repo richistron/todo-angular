@@ -13,7 +13,7 @@
 					<label>
 						Title
 					</label>
-					<input required="required" ng-model="formTodoNewTitle" ng-model-instant type="text" placeholder="learn angularjs"/>
+					<input ng-model="formTodoNewTitle" ng-model-instant type="text" placeholder="learn angularjs"/>
 				</fieldset>
 				<fieldset>
 					<label>
@@ -25,10 +25,10 @@
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<button ng-click="addTodo()" type="submit" class="btn btn-success">
+				<button btn-disabled ng-click="addTodo()" type="submit" class="btn btn-success">
 					<span class="icon-plus"></span>Add
 				</button>					
-				<button ng-click="clearForm()" type="submit" class="btn btn-warning">
+				<button btn-disabled ng-click="clearForm()" type="submit" class="btn btn-warning">
 					<span class="icon-minus"></span>Clear
 				</button>
 				<!-- directive: deleteComplete -->
