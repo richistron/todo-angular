@@ -6,12 +6,12 @@ angular.module('main').controller('PagesCtrl', ['$scope', function ($scope) {
 		$scope.pages = [
 			{
 				name: 'About',
-				text: 'todoApp',
+				text: 'Todo App 0.0.1 builded with yeoman. @richistron 2013',
 				path: '/about'
 			},
 			{
 				name: 'Contact',
-				text: 'richistron@gmail.com',
+				text: 'Github https://github.com/richistron',
 				path: '/contact'
 			}
 		];

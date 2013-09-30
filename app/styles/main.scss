@@ -31,8 +31,10 @@ body{
 			}
 
 			.todo-done-true{
-				text-decoration: line-through;
-				@include muted;
+				.todoBody{
+					text-decoration: line-through;					
+					@include muted;
+				}				
 			}
 			
 		}
