@@ -15,5 +15,5 @@ angular.module('main').controller('PagesCtrl', ['$scope', function ($scope) {
 				path: '/contact'
 			}
 		];
-	})();	
+	})();
 }]);

@@ -74,7 +74,7 @@ _app.controller('TodosCtrl', ['$scope', 'TodosStorage', 'Todo', 'underscore', fu
 	};
 
 	// delete todo
-	$scope.deleteThis = function(_scope){		
+	$scope.deleteThis = function(_scope){
 		var _todos = _.filter($scope.todos,function(_item){
 			if(_scope.$$hashKey !== _item.$$hashKey){
 				return _item;

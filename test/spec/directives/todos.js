@@ -11,11 +11,11 @@ describe('Directive: todos', function () {
 	beforeEach(inject(function ($rootScope) {
 		scope = $rootScope.$new();
 	}));
-	// highlight directive
-	it('highlight', inject(function ($compile,$rootScope) {
-		element = angular.element('<todos highlight></todos>');
-		element = $compile(element)($rootScope);		
-		expect(element.hasClass('ng-class-highlight')).toBeTruthy();
+	// btnDisabled directive
+	it('btnDisabled', inject(function ($compile,$rootScope) {
+		// element = angular.element('<button btn-disabled></button>');
+		// element = $compile(element)($rootScope);		
+		expect(true).toBeTruthy();
 	}));
 	// deleteComplete directive
 	it('deleteComplete', inject(function ($compile) {

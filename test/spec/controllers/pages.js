@@ -3,7 +3,7 @@
 describe('Controller: PagesCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('angularTodoAppApp'));
+  beforeEach(module('main'));
 
   var PagesCtrl,
     scope;
@@ -16,7 +16,7 @@ describe('Controller: PagesCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('expect two default pages', function () {
+    expect(scope.pages.length).toBe(2);
   });
 });

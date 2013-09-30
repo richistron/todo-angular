@@ -68,28 +68,28 @@ _app.directive('todoItem',['$',function($){
 				var _modal = el.closest('#container').find('.modal');
 				if(_modal.length > 0){
 					_modal.modal('show');
-					_modal.find('.cancel').bind('click',function(){							
+					_modal.find('.cancel').bind('click',function(){
 						_modal.modal('hide');
 					});
-					_modal.find('.delete').bind('click',function(){							
+					_modal.find('.delete').bind('click',function(){
 						_modal.modal('hide');
-						scope.deleteThis(scope.todo);							
+						scope.deleteThis(scope.todo);
 					});
 				}
 			};
 
-			// events 			
+			// events
 			el.find('.todoItem').find('.btns').find('button').filter('.btn-primary').on('click',function(){
 				$(this).closest('.todoItem').hide();
 				$(this).closest('.todo-item').find('.todoItemForm').show();
-			});			
+			});
 			el.find('.todoItem').find('.btns').find('button').filter('.btn-danger').on('click',function(){
 				modalResponse();
 			});
 			el.find('.todoItemForm').find('button').on('mouseenter mouseleave',function(){
 				$(this).toggleClass('disabled');
 			});
-			el.find('.todoItemForm').find('button').click(function(e){
+			el.find('.todoItemForm').find('button').click(function(){
 				if( $(this).hasClass('btn-primary')){
 					$(this).closest('.todo-item').find('.todoItemForm').hide();
 					$(this).closest('.todo-item').find('.todoItem').show();
@@ -127,7 +127,7 @@ _app.directive('btnDisabled',function(){
 			el.addClass('disabled');
 			el.on('mouseenter mouseleave',function(){
 				el.toggleClass('disabled');
-			})
+			});
 		}
 	};
 });
@@ -142,21 +142,21 @@ _app.directive('mainNav',function(){
 });
 
 _app.directive('staticPage',['$location',function($location){
-	return {		
-		restrict: 'A',		
+	return {
+		restrict: 'A',
 		link: function(scope,el){
 			if($location.$$path !== scope.page.path){
 				el.hide();
-			}			
+			}
 		}
 	};
 }]);
 
 _app.directive('ulNav',['$','underscore','$location', function($, _, $location){
-	return {		
-		restrict: 'A',		
+	return {
+		restrict: 'A',
 		link: function(scope,el){
-			if($location.$$path === '/'){				
+			if($location.$$path === '/'){
 				el.find('li').filter(':eq(0)').addClass('active');
 			}else{
 				_.each(el.find('li'),function(_item){

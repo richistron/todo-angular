@@ -1,4 +1,4 @@
-<div class="span9 panel panel-default">				
+<div class="todosList span9 panel panel-default">				
 	<div class="panel-body">
 		<table class="table">
 			<thead>
@@ -12,7 +12,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr highlight="" ng-repeat="todo in todos | filter:search | completedTodos: hideComplete">
+				<tr ng-repeat="todo in todos | filter:search | completedTodos: hideComplete">
 					<td class="span8">
 						<!-- directive: todoItem -->
 					</td>
