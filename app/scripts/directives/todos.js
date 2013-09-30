@@ -124,3 +124,41 @@ _app.directive('btnDisabled',function(){
 		}
 	};
 });
+
+_app.directive('mainNav',function(){
+	return {
+		templateUrl: 'views/main-nav.html',
+		restrict: 'M',
+		replace: true,
+		link: function(){}
+	};
+});
+
+_app.directive('staticPage',['$location',function($location){
+	return {		
+		restrict: 'A',		
+		link: function(scope,el){
+			if($location.$$path !== scope.page.path){
+				el.hide();
+			}			
+		}
+	};
+}]);
+
+_app.directive('ulNav',['$','underscore','$location', function($, _, $location){
+	return {		
+		restrict: 'A',		
+		link: function(scope,el){
+			if($location.$$path === '/'){				
+				el.find('li').filter(':eq(0)').addClass('active');
+			}else{
+				_.each(el.find('li'),function(_item){
+					var _href = ($(_item).find('a').attr('href')).replace('#','');
+					if(_href === $location.$$path){
+						$(_item).addClass('active');
+					}
+				});
+			}
+		}
+	};
+}]);
