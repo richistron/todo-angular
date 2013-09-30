@@ -1,7 +1,7 @@
 Angular Todo App
 ================
 
-Release: 0.0.1
+Release: 0.0.2
 
 Try http://richistron.github.io/richistron-frontend/
 
