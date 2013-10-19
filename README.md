@@ -9,6 +9,10 @@ Release: 0.0.1
 
 http://richistron.github.io/todo-angular
 
+## Status
+
+[![Build Status](https://travis-ci.org/richistron/todo-angular.png?branch=master)](https://travis-ci.org/richistron/todo-angular)
+
 Install
 =======
 
