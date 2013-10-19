@@ -1,0 +1,50 @@
+<div class="controls span3">
+	<h4>Add todo</h4>
+	<form class="">
+		<div class="control-group">
+			<div class="controls">
+				<h4>{{formTodoNewTitle | titleize}}</h4>	
+				<p>{{formTodoNewDescription}}</p>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<fieldset>
+					<label>
+						Title
+					</label>
+					<input ng-model="formTodoNewTitle" ng-model-instant="" type="text" placeholder="learn angularjs">
+				</fieldset>
+				<fieldset>
+					<label>
+						Description
+					</label>						
+					<textarea ng-model="formTodoNewDescription" ng-model-instant="" placeholder="type a todo description" rows="3"></textarea>
+				</fieldset>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<button btn-disabled="" ng-click="addTodo()" type="submit" class="btn btn-success">
+					<span class="icon-plus"></span>Add
+				</button>					
+				<button btn-disabled="" ng-click="clearForm()" type="submit" class="btn btn-warning">
+					<span class="icon-minus"></span>Clear
+				</button>
+				<!-- directive: deleteComplete -->
+			</div>
+		</div>
+	</form>
+	<div class="row-fluid">
+		<fieldset>
+			<label>
+				<h4>Search</h4>
+			</label>
+			<input type="text" ng-model="search" placeholder="Example: Go to store">				
+		</fieldset>
+		<fieldset>
+			<span ng-class="{true: 'icon-plus', false:'icon-minus'}[hideComplete]"></span>
+			Show / Hide Complete <input type="checkbox" ng-model="hideComplete">
+		</fieldset>
+	</div>
+</div>
