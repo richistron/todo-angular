@@ -7,7 +7,7 @@ Release: 0.0.0
 
 ## Deployment
 
-http://richistron.github.io/todo-angular/#/
+http://richistron.github.io/todo-angular
 
 Install
 =======
