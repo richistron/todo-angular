@@ -1,6 +1,6 @@
 {
   "name": "angular-todo-app",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -38,7 +38,9 @@
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.2",
-    "karma-ng-html2js-preprocessor": "~0.1.0"
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "bower": "~1.2.7",
+    "grunt-cli": "~0.1.9"
   },
   "engines": {
     "node": ">=0.8.0"
