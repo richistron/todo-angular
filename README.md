@@ -1,11 +1,13 @@
 Angular Todo App
 ================
 
+Simple todo app with angularjs.
+
 Release: 0.0.0
 
-Try http://richistron.github.io/richistron-frontend/
+## Deployment
 
-Simple todo app with angularjs.
+http://richistron.github.io/todo-angular/#/
 
 Install
 =======
